@@ -105,14 +105,8 @@ public class Ninja implements Kit {
                                     e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você foi &ateletransportado para " + cacheTeleport.get(us).getUsername() + "&7!"));
                                     CooldownAPI cd = new CooldownAPI(e.getPlayer().getName(), "ninja", 5);
                                     cd.start();
-                                } else {
-                                    e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você &cnão tem ninguem para usar o kit ninja&7!"));
                                 }
-                            } else {
-                                e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você &cnão tem ninguem para usar o kit ninja&7!"));
                             }
-                        } else {
-                            e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você &cnão tem ninguem para usar o kit ninja&7!"));
                         }
                     }
                 }
@@ -123,10 +117,8 @@ public class Ninja implements Kit {
                 if (e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
                     User author = UserManager.getPlayer((Player) e.getDamager());
                     User victim = UserManager.getPlayer((Player) e.getEntity());
-                    if (author.getKit() != null && author.getKit() instanceof Ninja && victim.getKit() != null) {
-                        if (!cacheTeleport.get(author).equals(victim)) {
-                            cacheTeleport.put(author, victim);
-                        }
+                    if (author.getKit() instanceof Ninja) {
+                        cacheTeleport.put(author, victim);
                     }
                 }
             }

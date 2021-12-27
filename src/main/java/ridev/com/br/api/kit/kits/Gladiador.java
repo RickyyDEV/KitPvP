@@ -152,8 +152,9 @@ public class Gladiador implements Kit {
                                         loc4.setType(Material.GLASS);
                                     }
 
-
-                                    author.getPlayer().teleport(loc2);
+                                    loc2.setYaw(135.0F);
+                                    author.getPlayer().teleport(loc2.clone());
+                                    loc3.setYaw(-45.0F);
                                     clicked.getPlayer().teleport(loc3);
                                     author.getPlayer().getLocation().setYaw(author.getPlayer().getLocation().getYaw() + 180);
                                     clicked.getPlayer().getLocation().setYaw(clicked.getPlayer().getLocation().getYaw() + 180);

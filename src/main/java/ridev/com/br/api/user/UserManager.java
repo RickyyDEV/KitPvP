@@ -13,7 +13,7 @@ import ridev.com.br.Main;
 import ridev.com.br.api.bau.player.BoxType;
 import ridev.com.br.api.cargos.GroupManager;
 import ridev.com.br.api.kit.Kit;
-import ridev.com.br.api.kit.kits.Viper;
+import ridev.com.br.api.kit.kits.PvP;
 import ridev.com.br.api.rank.RankType;
 import ridev.com.br.api.rank.Ranks;
 import ridev.com.br.api.warps.WarpType;
@@ -58,7 +58,7 @@ public class UserManager {
                             box.put(BoxType.SUPREMO, 0);
                             box.put(BoxType.MASTER, 0);
                             List<Kit> kitlist = new ArrayList<>();
-                            kitlist.add(new Viper());
+                            kitlist.add(new PvP());
                             user = new User(player.getName(), "basico=0;mediano=0;raro=0;supremo=0;master=0;", box, kitlist, null, RankType.UNRANKED, GroupManager.getPlayerGroup(player), 0, 0, 0, 0, WarpType.LOBBY);
                             BackendLibrary.insert(user);
                         }

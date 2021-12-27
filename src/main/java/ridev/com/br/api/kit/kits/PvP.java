@@ -51,7 +51,7 @@ public class PvP implements Kit {
     @Override
     public HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
-        itens.put(0, transform(Material.IRON_SWORD, "&aEspada", true, ""));
+        itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
         for (int i = 1; i < 36; i++) {
             if (i == 13) {
                 itens.put(13, transform(Material.BOWL, 64));
