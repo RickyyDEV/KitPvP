@@ -57,7 +57,7 @@ public class ShopKits extends PagedInventory {
             lore.add(FancyText.colored("&r"));
             lore.add(FancyText.colored("&fRaridade: " + kits.rarity().getBeatifulName()));
             itens.add(() -> InventoryItem.of(
-                    newMenuItemItemStack(kits.icone(), "&a" + kits.name(), lore)).defaultCallback(a -> {
+                    newMenuItemItemStack(kits.icone(), FancyText.colored(us.getKits().contains(kits) ? "&a" + kits.name() : "&c" + kits.name()), lore)).defaultCallback(a -> {
 
                 if (!us.getKits().contains(kits)) {
                     if (us.getCoins() >= kits.price()) {

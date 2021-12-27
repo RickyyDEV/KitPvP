@@ -5,7 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ridev.com.br.api.bau.BoxEvent;
-import ridev.com.br.api.combat.CombatLogAPI;
 import ridev.com.br.api.inventory.menu.coins.CoinsEvent;
 import ridev.com.br.api.inventory.menu.xp.XpEvent;
 
@@ -24,6 +23,5 @@ public class aoSair implements Listener {
         BoxEvent.getUser().remove(p);
         CoinsEvent.getPlayers().remove(p);
         CoinsEvent.getUser().remove(p);
-        CombatLogAPI.pcombat.remove(p);
     }
 }

@@ -83,7 +83,7 @@ public class Sumo implements Listener {
                             } else {
                                 inRow.add(us);
                                 ItemStack ink = new ItemStack(Material.INK_SACK, 1, (short) 10);
-                                us.getPlayer().getInventory().setItem(5, transform(ink, FancyText.colored("&aDuelo Rápido! &7(&aAtivado&7)")));
+                                us.getPlayer().getInventory().setItem(5, transform(ink, FancyText.colored("&aSumo Rápido! &7(&aAtivado&7)")));
                                 us.getPlayer().sendMessage(FancyText.colored("&d&lSUMO &8➸ &7Você Entrou para as partidas rápidas!"));
                             }
                         }
@@ -134,7 +134,7 @@ public class Sumo implements Listener {
                     JSONMessage msgtopla = new JSONMessage("\n &d&lSUMO &8➸ &fVocê Foi desafiado para um duelo\n&f Pelo jogador " + e.getAuthor().getUsername());
                     JSONMessage.ChatExtra extra = new JSONMessage.ChatExtra("\n&e&lCLIQUE AQUI");
                     extra.addHoverEvent(JSONMessage.HoverEventType.SHOW_TEXT, "&aClique Aqui para Aceitar!");
-                    extra.addClickEvent(JSONMessage.ClickEventType.RUN_COMMAND, "/aceitar1v1 " + e.getAuthor().getUsername());
+                    extra.addClickEvent(JSONMessage.ClickEventType.RUN_COMMAND, "/aceitarsumo " + e.getAuthor().getUsername());
                     msgtopla.addExtra(extra);
                     msgtopla.addExtra(new JSONMessage.ChatExtra("&f Para Aceitar O Convite!"));
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
@@ -166,66 +166,75 @@ public class Sumo implements Listener {
     }
 
     public static void startDuel(User user1, User user2) {
+        new BukkitRunnable() {
+            public void run() {
+                if (user1.getPlayer() != null && user2.getPlayer() != null) {
+                    duelo.remove(user1);
+                    duelo.remove(user2);
+                    inRow.remove(user1);
+                    inRow.remove(user2);
+                    inWait.add(user1);
+                    inWait.add(user2);
+                    if (user1.getWarp().equals(WarpType.SUMO) && user2.getWarp().equals(WarpType.SUMO)) {
+                        user1.getPlayer().setMaxHealth(20);
+                        user1.getPlayer().setHealth(20);
+                        user2.getPlayer().setMaxHealth(20);
+                        user2.getPlayer().setHealth(20);
+                        user1.getPlayer().teleport(WarpLibrary.getWarp(WarpType.SUMO).getFirstSpawn());
+                        user2.getPlayer().teleport(WarpLibrary.getWarp(WarpType.SUMO).getSecondSpawn());
+                        user1.getPlayer().getInventory().clear();
+                        user2.getPlayer().getInventory().clear();
 
-        if (user1.getWarp().equals(WarpType.SUMO) && user2.getWarp().equals(WarpType.SUMO)) {
-            user1.getPlayer().setMaxHealth(20);
-            user1.getPlayer().setHealth(20);
-            user2.getPlayer().setMaxHealth(20);
-            user2.getPlayer().setHealth(20);
-            user1.getPlayer().teleport(WarpLibrary.getWarp(WarpType.SUMO).getFirstSpawn());
-            user2.getPlayer().teleport(WarpLibrary.getWarp(WarpType.SUMO).getSecondSpawn());
-            user1.getPlayer().getInventory().clear();
-            user2.getPlayer().getInventory().clear();
+                        TitleSchema.sendDuelsTitle(user1.getPlayer(), user2.getPlayer());
+                        new BukkitRunnable() {
+                            public void run() {
+                                Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
+                                Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
+                                MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e3..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                                MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e3..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                            }
+                        }.runTaskLater(Main.getInstance(), 20);
+                        new BukkitRunnable() {
+                            public void run() {
+                                Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
+                                Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
+                                MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e2..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                                MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e2..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                            }
+                        }.runTaskLater(Main.getInstance(), 40);
+                        new BukkitRunnable() {
+                            public void run() {
+                                Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
+                                Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
+                                MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e1..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                                MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e1..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
+                            }
+                        }.runTaskLater(Main.getInstance(), 60);
+                        new BukkitRunnable() {
+                            public void run() {
+                                Sound.FIRE_IGNITE.play(user1.getPlayer(), 10, 10);
+                                Sound.FIRE_IGNITE.play(user2.getPlayer(), 10, 10);
+                                MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e0..."), FancyText.colored("&cLutem!"), 10, 10, 10);
+                                MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e0..."), FancyText.colored("&cLutem!"), 10, 10, 10);
+                                inWait.remove(user1);
+                                inWait.remove(user2);
+                                inDuel.put(user1, user2);
+                                inDuel.put(user2, user1);
 
-            TitleSchema.sendDuelsTitle(user1.getPlayer(), user2.getPlayer());
-            new BukkitRunnable() {
-                public void run() {
-                    Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
-                    Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
-                    MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e3..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                    MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e3..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                }
-            }.runTaskLater(Main.getInstance(), 20);
-            new BukkitRunnable() {
-                public void run() {
-                    Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
-                    Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
-                    MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e2..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                    MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e2..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                }
-            }.runTaskLater(Main.getInstance(), 40);
-            new BukkitRunnable() {
-                public void run() {
-                    Sound.NOTE_PLING.play(user1.getPlayer(), 10, 10);
-                    Sound.NOTE_PLING.play(user2.getPlayer(), 10, 10);
-                    MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e1..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                    MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e1..."), FancyText.colored("&7Iniciando em..."), 10, 10, 10);
-                }
-            }.runTaskLater(Main.getInstance(), 60);
-            new BukkitRunnable() {
-                public void run() {
-                    Sound.FIRE_IGNITE.play(user1.getPlayer(), 10, 10);
-                    Sound.FIRE_IGNITE.play(user2.getPlayer(), 10, 10);
-                    MineReflect.sendTitle(user1.getPlayer(), FancyText.colored("&e0..."), FancyText.colored("&cLutem!"), 10, 10, 10);
-                    MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e0..."), FancyText.colored("&cLutem!"), 10, 10, 10);
-                    inWait.remove(user1);
-                    inWait.remove(user2);
-                    inDuel.put(user1, user2);
-                    inDuel.put(user2, user1);
-
-                    user1.getPlayer().setMaxHealth(20);
-                    user1.getPlayer().setHealth(user1.getPlayer().getMaxHealth());
-                    Protecao.setImortal(user1.getPlayer(), false);
-                    Protecao.setImortal(user2.getPlayer(), false);
-                    for (Player plr : Bukkit.getServer().getOnlinePlayers()) {
-                        user1.getPlayer().hidePlayer(plr);
-                        user2.getPlayer().hidePlayer(plr);
-                        user2.getPlayer().showPlayer(user1.getPlayer());
-                        user1.getPlayer().showPlayer(user2.getPlayer());
+                                Protecao.setImortal(user1.getPlayer(), false);
+                                Protecao.setImortal(user2.getPlayer(), false);
+                                for (Player plr : Bukkit.getServer().getOnlinePlayers()) {
+                                    user1.getPlayer().hidePlayer(plr);
+                                    user2.getPlayer().hidePlayer(plr);
+                                    user2.getPlayer().showPlayer(user1.getPlayer());
+                                    user1.getPlayer().showPlayer(user2.getPlayer());
+                                }
+                            }
+                        }.runTaskLater(Main.getInstance(), 80);
                     }
                 }
-            }.runTaskLater(Main.getInstance(), 80);
-        }
+            }
+        }.runTask(Main.getInstance());
     }
 
 

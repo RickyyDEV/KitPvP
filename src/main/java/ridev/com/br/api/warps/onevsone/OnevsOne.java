@@ -15,13 +15,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
+import ridev.com.br.Main;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.api.warps.OnClickInPlayer;
 import ridev.com.br.api.warps.WarpLibrary;
 import ridev.com.br.api.warps.WarpType;
 import ridev.com.br.eventos.Protecao;
-import ridev.com.br.Main;
 import ridev.com.br.utils.apis.MineReflect;
 import ridev.com.br.utils.other.Sound;
 import ridev.com.br.utils.text.FancyText;
@@ -42,7 +42,7 @@ public class OnevsOne implements Listener {
     @Getter
     static final List<User> inWait = new ArrayList<>();
     @Getter
-    static final List<User> inDuel = new ArrayList<>();
+    static final HashMap<User, User> inDuel = new HashMap<>();
 
 
     @EventHandler
@@ -60,6 +60,7 @@ public class OnevsOne implements Listener {
         }
     }
 
+
     @EventHandler
     public void partidaRapida(PlayerInteractEvent e) {
         User us = UserManager.getPlayer(e.getPlayer());
@@ -70,22 +71,18 @@ public class OnevsOne implements Listener {
                         if (inRow.contains(us)) {
                             inRow.remove(us);
                             ItemStack ink = new ItemStack(Material.INK_SACK, 1, (short) 8);
-                            us.getPlayer().getInventory().setItem(5, transform(ink, "&aDuelo Rápido! &7(&cDesativado&7)"));
-                            us.getPlayer().sendMessage(FancyText.colored("&b&lDUELS &8➸ &7Você Saiu Das partidas rápidas!"));
+                            us.getPlayer().getInventory().setItem(5, transform(ink, FancyText.colored("&a1v1 Rápido! &7(&cDesativado&7)")));
+                            us.getPlayer().sendMessage(FancyText.colored("&d&lONEVSONE &8➸ &7Você Saiu Das partidas rápidas!"));
                         } else {
                             if (!inRow.isEmpty()) {
-                                inDuel.remove(us);
-                                inDuel.remove(inRow.get(0));
-                                inRow.remove(inRow.get(0));
-                                inRow.remove(us);
                                 startDuel(us, inRow.get(0));
-                                inRow.get(0).getPlayer().sendMessage(FancyText.colored("&b&lDUELS &8➸ &7Partida Encontrada..."));
-                                us.getPlayer().sendMessage(FancyText.colored("&b&lDUELS &8➸ &7Partida Encontrada..."));
+                                inRow.get(0).getPlayer().sendMessage(FancyText.colored("&d&lONEVSONE &8➸ &7Partida Encontrada..."));
+                                us.getPlayer().sendMessage(FancyText.colored("&d&lONEVSONE &8➸ &7Partida Encontrada..."));
                             } else {
                                 inRow.add(us);
                                 ItemStack ink = new ItemStack(Material.INK_SACK, 1, (short) 10);
-                                us.getPlayer().getInventory().setItem(5, transform(ink, "&aDuelo Rápido! &7(&aAtivado&7)"));
-                                us.getPlayer().sendMessage(FancyText.colored("&b&lDUELS &8➸ &7Você Entrou para as partidas rápidas!"));
+                                us.getPlayer().getInventory().setItem(5, transform(ink, FancyText.colored("&aDuelo Rápido! &7(&aAtivado&7)")));
+                                us.getPlayer().sendMessage(FancyText.colored("&d&lONEVSONE &8➸ &7Você Entrou para as partidas rápidas!"));
                             }
                         }
                     }
@@ -93,6 +90,7 @@ public class OnevsOne implements Listener {
             }
         }
     }
+
 
     @EventHandler
     public void damage(EntityDamageByEntityEvent ev) {
@@ -102,7 +100,7 @@ public class OnevsOne implements Listener {
             User author = UserManager.getPlayer(pqbateu);
             User victim = UserManager.getPlayer(pqsofreu);
             if (author.getWarp().equals(WarpType.ONEVSONE) && victim.getWarp().equals(WarpType.ONEVSONE)) {
-                if (inDuel.contains(author) && inDuel.contains(victim)) {
+                if (inDuel.containsKey(author) && inDuel.containsKey(victim)) {
                     if (((pqsofreu.getHealth() - ev.getFinalDamage()) <= 0.5) && ev.getEntity() instanceof Player) {
                         ev.setCancelled(true);
                         Bukkit.getPluginManager().callEvent(new OnPlayerWinDuo(author, victim));
@@ -126,14 +124,6 @@ public class OnevsOne implements Listener {
                 if (duelo.containsKey(e.getClicked())) {
                     // VERIFICAR  SE O PLAYER CLICADO FOI OQUE DESAFIOU
                     if (duelo.get(e.getClicked()).equals(e.getAuthor())) {
-                        duelo.remove(e.getAuthor());
-                        duelo.remove(e.getClicked());
-                        inRow.remove(e.getClicked());
-                        inRow.remove(e.getAuthor());
-                        inWait.add(e.getClicked());
-                        inWait.add(e.getAuthor());
-                        inDuel.remove(e.getAuthor());
-                        inDuel.remove(e.getClicked());
                         startDuel(e.getAuthor(), e.getClicked());
                         // ACAO DE IR PARA AS ARENAS AQUI!
                     } else {
@@ -179,6 +169,8 @@ public class OnevsOne implements Listener {
     public static void startDuel(User user1, User user2) {
         user1.getPlayer().teleport(WarpLibrary.getWarp(WarpType.ONEVSONE).getFirstSpawn());
         user2.getPlayer().teleport(WarpLibrary.getWarp(WarpType.ONEVSONE).getSecondSpawn());
+        inWait.add(user1);
+        inWait.add(user2);
         OnevsOneItens.setIntensBatalha(user1.getPlayer());
         OnevsOneItens.setIntensBatalha(user2.getPlayer());
         TitleSchema.sendDuelsTitle(user1.getPlayer(), user2.getPlayer());
@@ -214,8 +206,8 @@ public class OnevsOne implements Listener {
                 MineReflect.sendTitle(user2.getPlayer(), FancyText.colored("&e0..."), FancyText.colored("&cLutem!"), 10, 10, 10);
                 inWait.remove(user1);
                 inWait.remove(user2);
-                inDuel.add(user1);
-                inDuel.add(user2);
+                inDuel.put(user1, user2);
+                inDuel.put(user2, user1);
                 user1.getPlayer().setMaxHealth(20);
                 user1.getPlayer().setHealth(user1.getPlayer().getMaxHealth());
                 Protecao.setImortal(user1.getPlayer(), false);

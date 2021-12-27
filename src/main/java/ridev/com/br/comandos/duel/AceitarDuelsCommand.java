@@ -17,22 +17,13 @@ public class AceitarDuelsCommand extends Commands {
     public void perform(Player sender, String label, String[] args) {
         User user = UserManager.getPlayer(sender);
         if (args.length == 0) {
-            sender.sendMessage(FancyText.colored("&cUtilize /aceitar <jogador>"));
+            sender.sendMessage(FancyText.colored("&cUtilize /aceitar1v1 <jogador>"));
         } else {
-            if (!OnevsOne.getDuelo().containsValue(user)) {
-                sender.sendMessage(FancyText.colored("&c&lERRO &8➸ &cVocê não tem ninguém para aceitar no momento!"));
-            } else if (!OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])).equals(user)) {
+            User toAcept = UserManager.getPlayer(args[0]);
+            if (!OnevsOne.getDuelo().get(toAcept).equals(user)) {
                 sender.sendMessage(FancyText.colored("&c&lERRO &8➸ &cEste usuário não te desafiou!"));
             } else {
-                OnevsOne.getDuelo().remove(user);
-                OnevsOne.getDuelo().remove(OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])));
-                OnevsOne.getInRow().remove(OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])));
-                OnevsOne.getInRow().remove(user);
-                OnevsOne.getInWait().add(OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])));
-                OnevsOne.getInWait().add(user);
-                OnevsOne.getInDuel().remove(user);
-                OnevsOne.getInDuel().remove(OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])));
-                OnevsOne.startDuel(user, OnevsOne.getDuelo().get(UserManager.getPlayer(args[0])));
+                OnevsOne.startDuel(user, toAcept);
             }
         }
 

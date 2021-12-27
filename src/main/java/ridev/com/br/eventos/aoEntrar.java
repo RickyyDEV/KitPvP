@@ -71,7 +71,6 @@ public class aoEntrar implements Listener {
                         s.set(1, Objects.requireNonNull(GroupManager.getPlayerGroup(p)).getRoleName());
                         s.set(2, p.getName());
                     });
-                    us.setRole(GroupManager.getPlayerGroup(p));
                 }
                 if (us.getRole().isBroadcast()) {
                     for (Player p3 : Bukkit.getServer().getOnlinePlayers()) {

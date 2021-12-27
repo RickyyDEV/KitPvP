@@ -55,6 +55,8 @@ public final class ScoreboardManager {
         int i = 0;
         for (String s : LangValue.get(LangValue::scoreLines)) {
             if (i < LangValue.get(LangValue::scoreLines).size()) {
+                assert rankSybol != null;
+                assert rankName != null;
                 board.updateLine(i, FancyText.colored(s.replace("%rank%", rankName).replace("%rank_symbol%", rankSybol).replace("%player%", p.getName()).replace("%tag%", user.getRole().getNameWithColor()).replace("%xp%", xp).replace("%kills%", kills).replace("%deaths%", mortes).replace("%playerstotal%", total).replace("%coins%", coins)));
                 i++;
             }

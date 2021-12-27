@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ridev.com.br.language.ConfigValue;
+import ridev.com.br.utils.other.PlayerAPI;
 import ridev.com.br.utils.text.FancyText;
 
 import java.util.HashMap;
@@ -21,7 +22,7 @@ public class LobbyItens {
 
         itens.put(server, setitem(Material.COMPASS, FancyText.colored("&aServidores &7(Clique Direito)")));
         itens.put(warps, setitem(Material.EXPLOSIVE_MINECART, FancyText.colored("&aWarps &7(Clique Direito)")));
-        itens.put(cabeca, setitem(Material.SKULL, FancyText.colored("&aSeu Perfil &7(Clique Direito)")));
+        itens.put(cabeca, setitem(PlayerAPI.getSkull("82dbd06f9c927db6c79fc9f5ef2397ab0654191364d0f5c89f924e5ed8d3af"), FancyText.colored("&aSeu Perfil &7(Clique Direito)")));
         itens.put(loja, setitem(Material.EMERALD, FancyText.colored("&aLoja &7(Clique Direito)")));
         itens.put(kits, setitem(Material.NETHER_STAR, FancyText.colored("&aKits &7(Clique Direito)")));
         return itens;
@@ -35,4 +36,10 @@ public class LobbyItens {
         return item;
     }
 
+    public static ItemStack setitem(final ItemStack mat, final String nome) {
+        final ItemMeta itemmeta = mat.getItemMeta();
+        itemmeta.setDisplayName(FancyText.colored(nome));
+        mat.setItemMeta(itemmeta);
+        return mat;
+    }
 }

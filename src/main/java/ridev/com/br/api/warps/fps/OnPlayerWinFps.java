@@ -27,8 +27,9 @@ public class OnPlayerWinFps extends Event implements Cancellable {
         CombatLogAPI.removePlayerCombat(winner.getPlayer());
         CombatLogAPI.removePlayerCombat(loser.getPlayer());
         FPSItem.pinv.remove(loser.getPlayer());
+        loser.getPlayer().getInventory().clear();
         winner.getPlayer().sendMessage(FancyText.colored("&6&lFPS &8➸ &7Você ganhou a batalha contra &c" + loser.getUsername() + "&7!"));
-        loser.getPlayer().sendMessage(FancyText.colored("&6&llFPS &8➸ &7Você perdeu a batalha contra &c" + winner.getUsername() + "&7!"));
+        loser.getPlayer().sendMessage(FancyText.colored("&6&lFPS &8➸ &7Você perdeu a batalha contra &c" + winner.getUsername() + "&7!"));
 
         UserRecompenses.giveRecompenses(winner, loser);
         respawnUsers(WarpLibrary.getWarp(WarpType.FPS).getSpawn());

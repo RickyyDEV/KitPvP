@@ -8,6 +8,13 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.Main;
+import ridev.com.br.api.user.User;
+import ridev.com.br.api.user.UserManager;
+import ridev.com.br.api.user.UserRecompenses;
+import ridev.com.br.api.warps.WarpLibrary;
+import ridev.com.br.api.warps.WarpType;
+import ridev.com.br.api.warps.onevsone.OnevsOne;
+import ridev.com.br.api.warps.sumo.Sumo;
 import ridev.com.br.eventos.Protecao;
 import ridev.com.br.utils.apis.MineReflect;
 import ridev.com.br.utils.text.FancyText;
@@ -42,9 +49,49 @@ public class CombatLogAPI implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void sair(PlayerQuitEvent e) {
         Player p = e.getPlayer();
+        User us = UserManager.getPlayer(p);
+        Main.LOGGER.info(us.getUsername());
+        if (OnevsOne.getInDuel().containsKey(us)) {
+            User inCombatUser = OnevsOne.getInDuel().get(us);
+            CombatLogAPI.removePlayerCombat(inCombatUser.getPlayer());
+            inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
+
+            UserRecompenses.giveRecompenses(inCombatUser, us);
+            inCombatUser.getPlayer().getInventory().clear();
+            inCombatUser.getPlayer().teleport(WarpLibrary.getWarp(WarpType.ONEVSONE).getSpawn());
+            inCombatUser.getPlayer().setMaxHealth(20);
+            inCombatUser.getPlayer().setHealth(20);
+            Protecao.setImortal(inCombatUser.getPlayer(), true);
+            OnevsOne.getInDuel().remove(us);
+            OnevsOne.getInDuel().remove(inCombatUser);
+            CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
+        }
+        if (Sumo.getInDuel().containsKey(us)) {
+            User inCombatUser = Sumo.getInDuel().get(us);
+            CombatLogAPI.removePlayerCombat(inCombatUser.getPlayer());
+            inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
+
+            UserRecompenses.giveRecompenses(inCombatUser, us);
+            inCombatUser.getPlayer().getInventory().clear();
+            inCombatUser.getPlayer().teleport(WarpLibrary.getWarp(WarpType.SUMO).getSpawn());
+            inCombatUser.getPlayer().setMaxHealth(20);
+            inCombatUser.getPlayer().setHealth(20);
+            Protecao.setImortal(inCombatUser.getPlayer(), true);
+            Sumo.getInDuel().remove(us);
+            Sumo.getInDuel().remove(inCombatUser);
+            CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
+        }
+
+        if (us.getWarp().equals(WarpType.FPS) || us.getWarp().equals(WarpType.ARENA)) {
+            User inCombatUser = UserManager.getPlayer(CombatLogAPI.getAdversary(us.getPlayer()));
+            inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
+            UserRecompenses.giveRecompenses(inCombatUser, us);
+            CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
+        }
+
         CombatLogAPI.pcombat.remove(p);
     }
 

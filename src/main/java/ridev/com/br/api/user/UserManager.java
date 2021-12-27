@@ -62,8 +62,8 @@ public class UserManager {
                             user = new User(player.getName(), "basico=0;mediano=0;raro=0;supremo=0;master=0;", box, kitlist, null, RankType.UNRANKED, GroupManager.getPlayerGroup(player), 0, 0, 0, 0, WarpType.LOBBY);
                             BackendLibrary.insert(user);
                         }
-                        map.put(player.getName(), user);
                         Ranks.checkRankPlayer(user);
+                        map.put(player.getName(), user);
                     }
                 }.runTask(Main.getInstance());
             }
@@ -72,12 +72,15 @@ public class UserManager {
             @EventHandler
             public void onPlayerQuit(PlayerQuitEvent event) {
                 Player player = event.getPlayer();
-
                 User user = map.get(player.getName());
-                if (user != null) {
-                    BackendLibrary.insert(user);
-                    map.remove(player.getName());
-                }
+                new BukkitRunnable() {
+                    public void run() {
+                        if (user != null) {
+                            BackendLibrary.insert(user);
+                            map.remove(player.getName());
+                        }
+                    }
+                }.runTaskLater(Main.getInstance(), 20);
             }
 
         };

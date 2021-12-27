@@ -9,6 +9,7 @@ import ridev.com.br.api.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class GroupManager {
@@ -47,7 +48,7 @@ public class GroupManager {
 
     public static List<Group> getPlayerHavesPermission(User us) {
         List<Group> grupos = new ArrayList<>();
-        for (int i = us.getRole().getPriority(); i < groups.size(); i++) {
+        for (int i = Objects.requireNonNull(getPlayerGroup(us.getPlayer())).getPriority(); i < groups.size(); i++) {
             grupos.add(getGroupByPriority(i));
         }
         return grupos;

@@ -19,12 +19,9 @@ public class AceitarSumoCommand extends Commands {
         if (args.length == 0) {
             sender.sendMessage(FancyText.colored("&cUtilize /aceitarsumo <jogador>"));
         } else {
-            String p2 = args[0];
-            User us = UserManager.getPlayer(p2);
+            User us = UserManager.getPlayer(args[0]);
             if (us != null) {
-                if (!Sumo.getDuelo().containsKey(us)) {
-                    sender.sendMessage(FancyText.colored("&c&lERRO &8➸ &cVocê não tem ninguém para aceitar no momento!"));
-                } else if (!Sumo.getDuelo().get(us).equals(user)) {
+                if (!Sumo.getDuelo().get(us).equals(user)) {
                     sender.sendMessage(FancyText.colored("&c&lERRO &8➸ &cEste usuário não te desafiou!"));
                 } else {
                     Sumo.startDuel(user, us);

@@ -94,6 +94,7 @@ public class TagInventory extends PagedInventory {
                     }
                     us.setRole(gp);
                     p.sendMessage(FancyText.colored("&e&lTAG &8➸&7Você alterou sua tag para " + gp.getNameWithColor()));
+                    ScoreboardManager.reloadScoreboard(p);
                 }));
             }
         }

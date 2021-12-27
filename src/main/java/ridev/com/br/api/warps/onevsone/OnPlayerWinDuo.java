@@ -12,8 +12,6 @@ import ridev.com.br.api.user.UserRecompenses;
 import ridev.com.br.api.warps.WarpLibrary;
 import ridev.com.br.api.warps.WarpType;
 import ridev.com.br.eventos.Protecao;
-import ridev.com.br.language.ConfigValue;
-import ridev.com.br.utils.apis.Mine;
 import ridev.com.br.utils.apis.MineReflect;
 import ridev.com.br.utils.text.FancyText;
 
@@ -93,31 +91,4 @@ public class OnPlayerWinDuo extends Event implements Cancellable {
     }
 
 
-    public void giveRecompenses() {
-        this.winner.addKill();
-        this.loser.addMorte();
-        if (ConfigValue.get(ConfigValue::giveXp) != null && ConfigValue.get(ConfigValue::giveXp)) {
-            int randomXP = Mine.getRandomInt(ConfigValue.get(ConfigValue::giveXpMinimum), ConfigValue.get(ConfigValue::giveXpMaximum));
-            this.winner.addXp(randomXP);
-            this.winner.getPlayer().sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Você &aganhou &a" + randomXP + " XP &7!"));
-        }
-
-        if (ConfigValue.get(ConfigValue::giveCoins) != null && ConfigValue.get(ConfigValue::giveCoins)) {
-            int randomCoins = Mine.getRandomInt(ConfigValue.get(ConfigValue::giveCoinsMinimum), ConfigValue.get(ConfigValue::giveCoinsMaximum));
-            this.winner.addCoins(randomCoins);
-            this.winner.getPlayer().sendMessage(FancyText.colored("&b&lXP &8➸ &7Você &aganhou &6" + randomCoins + " Coins &7!"));
-        }
-
-        if (ConfigValue.get(ConfigValue::loseXp) != null && ConfigValue.get(ConfigValue::loseXp)) {
-            int randomXp = Mine.getRandomInt(ConfigValue.get(ConfigValue::loseXpMinimum), ConfigValue.get(ConfigValue::loseXpMaximum));
-            this.winner.removeXp(randomXp);
-            this.winner.getPlayer().sendMessage(FancyText.colored("&b&lXP &8➸ &7Você &cPerdeu &a" + randomXp + " Xp &7!"));
-        }
-
-        if (ConfigValue.get(ConfigValue::loseCoins) != null && ConfigValue.get(ConfigValue::loseCoins)) {
-            int randomCoins = Mine.getRandomInt(ConfigValue.get(ConfigValue::loseCoinsMinimum), ConfigValue.get(ConfigValue::loseCoinsMaximum));
-            this.winner.removeCoins(randomCoins);
-            this.winner.getPlayer().sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Você &cPerdeu &6" + randomCoins + " Coins &7!"));
-        }
-    }
 }
