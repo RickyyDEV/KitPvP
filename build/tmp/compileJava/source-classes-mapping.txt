@@ -1,0 +1,435 @@
+ridev/com/br/api/inventory/ServerInfoInventory.java
+ ridev.com.br.api.inventory.ServerInfoInventory
+ ridev.com.br.api.inventory.ServerInfoInventory$1
+ ridev.com.br.api.inventory.ServerInfoInventory$2
+ridev/com/br/api/warps/fps/FPSItem.java
+ ridev.com.br.api.warps.fps.FPSItem
+ridev/com/br/eventos/aoSair.java
+ ridev.com.br.eventos.aoSair
+ridev/com/br/kit/KitAPI.java
+ ridev.com.br.kit.KitAPI
+ridev/com/br/eventos/WorldsEvents.java
+ ridev.com.br.eventos.WorldsEvents
+ridev/com/br/utils/other/ParticleEffect.java
+ ridev.com.br.utils.other.ParticleEffect
+ ridev.com.br.utils.other.ParticleEffect$BlockData
+ ridev.com.br.utils.other.ParticleEffect$ItemData
+ ridev.com.br.utils.other.ParticleEffect$NoteColor
+ ridev.com.br.utils.other.ParticleEffect$OrdinaryColor
+ ridev.com.br.utils.other.ParticleEffect$ParticleColor
+ ridev.com.br.utils.other.ParticleEffect$ParticleColorException
+ ridev.com.br.utils.other.ParticleEffect$ParticleData
+ ridev.com.br.utils.other.ParticleEffect$ParticleDataException
+ ridev.com.br.utils.other.ParticleEffect$ParticlePacket
+ ridev.com.br.utils.other.ParticleEffect$ParticlePacket$PacketInstantiationException
+ ridev.com.br.utils.other.ParticleEffect$ParticlePacket$PacketSendingException
+ ridev.com.br.utils.other.ParticleEffect$ParticlePacket$VersionIncompatibleException
+ ridev.com.br.utils.other.ParticleEffect$ParticleProperty
+ ridev.com.br.utils.other.ParticleEffect$ParticleVersionException
+ridev/com/br/api/kit/kits/PvP.java
+ ridev.com.br.api.kit.kits.PvP
+ ridev.com.br.api.kit.kits.PvP$1
+ridev/com/br/api/inventory/KitsInventory.java
+ ridev.com.br.api.inventory.KitsInventory
+ridev/com/br/api/bau/BoxManager.java
+ ridev.com.br.api.bau.BoxManager
+ridev/com/br/api/inventory/menu/leader/SetLeader.java
+ ridev.com.br.api.inventory.menu.leader.SetLeader
+ridev/com/br/eventos/PlacaEvent.java
+ ridev.com.br.eventos.PlacaEvent
+ridev/com/br/api/inventory/WarpsInventory.java
+ ridev.com.br.api.inventory.WarpsInventory
+ridev/com/br/api/inventory/menu/leader/RemoveLeaderSimply.java
+ ridev.com.br.api.inventory.menu.leader.RemoveLeaderSimply
+ridev/com/br/api/inventory/menu/warp/onevsone/RemoverWarp1v1.java
+ ridev.com.br.api.inventory.menu.warp.onevsone.RemoverWarp1v1
+ridev/com/br/api/leader/LeaderType.java
+ ridev.com.br.api.leader.LeaderType
+ridev/com/br/api/combat/CombatLogAPI.java
+ ridev.com.br.api.combat.CombatLogAPI
+ ridev.com.br.api.combat.CombatLogAPI$1
+ridev/com/br/comandos/users/TagCommand.java
+ ridev.com.br.comandos.users.TagCommand
+ridev/com/br/api/kit/KitRarity.java
+ ridev.com.br.api.kit.KitRarity
+ridev/com/br/api/cargos/Group.java
+ ridev.com.br.api.cargos.Group
+ ridev.com.br.api.cargos.Group$GroupBuilder
+ridev/com/br/api/bau/animation/BoxAnimation.java
+ ridev.com.br.api.bau.animation.BoxAnimation
+ ridev.com.br.api.bau.animation.BoxAnimation$1
+ ridev.com.br.api.bau.animation.BoxAnimation$1$1
+ ridev.com.br.api.bau.animation.BoxAnimation$1$2
+ ridev.com.br.api.bau.animation.BoxAnimation$1$3
+ ridev.com.br.api.bau.animation.BoxAnimation$1$3$1
+ridev/com/br/Main.java
+ ridev.com.br.Main
+ridev/com/br/api/inventory/menu/world/TeleportWorldInv.java
+ ridev.com.br.api.inventory.menu.world.TeleportWorldInv
+ridev/com/br/api/leader/LeaderBackend.java
+ ridev.com.br.api.leader.LeaderBackend
+ridev/com/br/utils/other/PlayerAPI.java
+ ridev.com.br.utils.other.PlayerAPI
+ridev/com/br/api/lobby/LobbyItens.java
+ ridev.com.br.api.lobby.LobbyItens
+ridev/com/br/api/inventory/signinv/CogumelosInv.java
+ ridev.com.br.api.inventory.signinv.CogumelosInv
+ridev/com/br/api/inventory/menu/leader/MainLeader.java
+ ridev.com.br.api.inventory.menu.leader.MainLeader
+ridev/com/br/comandos/users/LobbyCommand.java
+ ridev.com.br.comandos.users.LobbyCommand
+ridev/com/br/api/rank/RankType.java
+ ridev.com.br.api.rank.RankType
+ridev/com/br/comandos/admin/InvCommand.java
+ ridev.com.br.comandos.admin.InvCommand
+ridev/com/br/api/combat/CombatLogRunnable.java
+ ridev.com.br.api.combat.CombatLogRunnable
+ridev/com/br/api/inventory/menu/arena/MainArena.java
+ ridev.com.br.api.inventory.menu.arena.MainArena
+ridev/com/br/utils/apis/Extra.java
+ ridev.com.br.utils.apis.Extra
+ ridev.com.br.utils.apis.Extra$KeyType
+ridev/com/br/api/bau/recompense/BoxRecompense.java
+ ridev.com.br.api.bau.recompense.BoxRecompense
+ridev/com/br/api/leader/LeaderValues.java
+ ridev.com.br.api.leader.LeaderValues
+ridev/com/br/api/user/UserDatabase.java
+ ridev.com.br.api.user.UserDatabase
+ridev/com/br/utils/title/TitleSchema.java
+ ridev.com.br.utils.title.TitleSchema
+ridev/com/br/api/kit/kits/Viper.java
+ ridev.com.br.api.kit.kits.Viper
+ ridev.com.br.api.kit.kits.Viper$1
+ridev/com/br/api/world/WorldAPI.java
+ ridev.com.br.api.world.WorldAPI
+ ridev.com.br.api.world.WorldAPI$1
+ridev/com/br/utils/text/JSONMessage.java
+ ridev.com.br.utils.text.JSONMessage
+ ridev.com.br.utils.text.JSONMessage$ChatExtra
+ ridev.com.br.utils.text.JSONMessage$ClickEventType
+ ridev.com.br.utils.text.JSONMessage$HoverEventType
+ridev/com/br/utils/scoreboard/FastReflection.java
+ ridev.com.br.utils.scoreboard.FastReflection
+ ridev.com.br.utils.scoreboard.FastReflection$PacketConstructor
+ridev/com/br/api/inventory/menu/warp/sumo/RemoverWarpSumo.java
+ ridev.com.br.api.inventory.menu.warp.sumo.RemoverWarpSumo
+ridev/com/br/api/warps/onevsone/OnPlayerWinDuo.java
+ ridev.com.br.api.warps.onevsone.OnPlayerWinDuo
+ ridev.com.br.api.warps.onevsone.OnPlayerWinDuo$1
+ ridev.com.br.api.warps.onevsone.OnPlayerWinDuo$2
+ridev/com/br/api/inventory/menu/mysterybox/addbox/AddBoxEvent.java
+ ridev.com.br.api.inventory.menu.mysterybox.addbox.AddBoxEvent
+ridev/com/br/eventos/Menus.java
+ ridev.com.br.eventos.Menus
+ridev/com/br/api/inventory/menu/mysterybox/location/MysteryBoxLocationSetEvent.java
+ ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationSetEvent
+ ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationSetEvent$1
+ridev/com/br/comandos/duel/AceitarSumoCommand.java
+ ridev.com.br.comandos.duel.AceitarSumoCommand
+ridev/com/br/api/inventory/menu/mysterybox/location/MysteryBoxLocationRemoverPaginated.java
+ ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationRemoverPaginated
+ridev/com/br/language/LangValue.java
+ ridev.com.br.language.LangValue
+ridev/com/br/api/inventory/menu/warp/WarpRemoverInv.java
+ ridev.com.br.api.inventory.menu.warp.WarpRemoverInv
+ridev/com/br/api/inventory/menu/leader/LeaderEvent.java
+ ridev.com.br.api.inventory.menu.leader.LeaderEvent
+ ridev.com.br.api.inventory.menu.leader.LeaderEvent$1
+ridev/com/br/api/inventory/ProfileInventory.java
+ ridev.com.br.api.inventory.ProfileInventory
+ridev/com/br/api/lobby/LobbyManager.java
+ ridev.com.br.api.lobby.LobbyManager
+ridev/com/br/api/cooldown/CooldownAPI.java
+ ridev.com.br.api.cooldown.CooldownAPI
+ridev/com/br/api/kit/KitWinEvent.java
+ ridev.com.br.api.kit.KitWinEvent
+ ridev.com.br.api.kit.KitWinEvent$1
+ridev/com/br/api/inventory/TagInventory.java
+ ridev.com.br.api.inventory.TagInventory
+ridev/com/br/api/lobby/LobbyStarter.java
+ ridev.com.br.api.lobby.LobbyStarter
+ridev/com/br/api/inventory/menu/mysterybox/location/MysteryBoxLocationMain.java
+ ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationMain
+ridev/com/br/api/warps/OnClickInPlayer.java
+ ridev.com.br.api.warps.OnClickInPlayer
+ridev/com/br/api/inventory/loja/box/BoxShop.java
+ ridev.com.br.api.inventory.loja.box.BoxShop
+ridev/com/br/api/rank/Ranks.java
+ ridev.com.br.api.rank.Ranks
+ridev/com/br/api/warps/lava/Lava.java
+ ridev.com.br.api.warps.lava.Lava
+ridev/com/br/api/inventory/menu/arena/SetArenas.java
+ ridev.com.br.api.inventory.menu.arena.SetArenas
+ridev/com/br/api/warps/WarpType.java
+ ridev.com.br.api.warps.WarpType
+ridev/com/br/api/kit/kits/Fisherman.java
+ ridev.com.br.api.kit.kits.Fisherman
+ ridev.com.br.api.kit.kits.Fisherman$1
+ridev/com/br/eventos/DamagerFixer.java
+ ridev.com.br.eventos.DamagerFixer
+ridev/com/br/api/inventory/menu/warp/WarpSetInv.java
+ ridev.com.br.api.inventory.menu.warp.WarpSetInv
+ridev/com/br/api/warps/fps/FPS.java
+ ridev.com.br.api.warps.fps.FPS
+ridev/com/br/api/key/ApiKEY.java
+ ridev.com.br.api.key.ApiKEY
+ridev/com/br/api/bau/BoxStarter.java
+ ridev.com.br.api.bau.BoxStarter
+ridev/com/br/api/inventory/menu/coins/CoinsEvent.java
+ ridev.com.br.api.inventory.menu.coins.CoinsEvent
+ridev/com/br/comandos/users/TellCommand.java
+ ridev.com.br.comandos.users.TellCommand
+ridev/com/br/api/world/LocationAPI.java
+ ridev.com.br.api.world.LocationAPI
+ridev/com/br/api/inventory/ShopMenuInv.java
+ ridev.com.br.api.inventory.ShopMenuInv
+ridev/com/br/comandos/users/ScoreboardCommand.java
+ ridev.com.br.comandos.users.ScoreboardCommand
+ridev/com/br/api/bau/player/BoxType.java
+ ridev.com.br.api.bau.player.BoxType
+ridev/com/br/api/warps/lava/LavaItem.java
+ ridev.com.br.api.warps.lava.LavaItem
+ridev/com/br/utils/scoreboard/FastBoard.java
+ ridev.com.br.utils.scoreboard.FastBoard
+ ridev.com.br.utils.scoreboard.FastBoard$ObjectiveMode
+ ridev.com.br.utils.scoreboard.FastBoard$ScoreboardAction
+ ridev.com.br.utils.scoreboard.FastBoard$TeamMode
+ ridev.com.br.utils.scoreboard.FastBoard$VersionType
+ridev/com/br/sql/Backend.java
+ ridev.com.br.sql.Backend
+ridev/com/br/api/warps/sumo/SumoItens.java
+ ridev.com.br.api.warps.sumo.SumoItens
+ridev/com/br/api/user/UserRecompenses.java
+ ridev.com.br.api.user.UserRecompenses
+ridev/com/br/eventos/ChatCooldown.java
+ ridev.com.br.eventos.ChatCooldown
+ridev/com/br/api/inventory/menu/arena/RemoveArenas.java
+ ridev.com.br.api.inventory.menu.arena.RemoveArenas
+ridev/com/br/comandos/Commands.java
+ ridev.com.br.comandos.Commands
+ridev/com/br/comandos/users/ProfileCommand.java
+ ridev.com.br.comandos.users.ProfileCommand
+ridev/com/br/api/warps/WarpStarter.java
+ ridev.com.br.api.warps.WarpStarter
+ridev/com/br/comandos/users/RankCommand.java
+ ridev.com.br.comandos.users.RankCommand
+ ridev.com.br.comandos.users.RankCommand$1
+ ridev.com.br.comandos.users.RankCommand$2
+ridev/com/br/eventos/ChatEvent.java
+ ridev.com.br.eventos.ChatEvent
+ridev/com/br/api/inventory/menu/world/MainWorld.java
+ ridev.com.br.api.inventory.menu.world.MainWorld
+ridev/com/br/api/lobby/Lobby.java
+ ridev.com.br.api.lobby.Lobby
+ ridev.com.br.api.lobby.Lobby$LobbyBuilder
+ridev/com/br/api/builder/BuildAPI.java
+ ridev.com.br.api.builder.BuildAPI
+ridev/com/br/api/inventory/menu/warp/MainWarp.java
+ ridev.com.br.api.inventory.menu.warp.MainWarp
+ridev/com/br/language/ConfigValue.java
+ ridev.com.br.language.ConfigValue
+ridev/com/br/comandos/users/FlyCommand.java
+ ridev.com.br.comandos.users.FlyCommand
+ridev/com/br/comandos/admin/ClearChatCommand.java
+ ridev.com.br.comandos.admin.ClearChatCommand
+ridev/com/br/api/bau/BoxInventory.java
+ ridev.com.br.api.bau.BoxInventory
+ridev/com/br/api/warps/sumo/OnPlayerWinSumo.java
+ ridev.com.br.api.warps.sumo.OnPlayerWinSumo
+ ridev.com.br.api.warps.sumo.OnPlayerWinSumo$1
+ ridev.com.br.api.warps.sumo.OnPlayerWinSumo$2
+ridev/com/br/api/warps/onevsone/OnevsOneItens.java
+ ridev.com.br.api.warps.onevsone.OnevsOneItens
+ridev/com/br/utils/other/CacheSystem.java
+ ridev.com.br.utils.other.CacheSystem
+ridev/com/br/utils/tab/TabListRunnable.java
+ ridev.com.br.utils.tab.TabListRunnable
+ridev/com/br/api/arena/Arena.java
+ ridev.com.br.api.arena.Arena
+ridev/com/br/api/model/gladiator/GladiatorModel.java
+ ridev.com.br.api.model.gladiator.GladiatorModel
+ridev/com/br/utils/apis/Mine.java
+ ridev.com.br.utils.apis.Mine
+ ridev.com.br.utils.apis.Mine$1
+ ridev.com.br.utils.apis.Mine$2
+ ridev.com.br.utils.apis.Mine$3
+ ridev.com.br.utils.apis.Mine$4
+ ridev.com.br.utils.apis.Mine$LocationEffect
+ ridev.com.br.utils.apis.Mine$Point
+ ridev.com.br.utils.apis.Mine$Replacer
+ridev/com/br/utils/other/ReflectionUtils.java
+ ridev.com.br.utils.other.ReflectionUtils
+ ridev.com.br.utils.other.ReflectionUtils$DataType
+ ridev.com.br.utils.other.ReflectionUtils$PackageType
+ridev/com/br/api/inventory/ServerInventory.java
+ ridev.com.br.api.inventory.ServerInventory
+ridev/com/br/api/leader/Leader.java
+ ridev.com.br.api.leader.Leader
+ ridev.com.br.api.leader.Leader$LeaderBuilder
+ridev/com/br/api/inventory/menu/leader/RemoveLeaderPagination.java
+ ridev.com.br.api.inventory.menu.leader.RemoveLeaderPagination
+ridev/com/br/utils/files/FileUtils.java
+ ridev.com.br.utils.files.FileUtils
+ridev/com/br/api/kit/kits/Ninja.java
+ ridev.com.br.api.kit.kits.Ninja
+ ridev.com.br.api.kit.kits.Ninja$1
+ridev/com/br/api/leader/LeaderSchema.java
+ ridev.com.br.api.leader.LeaderSchema
+ ridev.com.br.api.leader.LeaderSchema$1
+ ridev.com.br.api.leader.LeaderSchema$2
+ridev/com/br/api/cargos/GroupManager.java
+ ridev.com.br.api.cargos.GroupManager
+ridev/com/br/api/model/LocationSelection.java
+ ridev.com.br.api.model.LocationSelection
+ridev/com/br/eventos/SegurancaGeral.java
+ ridev.com.br.eventos.SegurancaGeral
+ridev/com/br/utils/other/HardwareUtils.java
+ ridev.com.br.utils.other.HardwareUtils
+ridev/com/br/api/arena/ArenaLibrary.java
+ ridev.com.br.api.arena.ArenaLibrary
+ridev/com/br/api/bau/animation/BoxArmorStandEvent.java
+ ridev.com.br.api.bau.animation.BoxArmorStandEvent
+ridev/com/br/eventos/Protecao.java
+ ridev.com.br.eventos.Protecao
+ ridev.com.br.eventos.Protecao$ImortalEnum
+ridev/com/br/api/warps/fps/OnPlayerWinFps.java
+ ridev.com.br.api.warps.fps.OnPlayerWinFps
+ridev/com/br/utils/apis/Metrics.java
+ ridev.com.br.utils.apis.Metrics
+ ridev.com.br.utils.apis.Metrics$1
+ ridev.com.br.utils.apis.Metrics$JsonObjectBuilder
+ ridev.com.br.utils.apis.Metrics$JsonObjectBuilder$JsonObject
+ ridev.com.br.utils.apis.Metrics$MetricsBase
+ridev/com/br/api/warps/onevsone/OnevsOne.java
+ ridev.com.br.api.warps.onevsone.OnevsOne
+ ridev.com.br.api.warps.onevsone.OnevsOne$1
+ ridev.com.br.api.warps.onevsone.OnevsOne$2
+ ridev.com.br.api.warps.onevsone.OnevsOne$3
+ ridev.com.br.api.warps.onevsone.OnevsOne$4
+ridev/com/br/utils/other/Sound.java
+ ridev.com.br.utils.other.Sound
+ridev/com/br/utils/hologram/CustomHologram.java
+ ridev.com.br.utils.hologram.CustomHologram
+ridev/com/br/api/inventory/menu/mysterybox/MainMysteryBox.java
+ ridev.com.br.api.inventory.menu.mysterybox.MainMysteryBox
+ridev/com/br/api/kit/kits/Gladiador.java
+ ridev.com.br.api.kit.kits.Gladiador
+ ridev.com.br.api.kit.kits.Gladiador$1
+ ridev.com.br.api.kit.kits.Gladiador$1$1
+ ridev.com.br.api.kit.kits.Gladiador$1$2
+ ridev.com.br.api.kit.kits.Gladiador$1$3
+ ridev.com.br.api.kit.kits.Gladiador$1$4
+ridev/com/br/api/updater/UpdaterAPI.java
+ ridev.com.br.api.updater.UpdaterAPI
+ridev/com/br/api/user/UserManager.java
+ ridev.com.br.api.user.UserManager
+ ridev.com.br.api.user.UserManager$1
+ ridev.com.br.api.user.UserManager$1$1
+ridev/com/br/comandos/admin/GmCommand.java
+ ridev.com.br.comandos.admin.GmCommand
+ridev/com/br/comandos/users/RespondCommand.java
+ ridev.com.br.comandos.users.RespondCommand
+ridev/com/br/api/warps/Warp.java
+ ridev.com.br.api.warps.Warp
+ ridev.com.br.api.warps.Warp$WarpBuilder
+ridev/com/br/language/Language.java
+ ridev.com.br.language.Language
+ridev/com/br/api/inventory/menu/world/UnloadWorldInv.java
+ ridev.com.br.api.inventory.menu.world.UnloadWorldInv
+ridev/com/br/api/inventory/menu/warp/sumo/SetWarpSumo.java
+ ridev.com.br.api.inventory.menu.warp.sumo.SetWarpSumo
+ridev/com/br/api/bau/animation/BoxArmorStand.java
+ ridev.com.br.api.bau.animation.BoxArmorStand
+ridev/com/br/api/world/WorldStarter.java
+ ridev.com.br.api.world.WorldStarter
+ridev/com/br/api/inventory/RankInventory.java
+ ridev.com.br.api.inventory.RankInventory
+ridev/com/br/api/warps/sumo/Sumo.java
+ ridev.com.br.api.warps.sumo.Sumo
+ ridev.com.br.api.warps.sumo.Sumo$1
+ ridev.com.br.api.warps.sumo.Sumo$2
+ ridev.com.br.api.warps.sumo.Sumo$3
+ ridev.com.br.api.warps.sumo.Sumo$4
+ridev/com/br/comandos/admin/InfoCommand.java
+ ridev.com.br.comandos.admin.InfoCommand
+ridev/com/br/comandos/admin/TpHereCommand.java
+ ridev.com.br.comandos.admin.TpHereCommand
+ridev/com/br/utils/files/Files.java
+ ridev.com.br.utils.files.Files
+ridev/com/br/utils/other/ClassGetter.java
+ ridev.com.br.utils.other.ClassGetter
+ridev/com/br/utils/text/FancyText.java
+ ridev.com.br.utils.text.FancyText
+ridev/com/br/api/cargos/TagAPI.java
+ ridev.com.br.api.cargos.TagAPI
+ridev/com/br/api/warps/WarpLibrary.java
+ ridev.com.br.api.warps.WarpLibrary
+ridev/com/br/utils/scoreboard/ScoreboardManager.java
+ ridev.com.br.utils.scoreboard.ScoreboardManager
+ ridev.com.br.utils.scoreboard.ScoreboardManager$1
+ridev/com/br/api/inventory/menu/mysterybox/location/MysteryBoxLocationRemoverSimply.java
+ ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationRemoverSimply
+ridev/com/br/api/inventory/menu/xp/XpEvent.java
+ ridev.com.br.api.inventory.menu.xp.XpEvent
+ridev/com/br/api/cargos/GroupStarter.java
+ ridev.com.br.api.cargos.GroupStarter
+ridev/com/br/eventos/Eventos.java
+ ridev.com.br.eventos.Eventos
+ridev/com/br/api/arena/ArenaType.java
+ ridev.com.br.api.arena.ArenaType
+ridev/com/br/api/bau/BoxEvent.java
+ ridev.com.br.api.bau.BoxEvent
+ ridev.com.br.api.bau.BoxEvent$1
+ridev/com/br/api/bau/Box.java
+ ridev.com.br.api.bau.Box
+ ridev.com.br.api.bau.Box$BoxBuilder
+ridev/com/br/api/inventory/menu/world/LoadWorldInv.java
+ ridev.com.br.api.inventory.menu.world.LoadWorldInv
+ridev/com/br/eventos/aoEntrar.java
+ ridev.com.br.eventos.aoEntrar
+ ridev.com.br.eventos.aoEntrar$1
+ridev/com/br/api/kit/KitLibrary.java
+ ridev.com.br.api.kit.KitLibrary
+ridev/com/br/api/warps/lava/OnPlayerLoseLava.java
+ ridev.com.br.api.warps.lava.OnPlayerLoseLava
+ ridev.com.br.api.warps.lava.OnPlayerLoseLava$1
+ ridev.com.br.api.warps.lava.OnPlayerLoseLava$2
+ridev/com/br/api/arena/ArenaStarter.java
+ ridev.com.br.api.arena.ArenaStarter
+ridev/com/br/api/kit/Kit.java
+ ridev.com.br.api.kit.Kit
+ridev/com/br/eventos/SopaEvent.java
+ ridev.com.br.eventos.SopaEvent
+ ridev.com.br.eventos.SopaEvent$1
+ridev/com/br/api/inventory/menu/warp/onevsone/SetWarp1v1.java
+ ridev.com.br.api.inventory.menu.warp.onevsone.SetWarp1v1
+ridev/com/br/sql/BackendLibrary.java
+ ridev.com.br.sql.BackendLibrary
+ridev/com/br/sql/BackendType.java
+ ridev.com.br.sql.BackendType
+ridev/com/br/utils/apis/MineReflect.java
+ ridev.com.br.utils.apis.MineReflect
+ ridev.com.br.utils.apis.MineReflect$ItemExtraData
+ridev/com/br/utils/other/ModuleLogger.java
+ ridev.com.br.utils.other.ModuleLogger
+ridev/com/br/comandos/duel/AceitarDuelsCommand.java
+ ridev.com.br.comandos.duel.AceitarDuelsCommand
+ridev/com/br/eventos/KnockbackListener.java
+ ridev.com.br.eventos.KnockbackListener
+ridev/com/br/api/kit/KitLoader.java
+ ridev.com.br.api.kit.KitLoader
+ridev/com/br/api/inventory/menu/MainInventory.java
+ ridev.com.br.api.inventory.menu.MainInventory
+ridev/com/br/comandos/admin/InvisibleCommand.java
+ ridev.com.br.comandos.admin.InvisibleCommand
+ridev/com/br/comandos/admin/KpCommand.java
+ ridev.com.br.comandos.admin.KpCommand
+ridev/com/br/api/inventory/signinv/CocoabeanInv.java
+ ridev.com.br.api.inventory.signinv.CocoabeanInv
+ridev/com/br/api/inventory/loja/kits/ShopKits.java
+ ridev.com.br.api.inventory.loja.kits.ShopKits
+ridev/com/br/api/user/User.java
+ ridev.com.br.api.user.User
+ ridev.com.br.api.user.User$UserBuilder
+ridev/com/br/api/leader/LeaderManager.java
+ ridev.com.br.api.leader.LeaderManager

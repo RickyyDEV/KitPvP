@@ -1,0 +1,8 @@
+name: RiKitPvP
+
+version: 2.2
+
+author: yRicardinBaumDEV
+
+main: ridev.com.br.Main
+softdepend: [ HolographicDisplays ]

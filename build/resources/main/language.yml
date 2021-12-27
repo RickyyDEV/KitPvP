@@ -1,0 +1,216 @@
+###############################################################################\
+#|                                   RiKitPvP                                  |
+#|                                                                             |
+#|                             Author: yRicardinBaum                           |
+#|                                                                             |
+#|                                 Version: 1.20.0                             |
+#|                                                                             |
+#|                            O Mais Novo Plugin De KitPvP                     |
+#|                                                                             |
+#/#############################################################################\
+
+
+#  CASO VOCÊ NÃO TENHA UM SITE DE LOJA PODE COLOCAR O LINK DO SEU SERVIDOR DO DISCORD!
+link: "https://discord.gg/AFu86sHXRH"
+
+mensagens:
+
+  commands:
+    clear-chat:
+      # %player% - Returna o author do clear chat
+      final-message: "&b&lCHAT &8➸ &7Chat limpo por &a%player%&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    gm:
+      # %game_type% - Retorna o gamemode escolhido pelo usuário
+      gamemode-change: "&b&lGAMEMODE &8➸ &7Você Agora está no modo &6%game_type%"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    info:
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    inv:
+      # %player% - Retorna o author do inventario
+      seeing-inventory: "&b&lINVENTORY &8➸ &7Você está vendo o invetário de &a%player%&7!"
+      not-found: "&b&lINVENTORY &8➸ &7Este usuário &cNão existe, ou não está online&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    invisible:
+      isInvisible: "&b&lINVISIBLE &8➸ &7Você agora está invisivel para todos!"
+      isVisible: "&b&lINVISIBLE &8➸ &7Você agora está visivel para todos!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    tphere:
+      tp-succes: "&b&lTP &8➸ &7Usuário teletransportado com sucesso!"
+      not-found: "&b&lTP &8➸ &7Usuário &cnão encontrado&7!"
+      tp-yourself: "&b&lTP &8➸ &7Você &cnão pode teletransportar para si mesmo&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    fly:
+      can-fly: "&b&lFLY &8➸ &6Você&7 agora &aPode Voar&7!"
+      canot-fly: "&b&lFLY &8➸ &7&6Você &7agora &cNão Pode Voar&7!"
+      mencioned-user-not-found: "&b&lFLY &8➸ &7O usuário mencionado &cnão existe&7!"
+      only-lobby: "&b&lFLY &8➸ &7Você &cSó pode voar em lobbys&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    lobby:
+      lobby-unset: "&b&lLOBBY &8➸ &7Ocorreu &cum erro ao tentar executar este comando&7, tente novamente mais tarde!"
+      lobby-invited: "&b&lLOBBY &8➸ &7Você foi enviado para o spawn &acom sucesso&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    profile:
+      user-not-found: "&b&lPROFILE &8➸ &7Usuário &cnão encontrado&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    rank:
+      user-not-found: "&b&lPROFILE &8➸ &7Usuário &cNão encontrado&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    respond:
+      no-user-to-respond: "&b&lTELL &8➸ &7Você &cnão possue ninguém para responder&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    scoreboard:
+      score-activate: "&b&lSCORE &8➸ &fA ScoreBoard Foi &aATIVADA&f!"
+      score-disable: "&b&lSCORE &8➸ &fA ScoreBoard Foi &cDESATIVADA&f!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    tag:
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+    tell:
+      tell-yourself: "&b&lTELL &8➸ &7Você &cnão pode enviar um tell para você mesmo&7!"
+      user-not-found: "&b&lTELL &8➸ &7Usuário &cnão encontrado&7!"
+      no-permission: "&cVocê não possui permissão para executar este comando!"
+
+
+  # %time% - Retorna o tempo restante
+  # %player% - Retorna o player
+  cooldown: "&cVocê Deve esperar %time% para enviar Outra Mensagem!"
+
+
+  # %player% - Retorna o player
+  # %atual-rank% - Retorna o rank antes de upar
+  # %pass-rank% - Retorna o rank que o usuário conquistou
+  rank-pass: "&b&lRANK &8➸ &7O jogador %player% &7Passou para o rank %pass-rank%"
+
+
+  # %player% - Retorna o player
+  # %value% - Retorna xp/coins ganhos ou perdidos (dependendo da ocasião)
+  xp:
+    give-xp: "&b&lXP &8➸ &7Você &aganhou &6%value% Coins &7!"
+    lose-xp: "&b&lXP &8➸ &7Você &cPerdeu &a%value%XP &7!"
+  coins:
+    give-coins: "&a&lCOINS &8➸ &7Você &aganhou &a%value%XP &7!"
+    lose-coins: "&a&lCOINS &8➸ &7Você &cPerdeu &6%value% Coins &7!"
+
+
+  warps:
+    1v1:
+      join-title: "&e1v1"
+      join-subtitle: "&fVocê foi teletransportado!"
+    fps:
+      join-title: "&eFPS"
+      join-subtitle: "&fVocê foi teletransportado!"
+    sumo:
+      join-title: "&eSumô"
+      join-subtitle: "&fVocê foi teletransportado!"
+    lava:
+      join-title: "&eLava"
+      join-subtitle: "&fVocê foi teletransportado!"
+  join-message:
+    # %player% para retornar o player!
+
+    # DEIXE O boas-vindas asisim ->
+    # - ""
+    # Caso não queira que tenha mensagem de boas vindas
+    boas-vindas:
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+      - "&aOlá &6%player%! &aSeja bem-vindo ao servidor de KitPvP!"
+      - "&r"
+      - "&aClique no minecart para escolher as warps que deseja jogar!"
+      - "&r"
+      - "&aClique na estrela para escolher seu kit!"
+      - "&r"
+      - "&aClique Na esmeralda para acionar a loja!"
+
+
+    # Titulo e subtitulo de boas vindas
+    # %player% para retornar o player!
+
+    # DEIXE os campos de texto assim -> ""
+    # Caso não queira que tenha mensagem de boas vindas
+    spawn-title: "&eKitPvP"
+    spawn-subtitle: "&aSeja bem-vindo!"
+
+
+
+  # Titulo e subtitulo da Entrada Da Arena
+  # PLACEHOLDERS
+  # %kit% - retorna o kit escolhido pelo usuário
+  # %player% para retornar o player!
+  arena-title: "&e%kit%"
+  arena-subtitle: "&7Você entrou na arena!"
+
+
+  # Configuracoes da ScoreBoard
+
+  # PLACEHOLDERS
+  # %player% - retorna o nome do player
+  # %tag% - retorna a tag do usuário
+  # %rank% - Retorna o rank do usuário
+  # %kills% - retorna todas as kills do usuário
+  # %deaths% - Retorna todas as mortes do usuário
+  # %playerstotal% - retorna todos o players online
+  # %coins% - retorna os coins do usuário
+  # %rank_symbol% - retorna o simbolo do rank do usuário
+  # %xp% - Retorna o total de xp do usuário
+scoreboard:
+  # Caso queira um titulo statico deixe apenas um item!
+  titulo:
+    - "&e&lKITPVP"
+    - "&f&lK&e&lITPVP"
+    - "&e&lK&f&lI&e&lTPVP"
+    - "&e&lKI&f&lT&e&lPVP"
+    - "&e&lKIT&f&lP&e&lVP"
+    - "&e&lKITP&f&lV&e&lP"
+    - "&e&lKITPV&f&lP"
+    - "&e&lKITPVP"
+    - "&e&lKITPV&f&lP"
+    - "&e&lKITP&f&lV&e&lP"
+    - "&e&lKITP&f&lV&e&lP"
+    - "&e&lKIT&f&lP&e&lVP"
+    - "&e&lKI&f&lT&e&lPVP"
+    - "&e&lK&f&lI&e&lTPVP"
+    - "&f&lK&e&lITPVP"
+    - "&e&lKITPVP"
+  lines:
+    - ""
+    - "   &fTag: %tag%"
+    - "   &fRank: %rank%"
+    - "   &fXP: &a%xp%"
+    - "   &fCoins: &e%coins%"
+    - ""
+    - "   &fKills: &c%kills%"
+    - "   &fDeaths: &c%deaths%"
+    - ""
+    - "&a&lOnline: %playerstotal%"
+    - ""
+    - "&7riplugins.com.br"
+
+tablist:
+  # PLACEHOLDERS
+  # %player% - retorna o nome do player
+  # %tag% - retorna a tag do usuário
+  # %rank% - Retorna o rank do usuário
+  # %kills% - retorna todas as kills do usuário
+  # %deaths% - Retorna todas as mortes do usuário
+  # %xp% - Retorna os xp totais do usuário
+  # %playerstotal% - retorna todos o players online
+  # %coins% - retorna os coins do usuário
+  # %link% - retorna o link da sua loja ou servidor do discord
+  # %ping% - Retorna o ping do jogador
+  title:
+    - ""
+    - "&eKitPvP &7- &fServidor De PvP"
+    - ""
+    - "&7Bem vindo: &d%player% "
+  footer:
+    - ""
+    - "&7IP: &fRiPlugins.com"
+    - "&7Jogadores: &f%playerstotal%"
+    - "&7Ping: &f%ping% "
+    - "&e%link%"

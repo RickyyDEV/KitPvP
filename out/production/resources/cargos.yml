@@ -1,0 +1,41 @@
+###############################################################################\
+#|                                   RiKitPvP                                  |
+#|                                                                             |
+#|                             Author: yRicardinBaum                           |
+#|                                                                             |
+#|                                 Version: 1.20.0                             |
+#|                                                                             |
+#|                            O Mais Novo Plugin De KitPvP!                    |
+#|                                                                             |
+#|                                                                             |
+#|                          Copyright: Copyright Adversimental                 |
+#/#############################################################################\
+
+
+# ABAIXO SERÃO CITADAS TODAS AS PERMISSÕES DO PLUGIN PARA VOCê ADD NO SEU PLUGIN DE PERMISSÕES
+# LEMBRANDO QUE OS KITS NÃO SAO SETADOS POR PERMISSAO E SIM NA DATABASE DO PLUGIN PARA EVITAR CONFLITOS E SER MAIS MODERNO
+# rikitpvp.admin - ter total permissão administradora
+# rikitpvp.colorido - falar no chat colorido usando o "&"
+# LEMBRANDO TAMBÉM!!!!!!!!!!!!!!
+# Coloque os cargos maiores sempre em cima
+
+
+
+cargos:
+  dono:
+    Nome: "Dono"
+    Prefix: "&d&lDONO&d "
+    Permissao: "role.dono"
+    # Informar Se Ao entrar no lobby sera demonstrado "Dono tal entrou nesse lobby"
+    broadcast_lobby: true
+  gerente:
+    Nome: "Gerente"
+    Prefix: "&c&lGERENTE&c "
+    Permissao: "role.gerente"
+    broadcast_lobby: true
+  membro:
+    Nome: "Membro"
+    Prefix: "&7"
+    # caso queira uma role sem permissão, deixe vazio como descrito abaixo
+    Permissao: ""
+    broadcast_lobby: true

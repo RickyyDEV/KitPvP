@@ -1,0 +1,146 @@
+###############################################################################\
+#|                                   RiKitPvP                                  |
+#|                                                                             |
+#|                             Author: yRicardinBaum                           |
+#|                                                                             |
+#|                                 Version: 1.20.0                             |
+#|                                                                             |
+#|                            O Mais Novo Plugin De KitPvP                     |
+#|                                                                             |
+#|                                                                             |
+#|                          Copyright: Copyright Adversimental                 |
+#/#############################################################################\
+
+
+License: "<INSIRA SUA LICENÇA AQUI>"
+
+database:
+  # Escolha entre mysql e sqlite
+  type: "sqlite"
+  # So altere As informações abaixo caso tenha escolhido MySQL como banco de Dados
+  address: "localhost"
+  username: "username"
+  password: "password"
+  database: "rikitpvp"
+
+
+config:
+  # ABAIXO DESCREVA AS PERMISSÕES DE CADA COMANDO!
+  # DEIXE A PERMISSAO EM BRANCO CASO QUEIRA QUE ELA NÃO POSSUA PERMISSAO!
+  # COMO O COMANDO PROFILE ABAIXO!
+  commands:
+    kp:
+      enable: true
+      permission: "rikitpvp.admin"
+    fly:
+      enable: true
+      permission: "rikitpvp.fly"
+    gm:
+      enable: true
+      permission: "rikitpvp.admin"
+    profile:
+      enable: true
+      permission: ""
+    inv:
+      enable: true
+      permission: "rikitpvp.admin"
+    clear-chat:
+      enable: true
+      permission: "rikitpvp.admin"
+    info:
+      enable: true
+      permission: "rikitpvp.admin"
+    lobby:
+      enable: true
+      permission: ""
+    rank:
+      enable: true
+      permission: ""
+    scoreboard:
+      enable: true
+      permission: ""
+    tag:
+      enable: true
+      permission: ""
+    r:
+      enable: true
+      permission: ""
+    tell:
+      enable: true
+      permission: ""
+    tphere:
+      enable: true
+      permission: "rikitpvp.admin"
+    invisible:
+      enable: true
+      permission: "rikitpvp.admin"
+
+  servidores:
+    #         ATIVE ESTE MÓDULO CASO USE BUNGEE
+    bungee-cord-use: false
+    #          MECHA ABAIXO CASO ATIVOU O BUNGEE
+
+    #         ESTA PARTE AQUI SERVE PARA A BUSSOLA DE SERVIDORES! CONFIGURE COM O NOME DE CADA SERVIDOR !
+    lobby-principal: "kitpvp"
+    hg: "hg"
+    gladiador: "gladiador"
+
+  spawn-itens:
+    server-item:
+      slot: 0
+    perfil-item:
+      # Este item ja vem automaticamente setado como a cabeça do usuário
+      # LEMBRANDO QUE PRIMEIRO SLOT É 0, E O ULTIMO É O 8
+      slot: 1
+    warp-item:
+      # LEMBRANDO QUE PRIMEIRO SLOT É 0, E O ULTIMO É O 8
+      slot: 3
+    kits-item:
+      # LEMBRANDO QUE PRIMEIRO SLOT É 0, E O ULTIMO É O 8
+      slot: 4
+    loja-item:
+      # LEMBRANDO QUE PRIMEIRO SLOT É 0, E O ULTIMO É O 8
+      slot: 8
+
+
+  #COOLDOWN DO CHAT!
+  cooldown:
+    enable: true
+    # PERMISSAO PARA NÃO TER COOLDOWN NO CHAT!
+    permission: "rikitpvp.chatcooldown.bypass"
+    #TEMPO EM SEGUNDOS
+    time: 2
+
+
+
+
+recompensas:
+
+
+  coins:
+
+    # GANHAR COINS CASO MATE ALGUEM?
+    give-coins: true
+    # CASO TENHA COLOCADO TRUE COLOQUE O VALOR MINIMO E MAXIMO
+    give-coins-min: 3
+    give-coins-max: 5
+
+    # PERDER COINS CASO MORRA?
+    lose-coins: false
+    # CASO TENHA COLOCADO TRUE COLOQUE O VALOR MINIMO E MAXIMO
+    lose-coins-min: 3
+    lose-coins-max: 5
+
+  xp:
+
+    # GANHAR XP CASO MATE ALGUEM?
+    give-xp: true
+    # CASO TENHA COLOCADO TRUE COLOQUE O VALOR MINIMO E MAXIMO
+    give-xp-min: 3
+    give-xp-max: 5
+
+    # PERDER XP CASO MORRA?
+    lose-xp: false
+    # CASO TENHA COLOCADO TRUE COLOQUE O VALOR MINIMO E MAXIMO
+    lose-xp-min: 2
+    lose-xp-max: 4

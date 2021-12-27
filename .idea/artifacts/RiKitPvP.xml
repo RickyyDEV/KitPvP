@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RiKitPvP">
+    <output-path>$PROJECT_DIR$/../../../ProxyTeste/Spigot TESTE/plugins</output-path>
+    <root id="archive" name="RiKitPvP.jar">
+      <element id="module-output" name="RiKitPvP_Gradle.main" />
+    </root>
+  </artifact>
+</component>
