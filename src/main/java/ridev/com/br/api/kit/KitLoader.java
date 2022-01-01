@@ -5,7 +5,11 @@ import ridev.com.br.Main;
 import ridev.com.br.utils.other.ClassGetter;
 import ridev.com.br.utils.other.ModuleLogger;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class KitLoader {
 
@@ -21,6 +25,7 @@ public class KitLoader {
 
         for (Class<?> classes : ClassGetter.getClassesForPackage(this.plugin, "ridev.com.br.api.kit.kits")) {
             try {
+                List<Kit> kits = new ArrayList<>();
                 if (Kit.class.isAssignableFrom(classes)) {
                     Kit kit = (Kit) classes.newInstance();
                     KitLibrary.getKits().add(kit);
@@ -31,6 +36,12 @@ public class KitLoader {
 
             }
         }
+        KitLibrary.kits = organize(KitLibrary.getKits());
         LOGGER.log(Level.INFO, "Kits carregados Com sucesso!");
+    }
+
+
+    public List<Kit> organize(List<Kit> list) {
+        return list.stream().sorted(Comparator.comparing(Kit::rarity)).collect(Collectors.toList());
     }
 }

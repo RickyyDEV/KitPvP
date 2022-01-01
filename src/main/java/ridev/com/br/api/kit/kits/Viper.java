@@ -78,6 +78,7 @@ public class Viper implements Kit {
                 itens.put(i, transform(Material.MUSHROOM_SOUP));
             }
         }
+        itens.put(8, transform(Material.COMPASS, "&aProcurar jogadores", false));
         return itens;
     }
 

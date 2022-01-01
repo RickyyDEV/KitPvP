@@ -57,6 +57,8 @@ public class Main extends JavaPlugin {
         Language.of(this).init();
         ApiKEY.isLicencied();
         UpdaterAPI.isUpdated();
+        new Eventos(getInstance());
+        new Metrics(getInstance(), 13275);
         instance = this;
         sqlConnector = BackendType.of().createSqlConnector();
         super.onLoad();
@@ -141,8 +143,6 @@ public class Main extends JavaPlugin {
         new WarpStarter(getInstance());
         new LobbyStarter(getInstance());
         Commands.setupCommands();
-        new Eventos(getInstance());
-        new Metrics(getInstance(), 13275);
         new ScoreboardManager(getInstance());
         new TabListRunnable(getInstance());
         new CombatLogRunnable(getInstance());

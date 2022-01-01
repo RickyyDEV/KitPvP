@@ -211,6 +211,12 @@ public class LangValue implements ConfigurationInjectable {
     private String profileNoPermission;
 
 
+    // BUSSOLA
+    @ConfigField("mensagens.bussola.sucess")
+    private String bussolaSucess;
+    @ConfigField("mensagens.bussola.failed")
+    private String bussolaFailed;
+
     public static <T> T get(Function<LangValue, T> function) {
         return function.apply(instance);
     }

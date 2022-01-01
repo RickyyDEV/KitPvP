@@ -85,7 +85,7 @@ public class CombatLogAPI implements Listener {
             CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
         }
 
-        if (us.getWarp().equals(WarpType.FPS) || us.getWarp().equals(WarpType.ARENA)) {
+        if (us.getWarp().equals(WarpType.FPS) || us.getWarp().equals(WarpType.ARENA) && playerIsInCombat(p)) {
             User inCombatUser = UserManager.getPlayer(CombatLogAPI.getAdversary(us.getPlayer()));
             inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
             UserRecompenses.giveRecompenses(inCombatUser, us);
