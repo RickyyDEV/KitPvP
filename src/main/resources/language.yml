@@ -84,9 +84,9 @@ mensagens:
 
   bussola:
     # %player% - Retorna o player encontrado
-    sucess: "&3&lBUSSOLA &8➸ &7Bússola apontando para &%player%"
+    sucess: "&3&lBUSSOLA &8➸ &7Bússola apontando para &a%player%"
 
-    failed: "&3&lBUSSOLA &8➸ &7Não foi possivel encontrar ningúem"
+    failed: "&3&lBUSSOLA &8➸ &7Não foi possivel &cencontrar nenhum player&7!"
 
   # %player% - Retorna o player
   # %value% - Retorna xp/coins ganhos ou perdidos (dependendo da ocasião)

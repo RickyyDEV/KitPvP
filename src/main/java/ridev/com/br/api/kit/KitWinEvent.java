@@ -8,6 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.Main;
+import ridev.com.br.api.combat.CombatLogAPI;
 import ridev.com.br.api.lobby.LobbyManager;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserRecompenses;
@@ -34,6 +35,8 @@ public class KitWinEvent extends Event implements Cancellable {
         this.winner = winner;
         this.loser = loser;
         this.loser.setWarp(WarpType.LOBBY);
+        CombatLogAPI.removePlayerCombat(winner.getPlayer());
+        CombatLogAPI.removePlayerCombat(loser.getPlayer());
         loser.setKit(null);
         winner.getPlayer().sendMessage(FancyText.colored("&9&lKIT &8➸ &7Você ganhou a batalha contra &a" + loser.getUsername() + "&7!"));
         loser.getPlayer().sendMessage(FancyText.colored("&9&lKIT &8➸ &7Você perdeu a batalha contra &c" + winner.getUsername() + "&7!"));

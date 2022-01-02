@@ -24,7 +24,6 @@ public class DamagerFixer implements Listener {
                     final ItemStack sword = p.getItemInHand();
                     final double danoEspada = this.getDamage(sword.getType());
                     e.setDamage(danoEspada);
-                    sword.setDurability((short) 2);
                 }
             }
         }

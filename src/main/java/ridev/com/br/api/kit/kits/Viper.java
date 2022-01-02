@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitRarity;
 import ridev.com.br.api.kit.KitWinEvent;
@@ -29,7 +30,7 @@ import java.util.Random;
 public class Viper implements Kit {
 
     @Override
-    public List<String> description() {
+    public @NotNull List<String> description() {
 
         return new java.util.ArrayList<>(Arrays.asList(
                 "&r",
@@ -47,7 +48,7 @@ public class Viper implements Kit {
     }
 
     @Override
-    public ItemStack icone() {
+    public @NotNull ItemStack icone() {
         return transform(Material.SPIDER_EYE);
     }
 
@@ -57,12 +58,12 @@ public class Viper implements Kit {
     }
 
     @Override
-    public String name() {
+    public @NotNull String name() {
         return "Viper";
     }
 
     @Override
-    public HashMap<Integer, ItemStack> itens() {
+    public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
         ItemStack is = transform(Material.STONE_SWORD, "&aEspada", true, "");
 
@@ -88,12 +89,12 @@ public class Viper implements Kit {
     }
 
     @Override
-    public KitRarity rarity() {
+    public @NotNull KitRarity rarity() {
         return KitRarity.COMUM;
     }
 
     @Override
-    public Listener event() {
+    public @NotNull Listener event() {
         return new Listener() {
 
             @EventHandler

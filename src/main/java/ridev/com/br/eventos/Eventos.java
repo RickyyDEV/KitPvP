@@ -55,6 +55,7 @@ public class Eventos {
         Bukkit.getPluginManager().registerEvents(new Sumo(), this.plugin);
         Bukkit.getPluginManager().registerEvents(new AddBoxEvent(), this.plugin);
         Bukkit.getPluginManager().registerEvents(new KnockbackListener(), this.plugin);
+        Bukkit.getPluginManager().registerEvents(new BussolaEvent(), this.plugin);
         LOGGER.log(Level.INFO, "Eventos Carregados Com sucesso!");
     }
 

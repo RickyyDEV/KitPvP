@@ -27,7 +27,6 @@ public class SopaEvent implements Listener {
 
     @EventHandler
     public void dropAnimation(PlayerDropItemEvent e) {
-        if (e.isCancelled()) return;
         Player p = e.getPlayer();
         if (e.getItemDrop().getItemStack().getType().equals(Material.STONE_SWORD) || e.getItemDrop().getItemStack().getType().equals(Material.DIAMOND_SWORD) || e.getItemDrop().getItemStack().getType().equals(Material.IRON_SWORD) || e.getItemDrop().getItemStack().getType().equals(Material.GOLD_SWORD) || e.getItemDrop().getItemStack().getType().equals(Material.GOLD_SWORD)) {
 

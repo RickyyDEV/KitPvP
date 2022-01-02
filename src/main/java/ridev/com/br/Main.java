@@ -57,7 +57,6 @@ public class Main extends JavaPlugin {
         Language.of(this).init();
         ApiKEY.isLicencied();
         UpdaterAPI.isUpdated();
-        new Eventos(getInstance());
         new Metrics(getInstance(), 13275);
         instance = this;
         sqlConnector = BackendType.of().createSqlConnector();
@@ -132,6 +131,7 @@ public class Main extends JavaPlugin {
 
     private void setupEnable() {
         new WorldStarter();
+        new Eventos(getInstance());
         new KitLoader(getInstance());
         new ArenaStarter(getInstance());
         InventoryManager.enable(getInstance());

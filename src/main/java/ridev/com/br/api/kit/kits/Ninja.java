@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.cooldown.CooldownAPI;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitRarity;
@@ -26,7 +27,7 @@ public class Ninja implements Kit {
 
 
     @Override
-    public List<String> description() {
+    public @NotNull List<String> description() {
         return new java.util.ArrayList<>(Arrays.asList(
                 "&r",
                 "&7Torne-se um verdadeiro ninja!",
@@ -46,7 +47,7 @@ public class Ninja implements Kit {
     }
 
     @Override
-    public ItemStack icone() {
+    public @NotNull ItemStack icone() {
         return new ItemStack(Material.EMERALD);
     }
 
@@ -56,12 +57,12 @@ public class Ninja implements Kit {
     }
 
     @Override
-    public String name() {
+    public @NotNull String name() {
         return "Ninja";
     }
 
     @Override
-    public HashMap<Integer, ItemStack> itens() {
+    public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
         itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
         for (int i = 1; i < 36; i++) {
@@ -85,12 +86,12 @@ public class Ninja implements Kit {
     }
 
     @Override
-    public KitRarity rarity() {
+    public @NotNull KitRarity rarity() {
         return KitRarity.MEDIANO;
     }
 
     @Override
-    public Listener event() {
+    public @NotNull Listener event() {
         return new Listener() {
             @EventHandler
             public void aoAgaixar(PlayerToggleSneakEvent e) {

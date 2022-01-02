@@ -80,6 +80,13 @@ public class CacheSystem {
             INFO
          */
         ITEM_CACHE.put("info_head", PlayerAPI.getSkull("d01afe973c5482fdc71e6aa10698833c79c437f21308ea9a1a095746ec274a0f"));
+
+
+        /*
+            KITS HEADS
+         */
+
+        ITEM_CACHE.put("troll_head", PlayerAPI.getSkull("df7f40a86bee8e21a55340856a8621aca495673aa17bfde18d3b7aa61b42c"));
     }
 
     public static ItemStack getItem(String item) {

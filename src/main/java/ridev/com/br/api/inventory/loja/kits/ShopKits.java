@@ -67,6 +67,10 @@ public class ShopKits extends PagedInventory {
                         us.removeCoins(kits.price());
                         Sound.NOTE_PLING.play(p, 10, 10);
                         p.sendMessage(FancyText.colored("&9&lKIT &8➸ &7Você Acaba de &aComprar &7o Kit &c" + kits.name()));
+                    } else {
+                        p.closeInventory();
+                        Sound.VILLAGER_NO.play(p, 10, 10);
+                        p.sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Você não possue Coins o suficiente!"));
                     }
                 }
             }));

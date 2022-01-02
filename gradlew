@@ -1,3 +1,31 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@yRicardinBaum 
+yRicardinBaum
+/
+RiKitPvP
+Private
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Settings
+RiKitPvP/gradlew
+@yRicardinBaum
+yRicardinBaum RiKitPvP 2.0
+Latest commit ca894b2 6 days ago
+ History
+ 1 contributor
+185 lines (162 sloc)  5.64 KB
+  
 #!/usr/bin/env sh
 
 #
@@ -93,14 +121,12 @@ if [ -n "$JAVA_HOME" ] ; then
     fi
     if [ ! -x "$JAVACMD" ] ; then
         die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
-
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
     fi
 else
     JAVACMD="java"
     which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
-
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
 fi

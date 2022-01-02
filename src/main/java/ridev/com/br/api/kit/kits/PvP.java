@@ -5,6 +5,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitRarity;
 import ridev.com.br.utils.text.FancyText;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class PvP implements Kit {
     @Override
-    public List<String> description() {
+    public @NotNull List<String> description() {
 
         return new java.util.ArrayList<>(Arrays.asList(
                 "&r",
@@ -34,7 +35,7 @@ public class PvP implements Kit {
     }
 
     @Override
-    public ItemStack icone() {
+    public @NotNull ItemStack icone() {
         return new ItemStack(Material.IRON_SWORD);
     }
 
@@ -44,12 +45,12 @@ public class PvP implements Kit {
     }
 
     @Override
-    public String name() {
+    public @NotNull String name() {
         return "PvP";
     }
 
     @Override
-    public HashMap<Integer, ItemStack> itens() {
+    public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
         itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
         for (int i = 1; i < 36; i++) {
@@ -73,12 +74,12 @@ public class PvP implements Kit {
     }
 
     @Override
-    public KitRarity rarity() {
+    public @NotNull KitRarity rarity() {
         return KitRarity.COMUM;
     }
 
     @Override
-    public Listener event() {
+    public @NotNull Listener event() {
         return new Listener() {
         };
     }

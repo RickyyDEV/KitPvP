@@ -1,5 +1,6 @@
 package ridev.com.br.api.bau.recompense;
 
+import lombok.NonNull;
 import ridev.com.br.api.bau.player.BoxType;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitLibrary;
@@ -24,7 +25,13 @@ public class BoxRecompense {
 
                 msg = FancyText.colored("&f[&l&7BASICO&f] Você Recebeu &6" + random_int + " &6Coins!");
             } else if (random > 85) {
-                msg = FancyText.colored("&f[&l&eRARO&f] Você Recebeu A mensagem de Abate &6'Desumilde'");
+                Kit randomKit = getRandomKit(KitRarity.COMUM);
+                if (p.getKits().contains(randomKit)) {
+                    playerHasHaveItem(p, "Kit " + randomKit.name());
+                } else {
+                    msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
+                    p.addKit(randomKit);
+                }
             }
         }
         if (type.equals(BoxType.MEDIANO)) {
@@ -34,9 +41,13 @@ public class BoxRecompense {
                 p.addCoins(random_int);
                 msg = FancyText.colored("&f[&l&7BASICO&f] Você Recebeu &6" + random_int + " &fCoins!");
             } else if (random > 65 && random < 80) {
-                Kit randomKit = getRandomKit(KitRarity.COMUM);
-                msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
-                p.addKit(randomKit);
+                Kit randomKit = getRandomKit(KitRarity.MEDIANO);
+                if (p.getKits().contains(randomKit)) {
+                    playerHasHaveItem(p, "Kit " + randomKit.name());
+                } else {
+                    msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
+                    p.addKit(randomKit);
+                }
             } else if (random > 85) {
                 msg = FancyText.colored("&f[&l&6LENDÁRIO&f] Você Recebeu o Efeito de Abate &6'Cospe Fogo'!");
             }
@@ -48,9 +59,13 @@ public class BoxRecompense {
                 p.addCoins(random_int);
                 msg = FancyText.colored("&f[&l&7BASICO&f] Você Recebeu &6" + random_int + " &fCoins!");
             } else if (random > 60 && random < 75) {
-                Kit randomKit = getRandomKit(KitRarity.MEDIANO);
-                msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
-                p.addKit(randomKit);
+                Kit randomKit = getRandomKit(KitRarity.RARO);
+                if (p.getKits().contains(randomKit)) {
+                    playerHasHaveItem(p, "Kit " + randomKit.name());
+                } else {
+                    msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
+                    p.addKit(randomKit);
+                }
             } else if (random > 75) {
                 int random_int = Mine.getRandomInt(50, 150);
                 p.addXp(random_int);
@@ -64,9 +79,13 @@ public class BoxRecompense {
                 p.addCoins(random_int);
                 msg = FancyText.colored("&f[&l&7BASICO&f] Você Recebeu &6" + random_int + " &fCoins!");
             } else if (random > 55 && random < 70) {
-                Kit randomKit = getRandomKit(KitRarity.RARO);
-                msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
-                p.addKit(randomKit);
+                Kit randomKit = getRandomKit(KitRarity.SUPREMO);
+                if (p.getKits().contains(randomKit)) {
+                    playerHasHaveItem(p, "Kit " + randomKit.name());
+                } else {
+                    msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
+                    p.addKit(randomKit);
+                }
             } else if (random > 70) {
                 int random_int = Mine.getRandomInt(100, 300);
                 p.addXp(random_int);
@@ -85,15 +104,19 @@ public class BoxRecompense {
                 msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu &6" + random_int + " &6XP!");
             } else if (random > 80) {
                 Kit randomKit = getRandomKit(KitRarity.SUPREMO);
-                msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
-                p.addKit(randomKit);
+                if (p.getKits().contains(randomKit)) {
+                    playerHasHaveItem(p, "Kit " + randomKit.name());
+                } else {
+                    msg = FancyText.colored("&f[&l&aRARO&f] Você Recebeu o Kit &6" + randomKit.name() + "&7 !");
+                    p.addKit(randomKit);
+                }
             }
         }
         return msg;
     }
 
 
-    public static Kit getRandomKit(KitRarity raridade) {
+    public static Kit getRandomKit(@NonNull KitRarity raridade) {
         List<Kit> kitsToRandom = new ArrayList<>();
         for (Kit kit : KitLibrary.getKits()) {
             if (kit.rarity().equals(raridade)) {
@@ -104,5 +127,12 @@ public class BoxRecompense {
             return Mine.getRandom(kitsToRandom);
         }
         return null;
+    }
+
+
+    public static void playerHasHaveItem(User us, String itemName) {
+        us.getPlayer().sendMessage(FancyText.colored("&aVocê ja possue o item " + itemName));
+        us.getPlayer().sendMessage(FancyText.colored("&E por isso foi recompensado com &6200 Coins&7!"));
+        us.addCoins(200);
     }
 }

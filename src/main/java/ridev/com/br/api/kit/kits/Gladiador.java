@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 import ridev.com.br.Main;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitLibrary;
@@ -41,7 +42,7 @@ public class Gladiador implements Kit {
     static HashMap<User, List<Block>> gladBlocks = new HashMap<>();
 
     @Override
-    public List<String> description() {
+    public @NotNull List<String> description() {
 
 
         return new java.util.ArrayList<>(Arrays.asList(
@@ -63,7 +64,7 @@ public class Gladiador implements Kit {
     }
 
     @Override
-    public ItemStack icone() {
+    public @NotNull ItemStack icone() {
         return transform(Material.IRON_FENCE);
     }
 
@@ -73,12 +74,12 @@ public class Gladiador implements Kit {
     }
 
     @Override
-    public String name() {
+    public @NotNull String name() {
         return "Gladiador";
     }
 
     @Override
-    public HashMap<Integer, ItemStack> itens() {
+    public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
         itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
         itens.put(1, transform(Material.IRON_FENCE, "&aGladiador (&7Direito)", false, "&7Clique aqui para", "&7Enviar um player para", "&7a Jaula!"));
@@ -103,12 +104,12 @@ public class Gladiador implements Kit {
     }
 
     @Override
-    public KitRarity rarity() {
+    public @NotNull KitRarity rarity() {
         return KitRarity.RARO;
     }
 
     @Override
-    public Listener event() {
+    public @NotNull Listener event() {
         return new Listener() {
             @EventHandler
             public void aoClicar(PlayerInteractAtEntityEvent e) {

@@ -7,9 +7,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
-group 'com.br.ridev.plugin'
+group 'ridev.com.br'
 version '2.0'
-
 
 tasks.build.dependsOn('shadowJar')
 
@@ -23,18 +22,16 @@ repositories {
 
     maven { url = 'https://jitpack.io/' }
 }
-
 dependencies {
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
-
     implementation 'com.github.HenryFabio.configuration-injector:bukkit:main-SNAPSHOT'
     implementation 'com.github.HenryFabio:inventory-api:main-SNAPSHOT'
     implementation 'com.github.HenryFabio:sql-provider:main-SNAPSHOT'
     implementation 'com.github.filoghost.HolographicDisplays:holographicdisplays-api:2.4.5'
-    def lombok = 'org.projectlombok:lombok:1.18.16'
-    compileOnly lombok
-    annotationProcessor lombok
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
+
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
@@ -47,7 +44,7 @@ compileJava {
 }
 
 shadowJar {
-    archiveName("${project.name}-${project.version}.jar")
+    archiveName("RiKitPvP.jar")
 
     relocate 'com.henryfabio.minecraft.configinjector', 'io.github.badnotice.factionsquests.libs.configinjector'
     relocate 'com.henryfabio.minecraft.inventoryapi', 'io.github.badnotice.factionsquests.libs.inventoryapi'
