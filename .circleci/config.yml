@@ -1,5 +1,7 @@
 # Java Gradle CircleCI 2.0 configuration file
 # See: https://circleci.com/docs/2.0/language-java/
+orbs: 
+  gradle: circleci/gradle@2.2.0
 version: 2
 
 # Define a job to be invoked later in a workflow.
@@ -43,4 +45,4 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle --gradle-version 6.6.1 test 
+      - run: gradle test
