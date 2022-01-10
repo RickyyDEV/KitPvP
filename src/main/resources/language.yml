@@ -76,6 +76,39 @@ mensagens:
   cooldown: "&cVocê Deve esperar %time% para enviar Outra Mensagem!"
 
 
+  killstreak:
+    # %player% - retorna o player que passou de nivel no killstreak
+    # %kills% - retorna o numero de kills de killstreak que o player possui
+    ks-passed: "&b&lKS &8➸ &7%player% &7atingiu um KillStreak de %kills%"
+    # %player% - retorna o player que perdeu de nivel no killstreak
+    # %kills% - retorna o numero de kills de killstreak que o player possuia
+    ks-lost: "&b&lKS &8➸ &7 %player% &7perdeu seu killstreak de %kills%"
+
+  server-compass:
+    diamante:
+      - '&bContribua com o servidor!'
+      - ' &7Você pode ajudar o servidor'
+      - '&7 Tornando-se &fVIP &7e '
+      - '&7 adquirindo pacotes de &fCoins&7!'
+      - '&r'
+      - '&7 além de ajudar a manter'
+      - '&7 a rede online'
+      - '&7 você ainda terá acesso a vários &fbenefícios'
+    kitpvp:
+      - '&7Gosta de treinar o seu PvP?'
+      - '&7Esse é o lugar certo para isso!'
+      - '&7Interaja com novos jogadores e embarque'
+      - '&7Nessa aventura incerta!'
+    gladiador:
+      - '&7Sinta-se um incrível gladiador da antiguidade'
+      - '&7e destaque-se entre os demais gladiadores!'
+      - '&7jogue para valer!'
+    hg:
+      - '&7Pegue cogumelos... faça itens fortes...'
+      - '&7Use da sua estratégia para'
+      - '&7conseguir a vitória!'
+
+
   # %player% - Retorna o player
   # %atual-rank% - Retorna o rank antes de upar
   # %pass-rank% - Retorna o rank que o usuário conquistou

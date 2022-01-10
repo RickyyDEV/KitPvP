@@ -12,8 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.arena.Arena;
+import ridev.com.br.api.arena.ArenaLibrary;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitLibrary;
+import ridev.com.br.api.kit.kits.Naruto;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.utils.text.FancyText;
@@ -26,7 +28,7 @@ public class KitsInventory extends PagedInventory {
 
 
     public KitsInventory() {
-        super("kits.inventory", FancyText.colored("&7Seus Kits"), 9 * 6);
+        super("kits.inventory", FancyText.colored("&7Seus kits"), 9 * 6);
     }
 
     @Override
@@ -44,21 +46,33 @@ public class KitsInventory extends PagedInventory {
 
             ItemStack icon = kits.icone();
             List<String> lore = kits.description();
-            if (!us.getKits().contains(kits)) {
+            if (kits instanceof Naruto && !p.getName().equalsIgnoreCase("yRicardinBaum")) {
                 icon = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData());
-                lore.add(FancyText.colored("&cNão Adquirido."));
+                lore.add("&cEm desenvolvimento!");
             } else {
-                lore.add(FancyText.colored("&bClique para Jogar!"));
+                if (!us.getKits().contains(kits)) {
+                    icon = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData());
+                    lore.add(FancyText.colored("&cNão adquirido."));
+                } else {
+                    lore.add(FancyText.colored("&bClique para jogar!"));
+                }
+                lore.add(FancyText.colored("&r"));
+                lore.add(FancyText.colored("&fRaridade: " + kits.rarity().getBeatifulName()));
             }
-
-            lore.add(FancyText.colored("&r"));
-            lore.add(FancyText.colored("&fRaridade: " + kits.rarity().getBeatifulName()));
             ItemStack finalIcon = icon;
             itens.add(() -> InventoryItem.of(
                     newMenuItemItemStack(finalIcon, "&a" + kits.name(), lore)).defaultCallback(a -> {
-
-                if (us.getKits().contains(kits)) {
-                    Arena.sendPlayer(us, kits);
+                if (kits instanceof Naruto && !p.getName().equalsIgnoreCase("yRicardinBaum")) {
+                    p.closeInventory();
+                    p.sendMessage(FancyText.colored("&cKit em desenvolvimento..."));
+                } else {
+                    if (us.getKits().contains(kits)) {
+                        if (ArenaLibrary.arenasIsSetted().isEmpty()) {
+                            p.sendMessage(FancyText.colored("&cNenhum spawn da arena setada ainda!"));
+                        } else {
+                            Arena.sendPlayer(us, kits);
+                        }
+                    }
                 }
             }));
         }

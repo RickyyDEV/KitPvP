@@ -11,9 +11,23 @@ import java.util.Scanner;
 public class ApiKEY {
     private static final ModuleLogger LOGGER = new ModuleLogger("RiKitPvP KEY SYSTEM");
 
+
+    public static boolean isLicencied2() {
+        String email = ConfigValue.get(ConfigValue::licenseEmail);
+        String senha = ConfigValue.get(ConfigValue::licenseSenha);
+        String licensa = ConfigValue.get(ConfigValue::licenseLicensa);
+        String url = "";
+
+        return false;
+    }
+
+
     public static void isLicencied() {
         //We are getting the licence key string from the config
         String key = ConfigValue.get(ConfigValue::licensa);
+        String email = ConfigValue.get(ConfigValue::licenseEmail);
+        String senha = ConfigValue.get(ConfigValue::licenseSenha);
+        String licensa = ConfigValue.get(ConfigValue::licenseLicensa);
         try {
             //We are defining the url location as a string to begin with using "/raw" after pastebin to get the raw paste.
             String url = "https://pastebin.com/raw/" + key;

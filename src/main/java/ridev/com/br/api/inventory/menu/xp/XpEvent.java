@@ -34,7 +34,7 @@ public class XpEvent implements Listener {
                     int quantity = Integer.parseInt(e.getMessage());
                     user.get(p).addXp(quantity);
                     Sound.NOTE_PLING.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&a&lXP &8➸ &7Você adicionou &a" + quantity + " XP &7Na conta do jogador &6" + user.get(p).getUsername()));
+                    p.sendMessage(FancyText.colored("&a&lXP &8➸ &7Você adicionou &a" + quantity + " XP &7na conta do jogador &6" + user.get(p).getUsername()));
                     user.remove(p);
                     players.remove(p);
                 }
@@ -42,7 +42,7 @@ public class XpEvent implements Listener {
                 User us = UserManager.getPlayer(e.getMessage());
                 if (us != null) {
                     user.put(p, us);
-                    p.sendMessage(FancyText.colored("&a&lXP &8➸ &7Agora Diga-me a quantidade de &aXP&7!"));
+                    p.sendMessage(FancyText.colored("&a&lXP &8➸ &7Agora diga-me a quantidade de &aXP&7!"));
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
                     p.sendMessage(FancyText.colored("&a&lXP &8➸ &7Este usuário &cnão existe&7! Tente novamente!"));

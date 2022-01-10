@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class CogumelosInv extends SimpleInventory {
     public CogumelosInv() {
-        super("cogu.inv", FancyText.colored("&7Recraft de Cogumelos"), 9 * 3);
+        super("cogu.inv", FancyText.colored("&7Recraft de cogumelos"), 9 * 3);
     }
 
 

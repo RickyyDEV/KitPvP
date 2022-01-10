@@ -8,6 +8,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.Main;
+import ridev.com.br.api.kit.kits.Naruto;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.api.user.UserRecompenses;
@@ -29,9 +30,16 @@ public class CombatLogAPI implements Listener {
     public void aoBater(EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
             Player dando = (Player) e.getDamager();
+            User dandoUs = UserManager.getPlayer(dando);
             Player recebendo = (Player) e.getEntity();
             if (!Protecao.isImortal(dando) && !Protecao.isImortal(recebendo)) {
                 if (!pcombat.containsKey(dando)) {
+                    if (dandoUs.getKit() != null && dandoUs.getKit() instanceof Naruto) {
+                        if (Naruto.playersWolfs.containsKey(dandoUs)) {
+                            Naruto.playersWolfs.get(dandoUs).setTarget(recebendo);
+                        }
+                    }
+
                     String vidad = new DecimalFormat("0").format(dando.getHealth());
                     String vidar = new DecimalFormat("0").format(recebendo.getHealth());
                     MineReflect.sendActionBar(dando, FancyText.colored("&c✧  &fVocê entrou em combate com &e" + recebendo.getName() + "&a/ &c❤ " + vidar + "&f/" + recebendo.getMaxHealth()));
@@ -51,14 +59,12 @@ public class CombatLogAPI implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void sair(PlayerQuitEvent e) {
-
-        new BukkitRunnable() {
-            public void run() {
-                Player p = e.getPlayer();
-                User us = UserManager.getPlayer(p);
-                if (us == null) return;
+        Player p = e.getPlayer();
+        User us = UserManager.getPlayer(p);
+        if (playerIsInCombat(p)) {
+            User inCombatUser = UserManager.getPlayer(CombatLogAPI.getAdversary(us.getPlayer()));
+            if (inCombatUser != null) {
                 if (OnevsOne.getInDuel().containsKey(us)) {
-                    User inCombatUser = OnevsOne.getInDuel().get(us);
                     CombatLogAPI.removePlayerCombat(inCombatUser.getPlayer());
                     inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
 
@@ -73,7 +79,6 @@ public class CombatLogAPI implements Listener {
                     CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
                 }
                 if (Sumo.getInDuel().containsKey(us)) {
-                    User inCombatUser = Sumo.getInDuel().get(us);
                     CombatLogAPI.removePlayerCombat(inCombatUser.getPlayer());
                     inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
 
@@ -86,8 +91,7 @@ public class CombatLogAPI implements Listener {
                     Sumo.getInDuel().remove(us);
                     Sumo.getInDuel().remove(inCombatUser);
                     CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
-                } else if (us.getWarp().equals(WarpType.FPS) || us.getWarp().equals(WarpType.ARENA) && playerIsInCombat(p)) {
-                    User inCombatUser = UserManager.getPlayer(CombatLogAPI.getAdversary(us.getPlayer()));
+                } else if ((us.getWarp().equals(WarpType.FPS) || us.getWarp().equals(WarpType.ARENA))) {
                     inCombatUser.getPlayer().sendMessage(FancyText.colored("&b&lCOMBAT &8➸ &7Como o jogador " + us.getUsername() + " desconectou-se, você saiu vitorioso!"));
                     UserRecompenses.giveRecompenses(inCombatUser, us);
                     CombatLogAPI.pcombat.remove(inCombatUser.getPlayer());
@@ -95,7 +99,7 @@ public class CombatLogAPI implements Listener {
 
                 CombatLogAPI.pcombat.remove(p);
             }
-        }.runTask(Main.getInstance());
+        }
     }
 
     public static boolean playerIsInCombat(Player p) {

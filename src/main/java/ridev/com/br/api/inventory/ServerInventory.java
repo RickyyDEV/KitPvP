@@ -40,7 +40,7 @@ public class ServerInventory extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem livro = InventoryItem.of(
-                newMenuItem(Material.BOOKSHELF, "&6Lobby Principal", "&6Clique para entrar")).defaultCallback(a -> {
+                newMenuItem(Material.BOOKSHELF, "&6Lobby principal", "&6Clique para entrar")).defaultCallback(a -> {
                     if (ConfigValue.get(ConfigValue::bungeeUse)) {
                         p.closeInventory();
                         ByteArrayOutputStream b = new ByteArrayOutputStream();
@@ -59,13 +59,13 @@ public class ServerInventory extends SimpleInventory {
                         p.sendMessage(FancyText.colored("&aConectando..."));
                     } else {
                         p.closeInventory();
-                        p.sendMessage(FancyText.colored("&cVocê já está No Lobby Principal!"));
+                        p.sendMessage(FancyText.colored("&cVocê já está no lobby principal!"));
                     }
                 }
         );
 
         InventoryItem diamante = InventoryItem.of(
-                        newMenuItem(Material.DIAMOND, "&bContribua Com O Servidor!", " &7Você pode ajudar o Servidor", "&7 Tornando-se &fVIP &7e ", "&7 adquirindo pacotes de &fCoins&7!", "&r", "&7 Além de ajudar a manter", "&7 a rede online", "&7 você ainda terá acesso a vários &fbenefícios"))
+                        newMenuItem(Material.DIAMOND, "&bContribua com o servidor!", " &7Você pode ajudar o servidor", "&7 Tornando-se &fVIP &7e ", "&7 adquirindo pacotes de &fCoins&7!", "&r", "&7 além de ajudar a manter", "&7 a rede online", "&7 você ainda terá acesso a vários &fbenefícios"))
                 .defaultCallback(a -> {
                             p.closeInventory();
                             p.sendMessage(FancyText.colored("&r"));
@@ -74,14 +74,14 @@ public class ServerInventory extends SimpleInventory {
                         }
                 );
         InventoryItem kitpvp = InventoryItem.of(
-                        newMenuItem(Material.IRON_HELMET, "&e&lKITPVP", "&7Gosta de treinar o seu PvP?", "&7Esse é o lugar certo para isso!", "&7Interaja com novos jogadores e embarque", "&7Nessa Aventura Incerta!"))
+                        newMenuItem(Material.IRON_HELMET, "&e&lKITPVP", "&7Gosta de treinar o seu PvP?", "&7Esse é o lugar certo para isso!", "&7Interaja com novos jogadores e embarque", "&7Nessa aventura incerta!"))
                 .defaultCallback(a -> {
                             p.closeInventory();
-                            p.sendMessage(FancyText.colored("&cVocê já Este No KitPvP"));
+                            p.sendMessage(FancyText.colored("&cVocê já está No KitPvP"));
                         }
                 );
         InventoryItem gladiador = InventoryItem.of(
-                        newMenuItem(Material.IRON_BARDING, "&e&lGLADIADOR", "&7Sinta-se Um Incrível gladiador da Antiguidade", "&7e destaque-se entre os demais gladiadores!", "&7Jogue Para Valer!"))
+                        newMenuItem(Material.IRON_BARDING, "&e&lGLADIADOR", "&7Sinta-se um incrível gladiador da antiguidade", "&7e destaque-se entre os demais gladiadores!", "&7jogue para valer!"))
                 .defaultCallback(a -> {
                             if (ConfigValue.get(ConfigValue::bungeeUse)) {
                                 p.closeInventory();
@@ -101,12 +101,12 @@ public class ServerInventory extends SimpleInventory {
                                 p.sendMessage(FancyText.colored("&aConectando..."));
                             } else {
                                 p.closeInventory();
-                                p.sendMessage(FancyText.colored("&cEm Desenvolvimento!"));
+                                p.sendMessage(FancyText.colored("&cEm desenvolvimento!"));
                             }
                         }
                 );
         InventoryItem hg = InventoryItem.of(
-                        newMenuItem(Material.MUSHROOM_SOUP, "&e&lHG", "&7Pegue Cogumelos... Faça itens fortes...", "&7Use da sua estratégia para", "&7conseguir a vitória!"))
+                        newMenuItem(Material.MUSHROOM_SOUP, "&e&lHG", "&7Pegue cogumelos... faça itens fortes...", "&7Use da sua estratégia para", "&7conseguir a vitória!"))
                 .defaultCallback(a -> {
                             if (ConfigValue.get(ConfigValue::bungeeUse)) {
                                 p.closeInventory();
@@ -126,7 +126,7 @@ public class ServerInventory extends SimpleInventory {
                                 p.sendMessage(FancyText.colored("&aConectando..."));
                             } else {
                                 p.closeInventory();
-                                p.sendMessage(FancyText.colored("&cEm Desenvolvimento!"));
+                                p.sendMessage(FancyText.colored("&cEm desenvolvimento!"));
                             }
                         }
                 );

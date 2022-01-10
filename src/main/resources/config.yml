@@ -12,7 +12,10 @@
 #/#############################################################################\
 
 
-License: "<INSIRA SUA LICENÇA AQUI>"
+License:
+  email: "email"
+  senha: "senha"
+  licensa: "licensa"
 
 database:
   # Escolha entre mysql e sqlite

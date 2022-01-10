@@ -5,15 +5,12 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.warps.WarpLibrary;
 import ridev.com.br.api.warps.WarpType;
 import ridev.com.br.eventos.Protecao;
-import ridev.com.br.Main;
-import ridev.com.br.utils.text.FancyText;
 import ridev.com.br.utils.apis.Mine;
-import ridev.com.br.utils.apis.MineReflect;
+import ridev.com.br.utils.text.FancyText;
 
 public class OnPlayerLoseLava extends Event implements Cancellable {
     private final User dier;
@@ -53,25 +50,16 @@ public class OnPlayerLoseLava extends Event implements Cancellable {
 
     public void respawnUsers(Location loc) {
         dier.getPlayer().getInventory().clear();
-        new BukkitRunnable() {
-            public void run() {
-                MineReflect.makeRespawn(dier.getPlayer());
-            }
-        }.runTaskLater(Main.getInstance(), 1);
 
-        new BukkitRunnable() {
-            public void run() {
-                dier.getPlayer().setMaxHealth(20);
-                dier.getPlayer().setHealth(20);
-                dier.getPlayer().teleport(loc);
-                Mine.clearInventory(dier.getPlayer());
-                LavaItem.setItens(dier.getPlayer());
-                Protecao.setImortal(dier.getPlayer(), false);
-                for (PotionEffect effect : dier.getPlayer().getActivePotionEffects()) {
-                    dier.getPlayer().removePotionEffect(effect.getType());
-                }
-                dier.getPlayer().setFireTicks(0);
-            }
-        }.runTaskLater(Main.getInstance(), 2);
+        dier.getPlayer().setMaxHealth(20);
+        dier.getPlayer().setHealth(20);
+        dier.getPlayer().teleport(loc);
+        Mine.clearInventory(dier.getPlayer());
+        LavaItem.setItens(dier.getPlayer());
+        Protecao.setImortal(dier.getPlayer(), false);
+        for (PotionEffect effect : dier.getPlayer().getActivePotionEffects()) {
+            dier.getPlayer().removePotionEffect(effect.getType());
+        }
+        dier.getPlayer().setFireTicks(0);
     }
 }

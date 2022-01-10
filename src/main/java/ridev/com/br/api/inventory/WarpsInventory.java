@@ -17,6 +17,7 @@ import ridev.com.br.api.warps.Warp;
 import ridev.com.br.api.warps.WarpLibrary;
 import ridev.com.br.api.warps.WarpType;
 import ridev.com.br.api.warps.fps.FPSItem;
+import ridev.com.br.api.warps.lava.LavaItem;
 import ridev.com.br.api.warps.onevsone.OnevsOneItens;
 import ridev.com.br.api.warps.sumo.SumoItens;
 import ridev.com.br.eventos.Protecao;
@@ -39,7 +40,7 @@ public class WarpsInventory extends SimpleInventory {
         Player p = viewer.getPlayer();
         User us = UserManager.getPlayer(p);
         InventoryItem fps = InventoryItem.of(
-                        newMenuItem(Material.GLASS, "&a&lFPS", "&r", "&7Quer Treinar Seu PvP Sem Perder Fps?", "&r", "&7Jogue em uma arena com o", "&7melhor fps possível.", "&r", "&a⋄ &7Jogadores: &a" + WarpType.FPS.getCount()))
+                        newMenuItem(Material.GLASS, "&a&lFPS", "&r", "&7Quer treinar seu PvP sem perder fps?", "&r", "&7Jogue em uma arena com o", "&7melhor fps possível.", "&r", "&a⋄ &7Jogadores: &a" + WarpType.FPS.getCount()))
                 .defaultCallback(a -> {
                             if (WarpLibrary.getWarp(WarpType.FPS) != null) {
                                 us.setWarp(WarpType.FPS);
@@ -57,7 +58,7 @@ public class WarpsInventory extends SimpleInventory {
                                 p.playSound(p.getLocation(), Sound.LEVEL_UP, 10F, 0F);
                             } else {
                                 if (p.isOp()) {
-                                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &cA Warp FPS não foi setada corretamente!"));
+                                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &7A warp fps &cnão foi setada corretamente&7!"));
                                 } else {
                                     p.sendMessage(FancyText.colored("&b&lFPS &8➸ &cNão foi possivel entrar nesta warp! &7Tente novamente mais tarde!"));
                                 }
@@ -108,6 +109,8 @@ public class WarpsInventory extends SimpleInventory {
                             if (WarpLibrary.getWarp(WarpType.LAVA) != null) {
                                 Location lavaloc = WarpLibrary.getWarp(WarpType.LAVA).getSpawn();
                                 us.setWarp(WarpType.LAVA);
+                                LavaItem.setItens(p);
+                                Protecao.setImortal(p, false);
                                 p.setMaxHealth(20);
                                 p.setHealth(20);
                                 p.teleport(lavaloc);

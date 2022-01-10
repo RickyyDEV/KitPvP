@@ -23,15 +23,15 @@ public class WorldStarter {
                     Main.LOGGER.log(Level.INFO, "Carregando o mundo " + Main.getWorlds().getString("worlds." + s + ".WorldName"));
                     WorldAPI.loadWorld(Main.getWorlds().getString("worlds." + s + ".WorldName"));
                     World w = Bukkit.getWorld(s);
-
+                    w.setAmbientSpawnLimit(10);
+                    w.setMonsterSpawnLimit(1);
+                    w.setPVP(true);
                     w.setDifficulty(Difficulty.HARD);
                     w.setTime(8000L);
                     w.setStorm(false);
-                }
-            }
-            for (World ws : Bukkit.getWorlds()) {
-                for (Entity e : ws.getEntities()) {
-                    e.remove();
+                    for (Entity e : w.getEntities()) {
+                        e.remove();
+                    }
                 }
             }
         }

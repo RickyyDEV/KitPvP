@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class MainWorld extends SimpleInventory {
     public MainWorld() {
-        super("main.world.inv", FancyText.colored("&7Menu De Mundos"), 9 * 5);
+        super("main.world.inv", FancyText.colored("&7Menu de mundos"), 9 * 5);
     }
 
     public void openInv(Player p) {
@@ -28,15 +28,15 @@ public class MainWorld extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem carregar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("world_load"), "&aCarregar Mundo", new String[]{"&7Clique Aqui para Carregar Mundos!"})).defaultCallback(a -> new LoadWorldInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("world_load"), "&aCarregar mundo", new String[]{"&7Clique aqui para carregar mundos!"})).defaultCallback(a -> new LoadWorldInv().init().openInventory(p));
         InventoryItem teletransportar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("world_teleport"), "&aTeletransportar", new String[]{"&7Clique Aqui para Se Teletransportar", "&7Para Algum Mundo Carregado!"})).defaultCallback(a -> new TeleportWorldInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("world_teleport"), "&aTeletransportar", new String[]{"&7Clique aqui para se teletransportar", "&7para algum mundo carregado!"})).defaultCallback(a -> new TeleportWorldInv().init().openInventory(p));
 
         InventoryItem descarregar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("world_remove"), "&aDescarregar Mundos", new String[]{"&7Clique aqui para descarregar um mundo!"})).defaultCallback(a -> new UnloadWorldInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("world_remove"), "&aDescarregar mundos", new String[]{"&7Clique aqui para descarregar um mundo!"})).defaultCallback(a -> new UnloadWorldInv().init().openInventory(p));
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
 
         editor.setItem(20, carregar);
         editor.setItem(22, teletransportar);

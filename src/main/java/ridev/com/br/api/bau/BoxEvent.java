@@ -14,11 +14,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import ridev.com.br.Main;
 import ridev.com.br.api.bau.player.BoxType;
 import ridev.com.br.api.builder.BuildAPI;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
-import ridev.com.br.Main;
 import ridev.com.br.utils.other.Sound;
 import ridev.com.br.utils.text.FancyText;
 
@@ -84,10 +84,10 @@ public class BoxEvent implements Listener {
                 if (UserManager.getPlayer(e.getMessage()) != null || UserManager.getOfflineUser(e.getMessage()) != null) {
                     user.put(p, UserManager.getOfflineUser(e.getMessage()));
                     Sound.CHICKEN_EGG_POP.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &aDigite O Tipo do Baú!"));
+                    p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7Digite o tipo do baú!"));
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &cEste Jogador Não Encontra-se no meu banco de dados!"));
+                    p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7Este jogador &cnão encontra-se no meu banco de dados&7!"));
                     playersChat.remove(p);
                 }
             } else if (playersChat.containsKey(p) && user.containsKey(p) && !type.containsKey(p)) {
@@ -95,45 +95,37 @@ public class BoxEvent implements Listener {
 
                     type.put(p, BoxType.transform(e.getMessage()));
                     Sound.CHICKEN_EGG_POP.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &aDigite a Quantidade!"));
+                    p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7Digite a Quantidade!"));
                 } else {
-                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &cEste Bau Citado não existe!"));
+                    p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7Este bau citado &cnão existe&7!"));
                     Sound.VILLAGER_NO.play(p, 10, 10);
                     user.remove(p);
                     playersChat.remove(p);
                 }
             } else if (type.containsKey(p)) {
                 if (e.getMessage().matches("-?\\d+")) {
-                    if (Integer.parseInt(e.getMessage()) > 30) {
-                        type.remove(p);
-                        user.remove(p);
-                        playersChat.remove(p);
-                        p.sendMessage(FancyText.colored("&eKitPvP &8➸ &cPara segurança do servidor, Você não pode adicionar mais de 30 Baús por vez!"));
+                    if (Integer.parseInt(e.getMessage()) > 0) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                String quantity = e.getMessage();
+                                Sound.NOTE_PLING.play(p, 10, 10);
+                                User us = user.get(p);
+                                BoxType typebox = type.get(p);
+                                us.addBoxes(type.get(p), Integer.parseInt(quantity));
+                                p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7Você &aAdicionou &e" + quantity + " &7baús do tipo &e" + typebox.toString() + " &7na conta do Jogador &e" + us.getUsername()));
+                                new BoxInventory().init().updateInventory(p);
+                                p.sendMessage(us.getBoxes().toString());
+                                type.remove(p);
+                                user.remove(p);
+                                playersChat.remove(p);
+                            }
+                        }.runTaskLater(Main.getInstance(), 1);
 
-                    } else {
-                        if (Integer.parseInt(e.getMessage()) > 0) {
-                            new BukkitRunnable() {
-                                @Override
-                                public void run() {
-                                    String quantity = e.getMessage();
-                                    Sound.NOTE_PLING.play(p, 10, 10);
-                                    User us = user.get(p);
-                                    BoxType typebox = type.get(p);
-                                    us.addBoxes(type.get(p), Integer.parseInt(quantity));
-                                    p.sendMessage(FancyText.colored("&eKitPvP &7Você Adicionou " + quantity + " Baús do tipo " + typebox.toString() + " Na conta do Jogador " + us.getUsername()));
-                                    new BoxInventory().init().updateInventory(p);
-                                    p.sendMessage(us.getBoxes().toString());
-                                    type.remove(p);
-                                    user.remove(p);
-                                    playersChat.remove(p);
-                                }
-                            }.runTaskLater(Main.getInstance(), 1);
-
-                        }
                     }
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&eKitPvP &8➸ &cO valor que você citou não é um número!"));
+                    p.sendMessage(FancyText.colored("&b&lBAU &8➸ &7O valor que você citou &cnão é um número&7!"));
                     type.remove(p);
                     user.remove(p);
                     playersChat.remove(p);

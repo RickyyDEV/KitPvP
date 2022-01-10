@@ -6,9 +6,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
-import ridev.com.br.Main;
 import ridev.com.br.api.combat.CombatLogAPI;
+import ridev.com.br.api.killstreak.KillStreak;
 import ridev.com.br.api.lobby.LobbyManager;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserRecompenses;
@@ -34,26 +33,25 @@ public class KitWinEvent extends Event implements Cancellable {
     public KitWinEvent(User winner, User loser) {
         this.winner = winner;
         this.loser = loser;
+        loser.setKit(null);
         this.loser.setWarp(WarpType.LOBBY);
+        loser.getPlayer().setMaxHealth(0.5);
+        loser.getPlayer().setHealth(0.5);
+        loser.getPlayer().teleport(LobbyManager.lobby().getLocation());
         CombatLogAPI.removePlayerCombat(winner.getPlayer());
         CombatLogAPI.removePlayerCombat(loser.getPlayer());
-        loser.setKit(null);
+        Protecao.setImortal(this.loser.getPlayer(), true);
         winner.getPlayer().sendMessage(FancyText.colored("&9&lKIT &8➸ &7Você ganhou a batalha contra &a" + loser.getUsername() + "&7!"));
         loser.getPlayer().sendMessage(FancyText.colored("&9&lKIT &8➸ &7Você perdeu a batalha contra &c" + winner.getUsername() + "&7!"));
         this.loser.getPlayer().getInventory().clear();
         for (Map.Entry<Integer, ItemStack> itens : LobbyManager.lobby().getItens().entrySet()) {
             this.loser.getPlayer().getInventory().setItem(itens.getKey(), itens.getValue());
         }
-        Protecao.setImortal(this.loser.getPlayer(), true);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                loser.getPlayer().setMaxHealth(0.5);
-                loser.getPlayer().setHealth(0.5);
-                loser.getPlayer().teleport(LobbyManager.lobby().getLocation());
-                UserRecompenses.giveRecompenses(winner, loser);
-            }
-        }.runTaskLater(Main.getInstance(), 1);
+        UserRecompenses.giveRecompenses(winner, loser);
+        KillStreak.addKill(winner.getPlayer());
+        KillStreak.verifyPlayer(winner.getPlayer(), false);
+        KillStreak.verifyPlayer(loser.getPlayer(), true);
+        KillStreak.killstreak.put(loser.getPlayer(), 0);
     }
 
 
@@ -79,8 +77,6 @@ public class KitWinEvent extends Event implements Cancellable {
 
 
     public void giveRecompenses() {
-        this.winner.addKill();
-        this.loser.addMorte();
         if (ConfigValue.get(ConfigValue::giveXp) != null && ConfigValue.get(ConfigValue::giveXp)) {
             int randomXP = Mine.getRandomInt(ConfigValue.get(ConfigValue::giveXpMinimum), ConfigValue.get(ConfigValue::giveXpMaximum));
             this.winner.addXp(randomXP);

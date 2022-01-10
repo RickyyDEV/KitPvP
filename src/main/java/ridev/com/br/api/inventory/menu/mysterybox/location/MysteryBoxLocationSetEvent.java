@@ -58,14 +58,14 @@ public class MysteryBoxLocationSetEvent implements Listener {
                     bx.createMysteryBox();
                     bx.saveInConfig();
                     Sound.NOTE_PLING.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7MysteryBox " + bx.getName() + " &7Criada com sucesso!"));
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7MysteryBox " + bx.getName() + " &7criada com sucesso!"));
                     p.setGameMode(GameMode.SURVIVAL);
                     BuildAPI.removeBuilder(p);
                     name.remove(p);
                     players.remove(p);
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7O Bloco que você quebrou não era Um Báu! Tente novamente!"));
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7O bloco que você quebrou não era um báu! Tente novamente!"));
                 }
             }
         }

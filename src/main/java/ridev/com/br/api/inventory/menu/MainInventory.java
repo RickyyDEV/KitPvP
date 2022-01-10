@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 public class MainInventory extends SimpleInventory {
     public MainInventory() {
-        super("main.inv.principal", FancyText.colored("&7Central DE Comandos"), 9 * 6);
+        super("main.inv.principal", FancyText.colored("&7Central de comandos"), 9 * 6);
     }
 
     public void openInv(Player p) {
@@ -37,44 +37,45 @@ public class MainInventory extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem mysteryBoxMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("chest_head"), "&aMystery Box", new String[]{"&7Clique Aqui para entrar", "&7no menu da mystery box!"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("chest_head"), "&aMystery Box", new String[]{"&7Clique aqui para entrar", "&7no menu de mystery box!"})).defaultCallback(a -> {
             p.closeInventory();
             new MainMysteryBox().init().openInventory(p);
         });
         InventoryItem buildMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("builder_head"), "&aBuild", new String[]{"&7Clique Aqui para Acionar", "&7O Modo Builder!"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("builder_head"), "&aBuild", new String[]{"&7Clique aqui para acionar", "&7o modo builder!"})).defaultCallback(a -> {
             if (BuildAPI.isBuilder(p)) {
                 Sound.CHICKEN_EGG_POP.play(p, 10, 10);
                 BuildAPI.removeBuilder(p);
                 p.setGameMode(GameMode.SURVIVAL);
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&e&lBUILDER &8➸ &cVocê Saiu do modo builder"));
+                p.sendMessage(FancyText.colored("&e&lBUILDER &8➸ &7Você &csaiu do modo builder&7!"));
             } else {
                 Sound.CHICKEN_EGG_POP.play(p, 10, 10);
                 BuildAPI.addBuilder(p);
                 p.setGameMode(GameMode.CREATIVE);
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&e&lBUILDER &8➸ &aVocê Entrou no modo builder"));
+                p.sendMessage(FancyText.colored("&e&lBUILDER &8➸ &7Você &aentrou no modo builder&7!"));
             }
         });
         InventoryItem xpMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("xp_head"), "&aXP", new String[]{"&7Clique Aqui para Acionar", "&7XP Na conta de um usuário!"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("xp_head"), "&aXP", new String[]{"&7Clique aqui para adicionar", "&7XP na conta de um usuário!"})).defaultCallback(a -> {
             XpEvent.getPlayers().add(p);
-            p.sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Agora Diga-me o nome do usuário que deseja adicionar os XP"));
+            p.closeInventory();
+            p.sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Agora diga-me o nome do usuário que deseja adicionar os XP"));
         });
         InventoryItem warpMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("warp_head"), "&aWarps", new String[]{"&7Clique Aqui para Setar", "&7Ou Remover Warps!"})).defaultCallback(a -> new MainWarp().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("warp_head"), "&aWarps", new String[]{"&7Clique aqui para setar", "&7ou remover warps!"})).defaultCallback(a -> new MainWarp().init().openInventory(p));
         InventoryItem worldMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("world_head"), "&aMundos", new String[]{"&7Clique Aqui para Carregar/,", "&7Remover/Teleportar Para Mundos!"})).defaultCallback(a -> new MainWorld().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("world_head"), "&aMundos", new String[]{"&7Clique aqui para carregar,", "&7remover ou teleportar para mundos!"})).defaultCallback(a -> new MainWorld().init().openInventory(p));
         InventoryItem leaderMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("leader_head"), "&aLeaderBoards", new String[]{"&7Clique Aqui para Setar", "&7Ou Remover LeaderBoards!"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("leader_head"), "&aLeaderBoards", new String[]{"&7Clique aqui para setar", "&7ou remover LeaderBoards!"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
         InventoryItem arenaMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("arena_head"), "&aArenas", new String[]{"&7Clique Aqui para Setar", "&7Ou Remover Spawn de Arena!"})).defaultCallback(a -> new MainArena().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("arena_head"), "&aArenas", new String[]{"&7Clique aqui para setar", "&7ou remover spawn de arena!"})).defaultCallback(a -> new MainArena().init().openInventory(p));
         InventoryItem coinsMenu = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("coin_head"), "&aCoins", new String[]{"&7Clique Aqui para Adicionar", "&7Coins Na Conta de Um Usuário!"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("coin_head"), "&aCoins", new String[]{"&7Clique aqui para adicionar", "&7coins na conta de um usuário!"})).defaultCallback(a -> {
             a.setCancelled(true);
             p.closeInventory();
-            p.sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Me Informe O Nome do player que deseja adicionar os coins!"));
+            p.sendMessage(FancyText.colored("&a&lCOINS &8➸ &7Me informe o nome do player que deseja adicionar os coins!"));
             CoinsEvent.getPlayers().remove(p);
             CoinsEvent.getPlayers().add(p);
         });

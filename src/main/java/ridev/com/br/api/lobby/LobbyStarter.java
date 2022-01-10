@@ -1,6 +1,5 @@
 package ridev.com.br.api.lobby;
 
-import org.bukkit.Bukkit;
 import ridev.com.br.Main;
 import ridev.com.br.api.world.LocationAPI;
 import ridev.com.br.api.world.WorldAPI;
@@ -8,7 +7,7 @@ import ridev.com.br.api.world.WorldAPI;
 public class LobbyStarter {
 
     public LobbyStarter(Main plugin) {
-        Bukkit.getScheduler().runTask(plugin, this::loadLobbys);
+        loadLobbys();
     }
 
     public void loadLobbys() {

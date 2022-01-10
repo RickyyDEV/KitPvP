@@ -46,7 +46,7 @@ public class TagInventory extends PagedInventory {
         User us = UserManager.getPlayer(viewer.getPlayer());
         if (GroupManager.getPlayerHavesPermission(us).isEmpty()) {
             InventoryItem semArena = InventoryItem.of(
-                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem tags", "&7Você não possue nenhuma outra tag", "&7Para poder alterar!")).defaultCallback(a -> a.setCancelled(true));
+                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem tags", "&7Você não possui nenhuma outra tag", "&7Para poder alterar!")).defaultCallback(a -> a.setCancelled(true));
             editor.setItem(22, semArena);
         }
     }

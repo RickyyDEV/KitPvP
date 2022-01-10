@@ -20,60 +20,60 @@ import java.util.Arrays;
 
 public class SetWarp1v1 extends SimpleInventory {
     public SetWarp1v1() {
-        super("warp.set.1v1", FancyText.colored("&71v1 Setter"), 9 * 5);
+        super("warp.set.1v1", FancyText.colored("&7Setar 1v1"), 9 * 5);
     }
 
     @Override
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem setSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&aSetar Spawn", "&7Clique aqui para", "&7Setar o Spawn do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&aSetar spawn", "&7Clique aqui para", "&7setar o spawn do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).saveInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).save();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.setSpawn(p.getLocation());
                 warp.saveInConfig();
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             }
         });
         InventoryItem setFirstSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&aSetar Player Spawn 1", "&7Clique aqui para", "&7Setar o Spawn 1 do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&aSetar player spawn 1", "&7Clique aqui para", "&7setar o spawn 1 do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setFirstSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).saveInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.setFirstSpawn(p.getLocation());
                 warp.saveInConfig();
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             }
         });
         InventoryItem setSecondSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&aSetar Spawn 2", "&7Clique aqui para", "&7Setar o Spawn 2 do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&aSetar spawn 2", "&7Clique aqui para", "&7setar o spawn 2 do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setSecondSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).saveInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.setSecondSpawn(p.getLocation());
                 warp.saveInConfig();
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 setado com sucesso!"));
             }
         });
         if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) == null || WarpLibrary.getWarps().get(WarpType.ONEVSONE).getSpawn() == null) {
@@ -87,7 +87,7 @@ public class SetWarp1v1 extends SimpleInventory {
         }
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

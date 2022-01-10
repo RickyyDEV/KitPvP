@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class RemoveLeaderSimply extends SimpleInventory {
     public RemoveLeaderSimply() {
-        super("remover.leader.inv.simply", FancyText.colored("&7Leader Boards Remover"), 9 * 5);
+        super("remover.leader.inv.simply", FancyText.colored("&7Removedor de leaderboards"), 9 * 5);
     }
 
 
@@ -25,11 +25,11 @@ public class RemoveLeaderSimply extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem semArena = InventoryItem.of(
-                newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem Leader Boards", new String[]{"&7Nenhuma LeaderBoard foi Setada", "&7Para Adicionar Alguma, acesse o menu de", "&7Adicionar LeaderBoards"})).defaultCallback(a -> a.setCancelled(true));
+                newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem leader boards", new String[]{"&7Nenhuma leaderBoard foi setada", "&7Para adicionar alguma, acesse o menu de", "&7adicionar leaderBoards"})).defaultCallback(a -> a.setCancelled(true));
         editor.setItem(22, semArena);
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

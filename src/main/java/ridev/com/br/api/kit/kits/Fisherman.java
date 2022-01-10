@@ -1,8 +1,8 @@
 package ridev.com.br.api.kit.kits;
 
+import lombok.NonNull;
 import net.minecraft.server.v1_8_R3.EntityFishingHook;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -10,37 +10,32 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitRarity;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
-import ridev.com.br.utils.text.FancyText;
+import ridev.com.br.language.KitLanguage;
+import ridev.com.br.utils.item.ItemBuilder;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Fisherman implements Kit {
     @Override
-    public @NotNull List<String> description() {
-        return new java.util.ArrayList<>(Arrays.asList(
-                "&r",
-                "&7Pesque vítimas na guerra!",
-                "&7Engane-as e traga-as mais perte de você!",
-                "&7Para assim poder derrota-las!",
-                "&r",
-                " &eItens: ",
-                "&71x Espada de pedra",
-                "&71x Vara de pesca",
-                "&r",
-                " &eHabilidades: ",
-                "&r",
-                "&7Ao fisgar um player, você tem o poder de puxa-lo",
-                "&7ate sua localização",
-                "&r")
-        );
+    public @NonNull List<String> description() {
+        return new ArrayList<>(KitLanguage.get(KitLanguage::fishermanDescription));
+    }
+
+    @Override
+    public int price() {
+        return KitLanguage.get(KitLanguage::fishermanPreco);
+    }
+
+    @Override
+    public @NonNull String permission() {
+        return KitLanguage.get(KitLanguage::fishermanPermission);
     }
 
     @Override
@@ -61,27 +56,30 @@ public class Fisherman implements Kit {
     @Override
     public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
-        itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
-        itens.put(1, transform(Material.FISHING_ROD, "&aFisherman (&7Direito)", false, "&7Clique aqui para", "&7Fisgar um player"));
-        for (int i = 2; i < 36; i++) {
+        ItemStack pote = new ItemBuilder(Material.BOWL).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguVermelho = new ItemBuilder(Material.RED_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguMarrom = new ItemBuilder(Material.BROWN_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack sopa = new ItemBuilder(Material.MUSHROOM_SOUP).setName("&aSopa").setQuantity(1).build();
+        ItemStack espada = new ItemBuilder(Material.STONE_SWORD).setUnbreakable(true).setName("&aEspada").build();
+        ItemStack fisherman = new ItemBuilder(Material.FISHING_ROD).setName("&aVara de pescar &7(Fisherman)").addLore("&aClique com o direito!").build();
+        ItemStack bussola = new ItemBuilder(Material.COMPASS).setName("&aProcurar jogadores").addLore("&aClique com o direito!").build();
+        for (int i = 1; i < 36; i++) {
             if (i == 13) {
-                itens.put(13, transform(Material.BOWL, 64));
+                itens.put(13, pote);
             } else if (i == 14) {
-                itens.put(14, transform(Material.RED_MUSHROOM, 64));
+                itens.put(14, coguVermelho);
             } else if (i == 15) {
-                itens.put(15, transform(Material.BROWN_MUSHROOM, 64));
+                itens.put(15, coguMarrom);
             } else {
-                itens.put(i, transform(Material.MUSHROOM_SOUP));
+                itens.put(i, sopa);
             }
         }
-        itens.put(8, transform(Material.COMPASS, "&aProcurar jogadores", false));
+        itens.put(0, espada);
+        itens.put(1, fisherman);
+        itens.put(8, bussola);
         return itens;
     }
 
-    @Override
-    public int price() {
-        return 5500;
-    }
 
     @Override
     public @NotNull KitRarity rarity() {
@@ -118,26 +116,4 @@ public class Fisherman implements Kit {
 
     }
 
-
-    private static ItemStack transform(Material item, int amount) {
-        ItemStack i = new ItemStack(item);
-        i.setAmount(amount);
-        return i;
-    }
-
-    private static ItemStack transform(Material item) {
-        return new ItemStack(item);
-    }
-
-    private static ItemStack transform(Material item, String name, boolean encantada, String... lore) {
-        ItemStack i = new ItemStack(item);
-        ItemMeta im = i.getItemMeta();
-        im.setLore(Arrays.asList(FancyText.colored(lore)));
-        im.setDisplayName(FancyText.colored(name));
-        if (encantada) {
-            i.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-        }
-        i.setItemMeta(im);
-        return i;
-    }
 }

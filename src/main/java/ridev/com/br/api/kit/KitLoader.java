@@ -5,7 +5,6 @@ import ridev.com.br.Main;
 import ridev.com.br.utils.other.ClassGetter;
 import ridev.com.br.utils.other.ModuleLogger;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,14 +17,15 @@ public class KitLoader {
 
     public KitLoader(Main plugin) {
         this.plugin = plugin;
-        Bukkit.getScheduler().runTask(plugin, this::loadKits);
+        loadKits();
     }
 
     public void loadKits() {
 
+
+        int i = 0;
         for (Class<?> classes : ClassGetter.getClassesForPackage(this.plugin, "ridev.com.br.api.kit.kits")) {
             try {
-                List<Kit> kits = new ArrayList<>();
                 if (Kit.class.isAssignableFrom(classes)) {
                     Kit kit = (Kit) classes.newInstance();
                     KitLibrary.getKits().add(kit);
@@ -44,4 +44,10 @@ public class KitLoader {
     public List<Kit> organize(List<Kit> list) {
         return list.stream().sorted(Comparator.comparing(Kit::rarity)).collect(Collectors.toList());
     }
+
+//    public String getKitPermission(String kitname) {
+//        for (String s : KitLanguage.get(KitLanguage::kitsPermissions).getKeys(false)) {
+//            if (s.equalsIgnoreCase(kitname)) return;
+//        }
+//    }
 }

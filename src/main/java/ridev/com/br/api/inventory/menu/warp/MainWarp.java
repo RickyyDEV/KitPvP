@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class MainWarp extends SimpleInventory {
     public MainWarp() {
-        super("main.warp.inv", FancyText.colored("&7Menu De Warps"), 9 * 5);
+        super("main.warp.inv", FancyText.colored("&7Menu de warps"), 9 * 5);
     }
 
     public void openInv(Player p) {
@@ -28,12 +28,12 @@ public class MainWarp extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem boxLocs = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("green"), "&aSetar Warps", new String[]{"&7Clique aqui para", "&7Setar um Warps Na sua", "&7Localização"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("green"), "&aSetar warps", new String[]{"&7Clique aqui para", "&7setar warps na sua", "&7Localização"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
         InventoryItem boxPlayerAdd = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("red"), "&aRemover Warps", new String[]{"&7Clique aqui para", "&7Remover uma Warp", "&7 Especifica"})).defaultCallback(a -> new WarpRemoverInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("red"), "&aRemover warps", new String[]{"&7Clique aqui para", "&7remover warps em sua localização", "&7 Especifica"})).defaultCallback(a -> new WarpRemoverInv().init().openInventory(p));
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
 
         editor.setItem(20, boxLocs);
         editor.setItem(24, boxPlayerAdd);

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -11,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.Main;
 import ridev.com.br.api.cargos.GroupManager;
+import ridev.com.br.api.killstreak.KillStreak;
 import ridev.com.br.api.lobby.LobbyManager;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
@@ -27,7 +29,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class aoEntrar implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent e) {
         e.setJoinMessage(null);
         Player p = e.getPlayer();
@@ -82,6 +84,7 @@ public class aoEntrar implements Listener {
                     User user = UserManager.getPlayer(p2);
                     MineReflect.sendNameTag(p2, FancyText.colored(user.getRole().getPrefix() + ""), FancyText.colored(" &7(" + user.getRank().getSymbol() + "&7)"), user.getRole().getPriority());
                 }
+
             }
 
         }.runTaskLater(Main.getInstance(), 1);
@@ -99,6 +102,9 @@ public class aoEntrar implements Listener {
         if (p.getName().equalsIgnoreCase("matadorbrsinhoo") || p.getName().equalsIgnoreCase("yRicardinBaum")) {
             p.sendMessage(FancyText.colored("&eRiKitPvP &8➸ &aEste Servidor utiliza o RiKitPvP Como plugin de kitpvp!"));
         }
+
+        KillStreak.killstreak.put(p, 0);
+
     }
 
 

@@ -19,7 +19,7 @@ public class ClearChatCommand extends Commands {
             for (int i = 0; i < 200; i++) {
                 Bukkit.broadcastMessage(" ");
             }
-            Bukkit.broadcastMessage(FancyText.colored(LangValue.get(LangValue::clearChatFinalMessage)));
+            Bukkit.broadcastMessage(FancyText.colored(LangValue.get(LangValue::clearChatFinalMessage).replace("%player%", p.getName())));
         } else {
             p.sendMessage(FancyText.colored(LangValue.get(LangValue::clearChatNoPermission)));
         }

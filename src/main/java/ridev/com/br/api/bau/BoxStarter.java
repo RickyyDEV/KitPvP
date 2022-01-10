@@ -1,10 +1,9 @@
 package ridev.com.br.api.bau;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import ridev.com.br.api.world.LocationAPI;
 import ridev.com.br.Main;
+import ridev.com.br.api.world.LocationAPI;
 
 import java.util.logging.Level;
 
@@ -13,7 +12,7 @@ public class BoxStarter {
 
     public BoxStarter(Main plugin) {
         this.plugin = plugin;
-        Bukkit.getScheduler().runTask(plugin, this::loadAllBoxes);
+        loadAllBoxes();
     }
 
 
@@ -26,7 +25,7 @@ public class BoxStarter {
                     Box box = new Box(s, loc.getBlock());
                     box.createMysteryBox();
                 } else {
-                    Main.LOGGER.log(Level.INFO, "O baú " + s + " Não foi setado corretamente. Exclua-lo e crie-o novamente!");
+                    Main.LOGGER.log(Level.INFO, "O baú " + s + " não foi setado corretamente. Exclua-o e crie novamente!");
                 }
             }
         }

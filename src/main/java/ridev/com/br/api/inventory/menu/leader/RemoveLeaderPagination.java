@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.leader.Leader;
 import ridev.com.br.api.leader.LeaderManager;
 import ridev.com.br.utils.other.CacheSystem;
-import ridev.com.br.utils.text.FancyText;
 import ridev.com.br.utils.other.Sound;
+import ridev.com.br.utils.text.FancyText;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public final class RemoveLeaderPagination extends PagedInventory {
     public RemoveLeaderPagination() {
         super(
                 "remover.leader.inv.paginated",
-                FancyText.colored("&7Leader Boards Remover"),
+                FancyText.colored("&7Removedor de leaderboards"),
                 9 * 6
         );
     }
@@ -46,12 +46,12 @@ public final class RemoveLeaderPagination extends PagedInventory {
         for (Map.Entry<String, Leader> data : LeaderManager.getLeaders().entrySet()) {
             Leader lead = data.getValue();
             itemSuppliers.add(() -> InventoryItem.of(
-                    newMenuItem(Material.NETHER_STAR, "&c" + lead.getName(), "", "&7Tipo: &e" + lead.getType().getName(), "", "&7Clique Aqui para", "&7Remover este LeaderBoard!")).defaultCallback(a -> {
+                    newMenuItem(Material.NETHER_STAR, "&c" + lead.getName(), "", "&7Tipo: &e" + lead.getType().getName(), "", "&7Clique aqui para", "&7Remover este leaderBoard!")).defaultCallback(a -> {
                 p.closeInventory();
                 lead.removeInConfig();
                 lead.removeLeader();
                 Sound.NOTE_PLING.play(p, 10, 10);
-                p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7LeaderBoard " + lead.getName() + " &7Foi removida Com sucesso!"));
+                p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7LeaderBoard " + lead.getName() + " &7foi removida com sucesso!"));
             }));
         }
 
@@ -62,7 +62,7 @@ public final class RemoveLeaderPagination extends PagedInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para Voltar")).defaultCallback(a -> new MainLeader().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para voltar")).defaultCallback(a -> new MainLeader().init().openInventory(p));
         editor.setItem(40, voltar);
 
     }

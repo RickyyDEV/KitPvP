@@ -1,0 +1,379 @@
+###############################################################################\
+#|                                   RiKitPvP                                  |
+#|                                                                             |
+#|                             Author: yRicardinBaum                           |
+#|                                                                             |
+#|                                 Version: 2.0                                |
+#|                                                                             |
+#|                            O Mais Novo Plugin De KitPvP                     |
+#|                                                                             |
+#|                          Copyright: Copyright Adversimental                 |
+#/#############################################################################\
+
+
+
+
+# EXISTEM 2 TIPOS DE SALVAMENTOS, DATABASE E PERMISSION
+# DATABASE - PEGARÁ NA DATABASE DO PLUGIN OS KITS DO USUÁRIO!
+# PERMISSION - PEGARÁ AS PERMISSÕES DO USUÁRIO E VERÁ QUAIS KITS ELE POSSUI.
+kit-use-type: database
+
+# AQUI VÃO TODOS OS KITS QUE VOCÊ QUER PARA QUANDO O USUÁRIO FIZER SEU PRIMEIRO LOGIN NO SERVIDOR!
+# OS KITS SAO OS MEMOS DOS LISTADOS EM KITS!
+start-kit:
+  - "pvp"
+
+kits:
+  # AS PERMISSÕES SO VAO PEGAR SE VOCÊ TIVER COLOCADO: kit-use-type: permission
+  turtle:
+    permission: "kit.turtle"
+    description:
+      - "&r"
+      - "&7Tome menos dano quando estive agaixado"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Quando agaixado você leva dano reduzido"
+      - "&r"
+    preco: 3700
+  noiser:
+    permission: "kit.noiser"
+    description:
+      - "&r"
+      - "&7Deixe seus adversários com sono!"
+      - "&7Seria errado se aproveitar disso?"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Tenha uma chance de 80% de deixar"
+      - "&7Seu adversário com lentidão!"
+      - "&r"
+    preco: 3500
+  dinamite:
+    permission: "kit.dinamite"
+    description:
+      - "&r"
+      - "&7Passe a dinamite para seus adverários"
+      - "&7Para estouralos!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&71x Dinamite (Dinamite)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Clique em seu adversário com a dinamite"
+      - "&7E exploda-o em 5 segundos!"
+      - "&r"
+    preco: 4700
+    # %time-left% - tempo que falta para utilizar o comando novamente
+    cooldown-wait: "&b&lDINAMITE &8➸ &7Você deve &cesperar %time-left%s para usar o kit novamente!"
+    dinamite-puted: "&b&lDINAMITE &8➸ &7Ei cuidado!! Você está com um explosivo no seu inventário! Tire-a antes que exploda!"
+    # %time% - retorna o tempo para que aconteça a explosao
+    explose-time: "&b&lDINAMITE &8➸ &7Explodindo em &e%time%..."
+  jumper:
+    permission: "kit.jumper"
+    description:
+      - "&r"
+      - "&7Pule em cima de seus adversários!"
+      - "&7Seja um verdadeiro sapo de batalha!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&71x Poção de pulo (Jumper)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7No inicio da partida, tenha uma poção"
+      - "&7De super pulo!"
+      - "&r"
+    preco: 4500
+  frost:
+    permission: "kit.frost"
+    description:
+      - "&r"
+      - "&7Deixe o seu adversário imobilizado!"
+      - "&7Conegele seu adversário em um gelo inquebravel!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&71x Bloco de gelo (Frost)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Ao clicar com o gelo em seu adversário"
+      - "&7Ele fica imobilizado por 7 segundos!"
+      - "&r"
+    preco: 5400
+    # %time% - tempo para usar o kit novamente
+    frost-cooldown: "&b&lFROST &8➸ &7Você deve &cesperar %time%s para utilizar o kit novamente&7!"
+    # %player% - retorna o player congelado
+    frosted-author: "&b&lFROST &8➸ &7Você &bcongelou&7 o jogador %player%"
+    frosted-victim: "&b&lFROST &8➸ &7Você foi &bcongelado!"
+    # %player% - jogador descongelado
+    frost-unfreeze: "&b&lFROST &8➸ &7O jogador %player% foi &bdescongelado&7!"
+  barbarian:
+    permission: "kit.barbarian"
+    description:
+      - "&r"
+      - "&7Fique com a espada mais forte a cada kill!"
+      - "&7Até ganhar a espada mais forte do game!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de madeira (Barbarian)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7A cada 3 kills o dano da sua espada muda!"
+      - "&r"
+    preco: 3000
+    # %sword% - Espada que ele ganhou
+    level-passed: "&b&lBARBARIAN &8➸ &7Você passou de nivel no seu barbarian! Agora sua espada é de %sword%!"
+    # %kills_remaing% - O numero de abates que o player tem que fazer para passar de nivel novamente
+    kills-remaing: "&b&lBARBARIAN &8➸ &7Você precisa de mais %kills% abates para conseguir passar de nível!"
+  trevo:
+    permission: "kit.trevo"
+    description:
+      - "&r"
+      - "&7Seja o rei da partida!"
+      - "&7Tenha uma chance de 80% de ganhar"
+      - "&7Maçã dourada ao bater em seu inimigo"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de Pedra"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Tenha uma chance de 80% de ganhar uma"
+      - "&7Maçã dourada ao bater em seu inimigo"
+      - "&r"
+    preco: 3500
+    trevo-gift: "&b&lTREVO &8➸ &7Você &aganhou 1 maçã dourada&7!"
+  astronauta:
+    permission: "kit.astronauta"
+    description:
+      - "&r"
+      - "&7Suba até a galaxia de poder!"
+      - "&7Taque meteoros em cima de seus oponentes!"
+      - "&7Deixando-o sem reação!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de Pedra"
+      - "&71x Nether Star (Astronauta)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Clique com o botao direito na área que deseja bombardear"
+      - "&7E... Que seja feito o estrago!"
+      - "&r"
+    preco: 6000
+    sended-meteorites: "&b&lASTRONAUTA &8➸ &7Você acaba de tacar meteoritos sobre a terra!"
+    # %time% - Tempo em segundos para utilizar o kit novamente
+    wait-cooldown: "&b&lASTRONAUTA &8➸ &7Você &cdeve esperar %time%s para utilizar este kit novamente&7!"
+  fireman:
+    permission: "kit.fireman"
+    description:
+      - "&r"
+      - "&7Bombeiro não existe para você!"
+      - "&7Taque fogo em tudo que atacar!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada De Pedra"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Tenha 50% de Chance tocar fogo em seu oponente!"
+      - "&r"
+    preco: 2400
+  fisherman:
+    permission: "kit.fisherman"
+    description:
+      - "&r"
+      - "&7Pesque vítimas na guerra!"
+      - "&7Engane-as e traga-as mais perte de você!"
+      - "&7Para assim poder derrota-las!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&71x Vara de pesca"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Ao fisgar um player, você tem o poder de puxa-lo"
+      - "&7ate sua localização"
+      - "&r"
+    preco: 5500
+  gladiador:
+    permission: "kit.gladiador"
+    description:
+      - "&r"
+      - "&7Sinta-se um verdadeiro gladiador!"
+      - "&7Batalhe com adversarios isoladamente!"
+      - "&7Para que ele não tenha para onde correr!"
+      - "&r"
+      - " &eItens: "
+      - "&71x Espada de pedra"
+      - "&71x Prisão de ferro(Gladidor)"
+      - "&r"
+      - " &eHabilidades: "
+      - "&r"
+      - "&7Ao clicar com o botão direito no adversário,"
+      - "&7você puxa ele para uma arena de vidro!"
+      - "&r"
+    preco: 5000
+    in-glad: "&b&lGLADIADOR &8➸ &7Você &cjá está em um duelo de gladiadores&7!"
+
+  kangaroo:
+    permission: "kit.kangaroo"
+    description:
+      - '&r'
+      - '&7Saia por ai voando e'
+      - '&7surpreendendo seus inimigos'
+      - '&7Com ataques surpresas e furtivos!'
+      - '&7Descoberto'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de pedra'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Clicando com o botão direito no item do kangaroo'
+      - '&7Você ganha um impulso!'
+      - '&r'
+    preco: 6000
+    in-batle: "&b&lKANGAROO &8➸ &7Você não pode usar o kit kangaroo quando estiver em batalha!"
+  malhado:
+    permission: "kit.malhado"
+    description:
+      - '&r'
+      - '&7Ganhe uma porção de Força 1 '
+      - '&7no inicio da partida'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de pedra'
+      - '&71x Porção de força 1 (Malhado)'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Você inicia a partida com uma porção de força!'
+      - '&r'
+    preco: 2500
+  naruto:
+    permission: "kit.naruto"
+    description:
+      - '&r'
+      - '&7Sinta-se o próprio naruto!'
+      - '&7E ataque com a sua raposa de 9 caudas!'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de pedra'
+      - '&71x Spawn de lobo (Raposa de nove caudas)'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Spawnando a raposa de 9 caudas, ela irá'
+      - '&7Atacar os inimigos que estarão a lhe incomodar!'
+      - '&r'
+    preco: 4500
+  ninja:
+    permission: "kit.ninja"
+    description:
+      - '&r'
+      - '&7Torne-se um verdadeiro ninja!'
+      - '&7Se teletransporte para trás de seus'
+      - '&7Adversários, para derrotalos sem nem ser'
+      - '&7Descoberto'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de pedra'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Agaixando você ativa o poder de se'
+      - '&7Teletransportar para trás de seus adversários'
+      - '&r'
+    preco: 2000
+    # %time% - retorna o tempo para usar o kit novamente
+    wait-cooldown: "&b&lNINJA &8➸ &7Você &cdeve aguardar &6%time%s &cpara usar o kit novamente&7!"
+    #  %player% - retorna o player que o autor se teletransportou
+    teleport: "&b&lNINJA &8➸ &7Você foi &ateletransportado para %player%&7!"
+  pvp:
+    permission: "kit.pvp"
+    description:
+      - '&r'
+      - '&7O velho kit pvp! Porém com cara nova!'
+      - '&7Batalhe com adversarios com armas perigosas!'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de ferro'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Você não possue habilidades...'
+      - '&7Mas possue uma grande vontade de lutar!'
+      - '&r'
+    preco: 0
+  stomper:
+    permission: "kit.stomper"
+    description:
+      - '&r'
+      - '&7Caia de alturas extravagantes e não levar'
+      - '&7quase nada de dano?'
+      - '&7E ainda eliminar seus adversário ao redor? Incrivel!'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada De Pedra'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Ao cair tenha chance de matar todos que estão a'
+      - '&73 raios de distância'
+      - '&r'
+    preco: 5000
+    # %player% - retorna o player que stompou
+    player-stompado: "&b&lSTOMPER &8➸ &7Você foi stompado por %player%"
+  troller:
+    permission: "kit.troller"
+    description:
+      - '&r'
+      - '&7Quer ter a vantagem de trolar todos na partida?'
+      - '&7Esse kit é pra você!'
+      - '&7Troque de lugar com seus oponentes!'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada de Pedra'
+      - '&71x Bola de Neve (Troller)'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Troque de lugar com seu oponente acertando-o'
+      - '&7com a bola de neve!'
+      - '&r'
+    preco: 3000
+    # %time% - retorna o tempo para poder usar o kit novamente
+    troller-cooldown: "&b&lTROLLER &8➸ &7Você &cdeve esperar %time%s para utilizar este kit novamente&7!"
+    # %player% - retorna o player que foi teleportado
+    troller-teleport: "&b&lTROLLER &8➸ &7Você trocou de lugar com %player%"
+  viper:
+    permission: "kit.viper"
+    description:
+      - '&r'
+      - '&7Seja Traiçoeiro igual uma cobra!'
+      - '&7Injete veneno em seus adversários!'
+      - '&r'
+      - ' &eItens: '
+      - '&71x Espada De Pedra'
+      - '&r'
+      - ' &eHabilidades: '
+      - '&r'
+      - '&7Tenha 50% de Chance envenenar o seu oponente!'
+      - '&r'
+    preco: 3000
+
+

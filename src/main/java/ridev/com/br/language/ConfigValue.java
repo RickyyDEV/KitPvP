@@ -18,6 +18,13 @@ public class ConfigValue implements ConfigurationInjectable {
     @ConfigField("License")
     private String licensa;
 
+    @ConfigField("License.email")
+    private String licenseEmail;
+    @ConfigField("License.senha")
+    private String licenseSenha;
+    @ConfigField("License.licensa")
+    private String licenseLicensa;
+
 
     // DATABASE
 

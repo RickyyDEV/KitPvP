@@ -2,7 +2,6 @@ package ridev.com.br;
 
 import com.henryfabio.minecraft.inventoryapi.manager.InventoryManager;
 import com.henryfabio.sqlprovider.connector.SQLConnector;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -15,6 +14,7 @@ import ridev.com.br.api.key.ApiKEY;
 import ridev.com.br.api.kit.KitLoader;
 import ridev.com.br.api.leader.LeaderSchema;
 import ridev.com.br.api.lobby.LobbyStarter;
+import ridev.com.br.api.permission.Permission;
 import ridev.com.br.api.updater.UpdaterAPI;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
@@ -35,7 +35,6 @@ import ridev.com.br.utils.text.FancyText;
 
 import java.util.logging.Level;
 
-@Getter
 public class Main extends JavaPlugin {
 
     public static final ModuleLogger LOGGER = new ModuleLogger("RiKitPvP");
@@ -53,14 +52,19 @@ public class Main extends JavaPlugin {
     private static SQLConnector sqlConnector;
 
     public void onLoad() {
-        Files.criarArquivos();
-        Language.of(this).init();
-        ApiKEY.isLicencied();
-        UpdaterAPI.isUpdated();
-        new Metrics(getInstance(), 13275);
-        instance = this;
-        sqlConnector = BackendType.of().createSqlConnector();
-        super.onLoad();
+        try {
+            Files.criarArquivos();
+            Language.of(this).init();
+            ApiKEY.isLicencied();
+            UpdaterAPI.isUpdated();
+            new Metrics(getInstance(), 13275);
+            instance = this;
+            sqlConnector = BackendType.of().createSqlConnector();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            super.onLoad();
+        }
     }
 
     public void onEnable() {
@@ -71,42 +75,49 @@ public class Main extends JavaPlugin {
             this.setEnabled(false);
             return;
         }
-
-        setupEnable();
-
-        LOGGER.log(Level.INFO, "\n" +
-                "  _____  _ _  ___ _   _____        _____  \n" +
-                " |  __ \\(_) |/ (_) | |  __ \\      |  __ \\ \n" +
-                " | |__) |_| ' / _| |_| |__) |_   _| |__) |\n" +
-                " |  _  /| |  < | | __|  ___/\\ \\ / /  ___/ \n" +
-                " | | \\ \\| | . \\| | |_| |     \\ V /| |     \n" +
-                " |_|  \\_\\_|_|\\_\\_|\\__|_|      \\_/ |_|     \n" +
-                "                                          \n" +
-                "                                          \n" +
-                "              PLUGIN HABILITADO COM SUCESSO!              ");
-
-        super.onEnable();
+        try {
+            setupEnable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            LOGGER.log(Level.INFO, "\n" +
+                    "  _____  _ _  ___ _   _____        _____  \n" +
+                    " |  __ \\(_) |/ (_) | |  __ \\      |  __ \\ \n" +
+                    " | |__) |_| ' / _| |_| |__) |_   _| |__) |\n" +
+                    " |  _  /| |  < | | __|  ___/\\ \\ / /  ___/ \n" +
+                    " | | \\ \\| | . \\| | |_| |     \\ V /| |     \n" +
+                    " |_|  \\_\\_|_|\\_\\_|\\__|_|      \\_/ |_|     \n" +
+                    "                                          \n" +
+                    "                                          \n" +
+                    "              PLUGIN HABILITADO COM SUCESSO!              ");
+            super.onEnable();
+        }
     }
 
     public void onDisable() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            User user = UserManager.map.get(p.getName());
-            if (user != null) {
-                BackendLibrary.insert(user);
+        try {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                User user = UserManager.map.get(p.getName());
+                if (user != null) {
+                    BackendLibrary.insert(user);
+                }
+                p.kickPlayer(FancyText.colored("&fO servidor está &c&lREINICIANDO/DESLIGANDO&f! \n\n &e&lEntre novamente em alguns segundos"));
             }
-            p.kickPlayer(FancyText.colored("&fO servidor está &c&lREINICIANDO/DESLIGANDO&f! \n\n &e&lEntre novamente em alguns segundos"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            LOGGER.log(Level.INFO, "\n" +
+                    "  _____  _ _  ___ _   _____        _____  \n" +
+                    " |  __ \\(_) |/ (_) | |  __ \\      |  __ \\ \n" +
+                    " | |__) |_| ' / _| |_| |__) |_   _| |__) |\n" +
+                    " |  _  /| |  < | | __|  ___/\\ \\ / /  ___/ \n" +
+                    " | | \\ \\| | . \\| | |_| |     \\ V /| |     \n" +
+                    " |_|  \\_\\_|_|\\_\\_|\\__|_|      \\_/ |_|     \n" +
+                    "                                          \n" +
+                    "                                          \n" +
+                    "              PLUGIN DESABILITADO COM SUCESSO!              ");
+            super.onDisable();
         }
-        LOGGER.log(Level.INFO, "\n" +
-                "  _____  _ _  ___ _   _____        _____  \n" +
-                " |  __ \\(_) |/ (_) | |  __ \\      |  __ \\ \n" +
-                " | |__) |_| ' / _| |_| |__) |_   _| |__) |\n" +
-                " |  _  /| |  < | | __|  ___/\\ \\ / /  ___/ \n" +
-                " | | \\ \\| | . \\| | |_| |     \\ V /| |     \n" +
-                " |_|  \\_\\_|_|\\_\\_|\\__|_|      \\_/ |_|     \n" +
-                "                                          \n" +
-                "                                          \n" +
-                "              PLUGIN DESABILITADO COM SUCESSO!              ");
-        super.onDisable();
     }
 
     public FileConfiguration getConfig() {
@@ -132,10 +143,10 @@ public class Main extends JavaPlugin {
     private void setupEnable() {
         new WorldStarter();
         new Eventos(getInstance());
+        new UserManager(getInstance());
         new KitLoader(getInstance());
         new ArenaStarter(getInstance());
         InventoryManager.enable(getInstance());
-        new UserManager(getInstance());
         new GroupStarter(getInstance());
         new CacheSystem().setupCache();
         new LeaderSchema(getInstance());
@@ -146,6 +157,7 @@ public class Main extends JavaPlugin {
         new ScoreboardManager(getInstance());
         new TabListRunnable(getInstance());
         new CombatLogRunnable(getInstance());
+        Permission.loadPermissions();
     }
 
     public static SQLConnector getSqlConnector() {

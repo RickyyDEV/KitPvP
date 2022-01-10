@@ -58,7 +58,7 @@ public class ServerInfoInventory extends SimpleInventory {
                 InventoryItem serverInfo = InventoryItem.of(
                         newMenuItemItemStack(CacheSystem.getItem("server_head"), "&6Informações do Servidor: ",
                                 "&r",
-                                "&fMemória RAM Total: &6" + totalMemory,
+                                "&fMemória RAM total: &6" + totalMemory,
                                 "&fMemória livre: &6" + freeMemory,
                                 "&fMemória sendo usada: &6" + usingMemory,
                                 "&fUso da memória (%): &6" + usingmemoryPorcentage,

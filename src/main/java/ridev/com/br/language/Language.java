@@ -16,12 +16,14 @@ public class Language {
         configurationInjector.saveDefaultConfiguration(
                 plugin,
                 "config.yml",
-                "language.yml"
+                "language.yml",
+                "kits.yml"
         );
 
         configurationInjector.injectConfiguration(
                 ConfigValue.instance(),
-                LangValue.instance()
+                LangValue.instance(),
+                KitLanguage.instance()
         );
 
     }

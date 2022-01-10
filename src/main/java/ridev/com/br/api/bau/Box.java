@@ -69,7 +69,7 @@ public class Box {
                 Files.saveLocConfig();
                 BoxManager.getBoxes().remove(this.getName());
             } else {
-                Main.LOGGER.log(Level.INFO, "Esta Mystery Box Ainda Está em Uso! Espere o usuário receber seu premio para remove-la!");
+                Main.LOGGER.log(Level.INFO, "Esta mystery box ainda está em Uso! Espere o usuário receber seu premio para remove-la!");
             }
         }
     }

@@ -38,6 +38,7 @@ public class BoxAnimation {
         cs.updateTextLine(0, "");
         cs.updateTextLine(1, "");
         User us = UserManager.getPlayer(p);
+        us.removeBox(type);
         Location armorLoc = caixa.getLocation().clone().add(0.5, 1.5, 0.5);
         playChestAction(caixa.getBlock(), true);
         BoxArmorStand armor = new BoxArmorStand(armorLoc, "&kasjdkoashdjiashda");
@@ -98,7 +99,6 @@ public class BoxAnimation {
                                     cs.updateTextLine(0, FancyText.colored("&eClique para abrir"));
                                     caixa.setHolograma(hl);
                                     caixa.setUsing(false);
-                                    us.removeBox(type);
                                     this.cancel();
                                 }
                             }.runTaskLater(Main.getInstance(), 50);

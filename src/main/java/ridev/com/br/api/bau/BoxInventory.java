@@ -58,7 +58,7 @@ public class BoxInventory extends SimpleInventory {
                             BoxAnimation.startAnimation(caixabox, type, viewerPlayer);
                             viewerPlayer.closeInventory();
                         } else {
-                            viewerPlayer.sendMessage(FancyText.colored("&b&lBOX &8➸ &cEsta caixa já está sendo usada."));
+                            viewerPlayer.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Esta caixa &cjá está sendo usada&7!"));
 
                         }
                     } else a.setCancelled(true);
@@ -68,7 +68,7 @@ public class BoxInventory extends SimpleInventory {
             }
         }
         InventoryItem emerald = InventoryItem.of(
-                newMenuItem(Material.EMERALD, "&aLoja de Caixas Misteriosas", "&7Sem nenhuma caixa?", "&7Clique aqui para ir", "&7para a loja de caixas!")).defaultCallback(a -> new BoxShop().init().openInventory(viewerPlayer));
+                newMenuItem(Material.EMERALD, "&aLoja de caixas misteriosas", "&7Sem caixas?", "&7Clique aqui para ir", "&7para a loja de caixas!")).defaultCallback(a -> new BoxShop().init().openInventory(viewerPlayer));
         editor.setItem(49, emerald);
     }
 

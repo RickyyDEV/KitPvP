@@ -15,13 +15,14 @@ import ridev.com.br.api.inventory.menu.mysterybox.location.MysteryBoxLocationMai
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.utils.other.CacheSystem;
+import ridev.com.br.utils.other.Sound;
 import ridev.com.br.utils.text.FancyText;
 
 import java.util.Arrays;
 
 public class MainMysteryBox extends SimpleInventory {
     public MainMysteryBox() {
-        super("main.mysterybox.inv", FancyText.colored("Menu De Baus"), 9 * 5);
+        super("main.mysterybox.inv", FancyText.colored("Baús"), 9 * 5);
     }
 
     public void openInv(Player p) {
@@ -35,7 +36,12 @@ public class MainMysteryBox extends SimpleInventory {
         InventoryItem boxLocs = InventoryItem.of(
                 newMenuItemItemStack(CacheSystem.getItem("world_head"), "&aLocalização de Baús", new String[]{"&7Clique aqui para", "&7Ver o menu de localização", "&7das Mystery Box"})).defaultCallback(a -> new MysteryBoxLocationMain().init().openInventory(p));
         InventoryItem boxPlayerAdd = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("other_box"), "&aAdicionar Báu", new String[]{"&7Clique aqui para", "&7Adicionar um báu", "&7a conta de um player"})).defaultCallback(a -> AddBoxEvent.getPlayers().add(us));
+                newMenuItemItemStack(CacheSystem.getItem("other_box"), "&aAdicionar Báu", new String[]{"&7Clique aqui para", "&7Adicionar um báu", "&7a conta de um player"})).defaultCallback(a -> {
+            Sound.NOTE_PLING.play(p, 10, 10);
+            p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Informe o nome do player para adicionar as caixas"));
+            p.closeInventory();
+            AddBoxEvent.getPlayers().add(us);
+        });
 
         InventoryItem voltar = InventoryItem.of(
                 newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));

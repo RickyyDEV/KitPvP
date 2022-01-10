@@ -5,18 +5,21 @@ import com.henryfabio.sqlprovider.executor.SQLExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import ridev.com.br.Main;
 import ridev.com.br.api.bau.player.BoxType;
 import ridev.com.br.api.cargos.GroupManager;
 import ridev.com.br.api.kit.Kit;
-import ridev.com.br.api.kit.kits.PvP;
+import ridev.com.br.api.kit.KitLibrary;
+import ridev.com.br.api.permission.Permission;
 import ridev.com.br.api.rank.RankType;
 import ridev.com.br.api.rank.Ranks;
 import ridev.com.br.api.warps.WarpType;
+import ridev.com.br.language.KitLanguage;
 import ridev.com.br.sql.BackendLibrary;
 
 import java.util.ArrayList;
@@ -26,13 +29,11 @@ import java.util.Map;
 
 public class UserManager {
 
-    private final BackendLibrary backendLibrary;
-
     public static Map<String, User> map;
 
 
     public UserManager(Main plugin) {
-        this.backendLibrary = new BackendLibrary(plugin);
+        new BackendLibrary(plugin);
         map = Maps.newConcurrentMap();
         Bukkit.getPluginManager().registerEvents(this.createInternalListener(), plugin);
     }
@@ -40,8 +41,8 @@ public class UserManager {
     Listener createInternalListener() {
         return new Listener() {
 
-            @EventHandler
-            public void onPlayerJoin(PlayerJoinEvent event) {
+            @EventHandler(priority = EventPriority.MONITOR)
+            public void onPlayerJoin(PlayerLoginEvent event) {
                 Player player = event.getPlayer();
 
                 new BukkitRunnable() {
@@ -58,9 +59,29 @@ public class UserManager {
                             box.put(BoxType.SUPREMO, 0);
                             box.put(BoxType.MASTER, 0);
                             List<Kit> kitlist = new ArrayList<>();
-                            kitlist.add(new PvP());
+                            for (String s : KitLanguage.get(KitLanguage::kits)) {
+                                kitlist.add(KitLibrary.getKit(s));
+                            }
+                            if (KitLanguage.get(KitLanguage::saveType).equalsIgnoreCase("permission")) {
+                                for (Kit kits : kitlist) {
+                                    Permission.getInstance().addPermission(player, kits.permission());
+                                }
+                            }
                             user = new User(player.getName(), "basico=0;mediano=0;raro=0;supremo=0;master=0;", box, kitlist, null, RankType.UNRANKED, GroupManager.getPlayerGroup(player), 0, 0, 0, 0, WarpType.LOBBY);
                             BackendLibrary.insert(user);
+                        }
+                        List<Kit> kitlist = new ArrayList<>();
+                        if (KitLanguage.get(KitLanguage::saveType).equalsIgnoreCase("permission")) {
+                            for (Kit kit : KitLibrary.getKits()) {
+                                if (Permission.getInstance().hasPermission(player, kit.permission())) {
+                                    kitlist.add(kit);
+                                }
+                            }
+                            user.setKits(kitlist);
+                        } else {
+                            Main.LOGGER.severe("O tipo de salvamento dos kits é um tipo inválido!");
+                            System.exit(0);
+
                         }
                         Ranks.checkRankPlayer(user);
                         map.put(player.getName(), user);

@@ -1,14 +1,13 @@
 package ridev.com.br.api.warps;
 
-import org.bukkit.Bukkit;
-import ridev.com.br.api.world.LocationAPI;
 import ridev.com.br.Main;
+import ridev.com.br.api.world.LocationAPI;
 
 public class WarpStarter {
 
 
     public WarpStarter(Main plugin) {
-        Bukkit.getScheduler().runTask(plugin, this::loadAllWarps);
+        loadAllWarps();
 
     }
 

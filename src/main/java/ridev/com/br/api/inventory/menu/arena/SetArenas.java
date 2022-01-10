@@ -14,14 +14,14 @@ import ridev.com.br.api.arena.Arena;
 import ridev.com.br.api.arena.ArenaLibrary;
 import ridev.com.br.api.arena.ArenaType;
 import ridev.com.br.utils.other.CacheSystem;
-import ridev.com.br.utils.text.FancyText;
 import ridev.com.br.utils.other.Sound;
+import ridev.com.br.utils.text.FancyText;
 
 import java.util.Arrays;
 
 public class SetArenas extends SimpleInventory {
     public SetArenas() {
-        super("set.arenas.inv", FancyText.colored("&7Arena Setter"), 9 * 6);
+        super("set.arenas.inv", FancyText.colored("&7Criador de arenas"), 9 * 6);
     }
 
 
@@ -31,13 +31,13 @@ public class SetArenas extends SimpleInventory {
         Player p = viewer.getPlayer();
         if (ArenaLibrary.arenasNotSetted().isEmpty()) {
             InventoryItem semArena = InventoryItem.of(
-                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem Arenas", new String[]{"&7Todas as arenas foram setadas", "&7Para Remover Alguma, acesse o menu de", "&7Remover Arenas"})).defaultCallback(a -> a.setCancelled(true));
+                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem arenas", new String[]{"&7Todas as arenas foram setadas", "&7Para remover alguma, acesse o menu de", "&7remover arenas"})).defaultCallback(a -> a.setCancelled(true));
             editor.setItem(22, semArena);
         } else {
             int slot = 0;
             for (ArenaType type : ArenaLibrary.arenasNotSetted()) {
                 InventoryItem setarArena = InventoryItem.of(
-                        newMenuItemItemStack(CacheSystem.getItem("arena_icon"), "&a" + type.getBeatifulName(), new String[]{"&7Clique Aqui para", "&7Adicionar esta arena!"})).defaultCallback(a -> {
+                        newMenuItemItemStack(CacheSystem.getItem("arena_icon"), "&a" + type.getBeatifulName(), new String[]{"&7Clique aqui para", "&7adicionar esta arena!"})).defaultCallback(a -> {
                     p.closeInventory();
                     Sound.NOTE_PLING.play(p, 10, 10);
                     Arena ar = new Arena(type);

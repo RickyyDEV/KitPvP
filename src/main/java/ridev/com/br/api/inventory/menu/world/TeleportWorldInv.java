@@ -36,7 +36,7 @@ public class TeleportWorldInv extends PagedInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para Voltar")).defaultCallback(a -> new MainWorld().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para voltar")).defaultCallback(a -> new MainWorld().init().openInventory(p));
 
 
         editor.setItem(40, voltar);
@@ -71,9 +71,15 @@ public class TeleportWorldInv extends PagedInventory {
             for (World s : WorldAPI.getLoadedWorlds()) {
                 if (!p.getLocation().getWorld().equals(s)) {
                     itens.add(() -> InventoryItem.of(
-                            newMenuItem(Material.LEAVES, "&a" + s.getName(), "&7Clique aqui para Se teletransportar para o mundo&6 " + s.getName())).defaultCallback(a -> {
-                        p.teleport(s.getSpawnLocation());
-                        p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Você foi teletransportado para o mundo &6" + s.getName() + "&7!"));
+                            newMenuItem(Material.LEAVES, "&a" + s.getName(), "&7Clique aqui para se teletransportar para o mundo&6 " + s.getName())).defaultCallback(a -> {
+                        p.closeInventory();
+                        try {
+                            p.teleport(s.getSpawnLocation());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Você foi teletransportado para o mundo &6" + s.getName() + "&7!"));
+                        }
                     }));
                 }
             }

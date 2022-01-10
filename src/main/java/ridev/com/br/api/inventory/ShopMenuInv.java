@@ -29,18 +29,18 @@ public class ShopMenuInv extends SimpleInventory {
         User us = UserManager.getPlayer(p);
         int kits_size = us.getKits().size();
         InventoryItem kits = InventoryItem.of(
-                newMenuItem(Material.DIAMOND_SWORD, "&aKits", "&r", "&7Clique para Comprar ou Evoluir Kits!", "&r", "&fDesbloquados: &7" + kits_size + "/" + KitLibrary.getKits().size())).defaultCallback(a -> {
+                newMenuItem(Material.DIAMOND_SWORD, "&aKits", "&r", "&7Clique para comprar kits!", "&r", "&fDesbloquados: &7" + kits_size + "/" + KitLibrary.getKits().size())).defaultCallback(a -> {
             new ShopKits().init().openInventory(p);
         });
 
         InventoryItem box = InventoryItem.of(
-                newMenuItem(Material.ENDER_CHEST, "&6Caixas Misteriosas", "&r", "&7Clique para Comprar Caixas Misteriosas!", "&r")).defaultCallback(a -> {
+                newMenuItem(Material.ENDER_CHEST, "&6Caixas misteriosas", "&r", "&7Clique para Comprar Caixas Misteriosas!", "&r")).defaultCallback(a -> {
             new BoxShop().init().openInventory(p);
         });
 
         InventoryItem animations = InventoryItem.of(
-                newMenuItem(Material.PAINTING, "&aAnimações", "&r", "&7Adicione Particulas De Acordo", "&7Com as suas ações!", "&r")).defaultCallback(a -> {
-
+                newMenuItem(Material.PAINTING, "&aAnimações", "&r", "&7Adicione particulas de acordo", "&7com as suas ações!", "&r")).defaultCallback(a -> {
+            p.sendMessage(FancyText.colored("&cEm desenvolvimento..."));
         });
 
 

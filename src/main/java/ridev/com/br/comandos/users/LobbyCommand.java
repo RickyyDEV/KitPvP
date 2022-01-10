@@ -37,6 +37,7 @@ public class LobbyCommand extends Commands {
                 }
             } else {
                 if (!us.getWarp().equals(WarpType.LOBBY)) {
+                    us.setKit(null);
                     MineReflect.sendTitle(sender, "", "", 1, 1, 1);
                     sender.teleport(LobbyManager.lobby().getLocation());
                     sender.sendMessage(FancyText.colored(LangValue.get(LangValue::lobbyInvited)));

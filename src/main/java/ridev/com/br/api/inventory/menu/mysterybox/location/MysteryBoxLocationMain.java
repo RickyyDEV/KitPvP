@@ -18,22 +18,22 @@ import java.util.Arrays;
 
 public class MysteryBoxLocationMain extends SimpleInventory {
     public MysteryBoxLocationMain() {
-        super("main.mysterybox.location.inv", FancyText.colored("&7Bau Location"), 9 * 5);
+        super("main.mysterybox.location.inv", FancyText.colored("&7Localização de baús"), 9 * 5);
     }
 
     @Override
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem boxLocs = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("green"), "&aAdicionar de Baús", new String[]{"&7Clique aqui para", "&7Adicionar um baú na sua", "&7Localização"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("green"), "&aAdicionar baús", new String[]{"&7Clique aqui para", "&7Adicionar um baú na sua", "&7Localização"})).defaultCallback(a -> {
             MysteryBoxLocationSetEvent.name.remove(p);
             MysteryBoxLocationSetEvent.players.remove(p);
             p.closeInventory();
-            p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Agora Nos Diga o nome da MysteryBox!"));
+            p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Agora nos diga o nome da MysteryBox!"));
             MysteryBoxLocationSetEvent.players.add(p);
         });
         InventoryItem boxPlayerAdd = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("red"), "&aRemover Báu", new String[]{"&7Clique aqui para", "&7Remover um báu", "&7 Especifico"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("red"), "&aRemover Báu", new String[]{"&7Clique aqui para", "&7Remover um báu", "&7Especifico"})).defaultCallback(a -> {
             if (BoxManager.getBoxes().isEmpty()) {
                 new MysteryBoxLocationRemoverSimply().init().openInventory(p);
             } else {
@@ -42,7 +42,7 @@ public class MysteryBoxLocationMain extends SimpleInventory {
         });
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainMysteryBox().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainMysteryBox().init().openInventory(p));
 
         editor.setItem(20, boxLocs);
         editor.setItem(24, boxPlayerAdd);

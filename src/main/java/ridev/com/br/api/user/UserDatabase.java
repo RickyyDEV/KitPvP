@@ -8,6 +8,7 @@ import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitLibrary;
 import ridev.com.br.api.rank.RankType;
 import ridev.com.br.api.warps.WarpType;
+import ridev.com.br.language.KitLanguage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,10 @@ public class UserDatabase implements SQLResultAdapter<User> {
         Map<BoxType, Integer> box = BoxType.toHash(simpleResultSet.get("caixas"));
         List<Kit> kitlist = new ArrayList<>();
         String kits = simpleResultSet.get("kits");
-        for (String s : kits.toLowerCase().split(";")) {
-            kitlist.add(KitLibrary.getKit(s.toLowerCase()));
+        if (KitLanguage.get(KitLanguage::saveType).equalsIgnoreCase("database")) {
+            for (String s : kits.toLowerCase().split(";")) {
+                kitlist.add(KitLibrary.getKit(s.toLowerCase()));
+            }
         }
         return User.builder()
                 .username(simpleResultSet.get("nome"))

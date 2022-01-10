@@ -1,14 +1,13 @@
 package ridev.com.br.api.arena;
 
-import org.bukkit.Bukkit;
-import ridev.com.br.api.world.LocationAPI;
 import ridev.com.br.Main;
+import ridev.com.br.api.world.LocationAPI;
 
 public class ArenaStarter {
 
 
     public ArenaStarter(Main plugin) {
-        Bukkit.getScheduler().runTask(Main.getInstance(), this::loadArenas);
+        loadArenas();
     }
 
 

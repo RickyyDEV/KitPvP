@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class CocoabeanInv extends SimpleInventory {
     public CocoabeanInv() {
-        super("cocoa.inv", FancyText.colored("&7Recraft de Cocoabeans"), 9 * 2);
+        super("cocoa.inv", FancyText.colored("&7Recraft de cocoabeans"), 9 * 2);
     }
 
     @Override

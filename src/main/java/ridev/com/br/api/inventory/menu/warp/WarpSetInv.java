@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 public class WarpSetInv extends SimpleInventory {
     public WarpSetInv() {
-        super("warp.set.inv", FancyText.colored("&7Warp Setter"), 9 * 5);
+        super("warp.set.inv", FancyText.colored("&7Criador de warps"), 9 * 5);
     }
 
 
@@ -35,13 +35,13 @@ public class WarpSetInv extends SimpleInventory {
 
         if (WarpLibrary.getWarpNotSet().isEmpty()) {
             InventoryItem semArena = InventoryItem.of(
-                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem Warps", "&7Todas as warps Ja foram Setadas!", "&7Para Remover Alguma, acesse o menu de", "&7Remover Warps")).defaultCallback(a -> a.setCancelled(true));
+                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem warps", "&7Todas as warps já foram setadas!", "&7para remover alguma, acesse o menu de", "&7remover warps")).defaultCallback(a -> a.setCancelled(true));
             editor.setItem(22, semArena);
         } else {
             int slot = 0;
             for (WarpType warps : WarpLibrary.getWarpNotSet()) {
                 InventoryItem warpLocs = InventoryItem.of(
-                        newMenuItem(warps.getItem(), "&a" + warps.getName(), "&7Clique aqui para", "&7Setar uma warp na sua", "&7Localização")).defaultCallback(a ->
+                        newMenuItem(warps.getItem(), "&a" + warps.getName(), "&7Clique aqui para", "&7setar uma warp na sua", "&7localização")).defaultCallback(a ->
                 {
                     if (warps.equals(WarpType.LOBBY)) {
                         Lobby lobby = new Lobby(p.getLocation());
@@ -50,7 +50,7 @@ public class WarpSetInv extends SimpleInventory {
                         lobby.saveInConfig();
                         p.closeInventory();
                         Sound.NOTE_PLING.play(p, 10, 10);
-                        p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Você Removeu a warp &6" + warps.getName() + " &7Com sucesso!"));
+                        p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Você removeu a warp &6" + warps.getName() + " &7com sucesso!"));
                     } else {
                         if (warps.isDuel()) {
                             if (warps.equals(WarpType.ONEVSONE)) new SetWarp1v1().init().openInventory(p);
@@ -62,7 +62,7 @@ public class WarpSetInv extends SimpleInventory {
                             warp.saveInConfig();
                             warp.save();
                             Sound.NOTE_PLING.play(p, 10, 10);
-                            p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Você setou a warp &6" + warps.getName() + " &7Com sucesso!"));
+                            p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Você setou a warp &6" + warps.getName() + " &7com sucesso!"));
                         }
                     }
                 });
@@ -72,7 +72,7 @@ public class WarpSetInv extends SimpleInventory {
         }
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para Voltar")).defaultCallback(a -> new MainWarp().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para voltar")).defaultCallback(a -> new MainWarp().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

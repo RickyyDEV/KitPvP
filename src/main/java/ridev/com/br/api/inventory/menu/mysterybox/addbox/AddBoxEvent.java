@@ -1,15 +1,17 @@
 package ridev.com.br.api.inventory.menu.mysterybox.addbox;
 
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import ridev.com.br.Main;
 import ridev.com.br.api.bau.player.BoxType;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
-import ridev.com.br.utils.text.FancyText;
 import ridev.com.br.utils.other.Sound;
+import ridev.com.br.utils.text.FancyText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +23,7 @@ public class AddBoxEvent implements Listener {
     static List<User> players = new ArrayList<>();
 
     @Getter
-    static HashMap<User, User> users = new HashMap<>();
+    static HashMap<User, Player> users = new HashMap<>();
 
     @Getter
     static HashMap<User, BoxType> box = new HashMap<>();
@@ -37,29 +39,35 @@ public class AddBoxEvent implements Listener {
                 Sound.NOTE_PLING.play(p, 10, 10);
                 if (e.getMessage().matches("-?\\d+")) {
                     int quantity = Integer.parseInt(e.getMessage());
-                    users.get(us).addBoxes(box.get(us), quantity);
+                    BoxType finalbox = box.get(us);
+                    User toadd = UserManager.getPlayer(users.get(us));
+                    toadd.addBoxes(finalbox, quantity);
                     Sound.NOTE_PLING.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Você acaba de Adicionar &b" + quantity + " &7Caixas " + box.get(us).getBeatifulName()) + " &7Na conta do jogador &d" + users.get(us).getUsername());
+                    Main.LOGGER.info(finalbox.getName());
+                    Main.LOGGER.info("BOX BEAUT" + finalbox.getBeatifulName());
+                    Main.LOGGER.info("quanty: " + quantity);
+                    Main.LOGGER.info("us username: " + toadd.getUsername());
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Você acaba de adicionar &b" + quantity + " &7caixas " + box.get(us).getBeatifulName() + " &7na conta do jogador &d" + toadd.getUsername()));
                     box.remove(us);
                     users.remove(us);
                     players.remove(us);
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Este Valor &cnão é um número&7!"));
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Este balor &cnão é um número&7!"));
                 }
             } else if (users.containsKey(us)) {
                 BoxType boxe = BoxType.transform(e.getMessage());
-                if (box != null) {
+                if (boxe != null) {
                     p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Agora me diga a &aquantidade de caixas&7!"));
                     box.put(us, boxe);
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Este Tipo de caixa &cnão existe&7! &eLembrando que são: Basico, Mediano, Raro, Supremo, Master"));
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Este tipo de caixa &cnão existe&7! &eLembrando que são: basico, mediano, raro, supremo, master"));
                 }
             } else {
-                User user = UserManager.getPlayer(e.getMessage());
+                Player user = Bukkit.getPlayerExact(e.getMessage());
                 if (user != null) {
-                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Agora me Diga o &atipo da caixa&7!"));
+                    p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Agora me diga o &atipo da caixa&7!"));
                     users.put(us, user);
                 } else {
                     Sound.VILLAGER_NO.play(p, 10, 10);

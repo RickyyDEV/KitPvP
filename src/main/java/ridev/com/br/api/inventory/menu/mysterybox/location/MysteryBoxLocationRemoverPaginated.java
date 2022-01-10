@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class MysteryBoxLocationRemoverPaginated extends PagedInventory {
     public MysteryBoxLocationRemoverPaginated() {
-        super("inv.mysterybox.location.add.pagination", FancyText.colored("&7Bau Remover"), 9 * 6);
+        super("inv.mysterybox.location.add.pagination", FancyText.colored("&7Removedor de baús"), 9 * 6);
     }
 
 
@@ -43,10 +43,10 @@ public class MysteryBoxLocationRemoverPaginated extends PagedInventory {
         for (Map.Entry<String, Box> data : BoxManager.getBoxes().entrySet()) {
             Box box = data.getValue();
             itemSuppliers.add(() -> InventoryItem.of(
-                    newMenuItem(Material.ENDER_CHEST, "&c" + box.getName(), "&7Clique Aqui para", "&7Remover esta Mystery Box!")).defaultCallback(a -> {
+                    newMenuItem(Material.ENDER_CHEST, "&c" + box.getName(), "&7Clique aqui para", "&7remover esta Mystery Box!")).defaultCallback(a -> {
                 p.closeInventory();
                 Sound.NOTE_PLING.play(p, 10, 10);
-                p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Mystery Box &6" + box.getName() + " &7Removida Com sucesso!"));
+                p.sendMessage(FancyText.colored("&b&lBOX &8➸ &7Mystery box &6" + box.getName() + " &7removida com sucesso!"));
                 box.removeInConfig();
                 box.removeMysteryBox();
             }));
@@ -59,7 +59,7 @@ public class MysteryBoxLocationRemoverPaginated extends PagedInventory {
         Player p = viewer.getPlayer();
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MysteryBoxLocationMain().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MysteryBoxLocationMain().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

@@ -1,10 +1,10 @@
 package ridev.com.br.api.kit.kits;
 
+import lombok.NonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,22 +12,25 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.Main;
 import ridev.com.br.api.kit.Kit;
-import ridev.com.br.api.kit.KitLibrary;
 import ridev.com.br.api.kit.KitRarity;
 import ridev.com.br.api.kit.KitWinEvent;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.api.warps.WarpType;
+import ridev.com.br.language.KitLanguage;
 import ridev.com.br.utils.apis.MineReflect;
+import ridev.com.br.utils.item.ItemBuilder;
 import ridev.com.br.utils.other.Sound;
 import ridev.com.br.utils.text.FancyText;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Gladiador implements Kit {
 
@@ -42,35 +45,28 @@ public class Gladiador implements Kit {
     static HashMap<User, List<Block>> gladBlocks = new HashMap<>();
 
     @Override
-    public @NotNull List<String> description() {
+    public @NonNull List<String> description() {
+        return new ArrayList<>(KitLanguage.get(KitLanguage::gladiadorDescription));
+    }
 
-
-        return new java.util.ArrayList<>(Arrays.asList(
-                "&r",
-                "&7Sinta-se um verdadeiro gladiador!",
-                "&7Batalhe com adversarios isoladamente!",
-                "&7Para que ele não tenha para onde correr!",
-                "&r",
-                " &eItens: ",
-                "&71x Espada de pedra",
-                "&71x Prisão de ferro(Gladidor)",
-                "&r",
-                " &eHabilidades: ",
-                "&r",
-                "&7Ao clicar com o botão direito no adversário,",
-                "&7você puxa ele para uma arena de vidro!",
-                "&r")
-        );
+    @Override
+    public int price() {
+        return KitLanguage.get(KitLanguage::gladiadorPreco);
     }
 
     @Override
     public @NotNull ItemStack icone() {
-        return transform(Material.IRON_FENCE);
+        return new ItemStack(Material.IRON_FENCE);
+    }
+
+    @Override
+    public @NonNull String permission() {
+        return KitLanguage.get(KitLanguage::gladiadorPermission);
     }
 
     @Override
     public int id() {
-        return 3;
+        return 6;
     }
 
     @Override
@@ -81,26 +77,28 @@ public class Gladiador implements Kit {
     @Override
     public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
-        itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
-        itens.put(1, transform(Material.IRON_FENCE, "&aGladiador (&7Direito)", false, "&7Clique aqui para", "&7Enviar um player para", "&7a Jaula!"));
-        for (int i = 2; i < 36; i++) {
+        ItemStack pote = new ItemBuilder(Material.BOWL).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguVermelho = new ItemBuilder(Material.RED_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguMarrom = new ItemBuilder(Material.BROWN_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack sopa = new ItemBuilder(Material.MUSHROOM_SOUP).setName("&aSopa").setQuantity(1).build();
+        ItemStack espada = new ItemBuilder(Material.STONE_SWORD).setUnbreakable(true).setName("&aEspada").build();
+        ItemStack glad = new ItemBuilder(Material.IRON_FENCE).setName("&aGrade &7(Gladiador)").addLore("&aClique com o direito!").build();
+        ItemStack bussola = new ItemBuilder(Material.COMPASS).setName("&aProcurar jogadores").addLore("&aClique com o direito!").build();
+        for (int i = 1; i < 36; i++) {
             if (i == 13) {
-                itens.put(13, transform(Material.BOWL, 64));
+                itens.put(13, pote);
             } else if (i == 14) {
-                itens.put(14, transform(Material.RED_MUSHROOM, 64));
+                itens.put(14, coguVermelho);
             } else if (i == 15) {
-                itens.put(15, transform(Material.BROWN_MUSHROOM, 64));
+                itens.put(15, coguMarrom);
             } else {
-                itens.put(i, transform(Material.MUSHROOM_SOUP));
+                itens.put(i, sopa);
             }
         }
-        itens.put(8, transform(Material.COMPASS, "&aProcurar jogadores", false));
+        itens.put(0, espada);
+        itens.put(1, glad);
+        itens.put(8, bussola);
         return itens;
-    }
-
-    @Override
-    public int price() {
-        return 5000;
     }
 
     @Override
@@ -119,9 +117,9 @@ public class Gladiador implements Kit {
                     User clicked = UserManager.getPlayer((Player) e.getRightClicked());
                     if (author.getWarp().equals(WarpType.ARENA)) {
                         if (author.getPlayer().getItemInHand().getType().equals(Material.IRON_FENCE)) {
-                            if (author.getKit().equals(KitLibrary.getKit("gladiador"))) {
+                            if (author.getKit() instanceof Gladiador) {
                                 if (inGladiator.contains(author)) {
-                                    author.getPlayer().sendMessage(FancyText.colored("&c&lGLADIADOR &8➸ &7Você &cja está em um duelo de gladiadores&7!"));
+                                    author.getPlayer().sendMessage(FancyText.colored(KitLanguage.get(KitLanguage::gladiadorInGlad)));
                                 } else {
                                     spawn.put(author, author.getPlayer().getLocation());
                                     spawn.put(clicked, clicked.getPlayer().getLocation());
@@ -210,7 +208,7 @@ public class Gladiador implements Kit {
                     User author = UserManager.getPlayer(pqbateu);
                     User victim = UserManager.getPlayer(pqsofreu);
                     if (author.getKit() != null && victim.getKit() != null && inDuel.containsKey(author) && inDuel.containsKey(victim)) {
-                        if ((pqsofreu.getHealth() - ev.getFinalDamage()) <= 0.5) {
+                        if ((pqsofreu.getHealth() - ev.getFinalDamage()) < 0.5) {
                             author.getPlayer().teleport(spawn.get(author));
                             ev.setCancelled(true);
                             for (Map.Entry<User, List<Block>> bl : gladBlocks.entrySet()) {
@@ -232,8 +230,10 @@ public class Gladiador implements Kit {
             @EventHandler
             public void seMexer(PlayerMoveEvent e) {
                 User us = UserManager.getPlayer(e.getPlayer());
-                if (us.getKit() != null && inWait != null && inWait.contains(us)) {
-                    e.setTo(us.getPlayer().getLocation());
+                if (us != null) {
+                    if (us.getKit() != null && inWait != null && inWait.contains(us)) {
+                        e.setTo(us.getPlayer().getLocation());
+                    }
                 }
             }
         };
@@ -241,25 +241,4 @@ public class Gladiador implements Kit {
 
     }
 
-    private static ItemStack transform(Material item, int amount) {
-        ItemStack i = new ItemStack(item);
-        i.setAmount(amount);
-        return i;
-    }
-
-    private static ItemStack transform(Material item) {
-        return new ItemStack(item);
-    }
-
-    private static ItemStack transform(Material item, String name, boolean encantada, String... lore) {
-        ItemStack i = new ItemStack(item);
-        ItemMeta im = i.getItemMeta();
-        im.setLore(Arrays.asList(FancyText.colored(lore)));
-        im.setDisplayName(FancyText.colored(name));
-        if (encantada) {
-            i.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-        }
-        i.setItemMeta(im);
-        return i;
-    }
 }

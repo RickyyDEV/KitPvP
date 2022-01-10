@@ -23,6 +23,26 @@ public class LangValue implements ConfigurationInjectable {
     private String link;
 
 
+    // KILL STREAK
+
+    @ConfigField("mensagens.killstreak.ks-passes")
+    private String ksPassed;
+    @ConfigField("mensagens.killstreak.ks-lost")
+    private String ksLost;
+
+
+    // SERVER COMPASS MESSAGES
+
+    @ConfigField("mensagens.server-compass.diamante")
+    private List<String> diamante;
+    @ConfigField("mensagens.server-compass.kitpvp")
+    private List<String> kitpvp;
+    @ConfigField("mensagens.server-compass.gladiador")
+    private List<String> gladiador;
+    @ConfigField("mensagens.server-compass.hg")
+    private List<String> hg;
+
+
     //      BOAS VINDAS MESSAGE
     @ConfigField("mensagens.join-message.boas-vindas")
     private List<String> boasVindas;

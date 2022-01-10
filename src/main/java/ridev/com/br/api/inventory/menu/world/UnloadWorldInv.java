@@ -23,7 +23,7 @@ import java.util.List;
 
 public class UnloadWorldInv extends PagedInventory {
     public UnloadWorldInv() {
-        super("unload.world.inv", FancyText.colored("&7UnLoad World"), 9 * 6);
+        super("unload.world.inv", FancyText.colored("&7Descarregar mundos"), 9 * 6);
     }
 
     @Override
@@ -71,9 +71,15 @@ public class UnloadWorldInv extends PagedInventory {
             for (World s : WorldAPI.getLoadedWorlds()) {
                 if (!p.getLocation().getWorld().equals(s)) {
                     itens.add(() -> InventoryItem.of(
-                            newMenuItem(Material.LEAVES, "&c" + s.getName(), "&7Clique aqui para Descarregar O mundo&6 " + s.getName())).defaultCallback(a -> {
-                        WorldAPI.unloadWorld(s.getName());
-                        p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Você descarregou o mundo &6" + s.getName() + "&7 Com sucesso!"));
+                            newMenuItem(Material.LEAVES, "&c" + s.getName(), "&7Clique aqui para descarregar o mundo&6 " + s.getName())).defaultCallback(a -> {
+                        p.closeInventory();
+                        try {
+                            WorldAPI.unloadWorld(s.getName());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Você descarregou o mundo &6" + s.getName() + "&7 Com sucesso!"));
+                        }
                     }));
                 }
             }

@@ -87,6 +87,18 @@ public class CacheSystem {
          */
 
         ITEM_CACHE.put("troll_head", PlayerAPI.getSkull("df7f40a86bee8e21a55340856a8621aca495673aa17bfde18d3b7aa61b42c"));
+
+        ITEM_CACHE.put("astronauta_head", PlayerAPI.getSkull("fb7dc675e07e74f2bdf4f4939394ec28b9929657be2a094188a50a4b9a2af4c"));
+
+        ITEM_CACHE.put("naruto_head", PlayerAPI.getSkull("b06e34c1c94c7b829c59d01c7453d5f3e8259f389c2aca2fa314dca408693ce"));
+
+        ITEM_CACHE.put("ice_head", PlayerAPI.getSkull("f0701bdf3b88f6e1d7c6e59ca2a3e27ed070d6fb3bc68057f3c12d548d1298f"));
+
+        ITEM_CACHE.put("frog_head", PlayerAPI.getSkull("f1ebc7aad5a656d5842d481167b5b7b98eaf9d924c2dbb9348a31203330263"));
+
+        ITEM_CACHE.put("noiser_head", PlayerAPI.getSkull("6fb290a13df88267ea5f5fcf796b6157ff64ccee5cd39d469724591babeed1f6"));
+
+        ITEM_CACHE.put("turtle_head", PlayerAPI.getSkull("1546389bcd2a32a5a58f6e2e379904db0d167c23ba880d518d4e1a225b57820"));
     }
 
     public static ItemStack getItem(String item) {

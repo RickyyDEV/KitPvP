@@ -1,23 +1,24 @@
 package ridev.com.br.api.kit.kits;
 
+import lombok.NonNull;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.cooldown.CooldownAPI;
 import ridev.com.br.api.kit.Kit;
 import ridev.com.br.api.kit.KitRarity;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
+import ridev.com.br.language.KitLanguage;
+import ridev.com.br.utils.item.ItemBuilder;
 import ridev.com.br.utils.text.FancyText;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,23 +28,18 @@ public class Ninja implements Kit {
 
 
     @Override
-    public @NotNull List<String> description() {
-        return new java.util.ArrayList<>(Arrays.asList(
-                "&r",
-                "&7Torne-se um verdadeiro ninja!",
-                "&7Se teletransporte para trás de seus",
-                "&7Adversários, para derrotalos sem nem ser",
-                "&7Descoberto",
-                "&r",
-                " &eItens: ",
-                "&71x Espada de pedra",
-                "&r",
-                " &eHabilidades: ",
-                "&r",
-                "&7Agaixando você ativa o poder de se",
-                "&7Teletransportar para trás de seus adversários",
-                "&r")
-        );
+    public @NonNull List<String> description() {
+        return new ArrayList<>(KitLanguage.get(KitLanguage::ninjaDescription));
+    }
+
+    @Override
+    public int price() {
+        return KitLanguage.get(KitLanguage::ninjaPreco);
+    }
+
+    @Override
+    public @NonNull String permission() {
+        return KitLanguage.get(KitLanguage::ninjaPermission);
     }
 
     @Override
@@ -53,7 +49,7 @@ public class Ninja implements Kit {
 
     @Override
     public int id() {
-        return 5;
+        return 11;
     }
 
     @Override
@@ -64,26 +60,28 @@ public class Ninja implements Kit {
     @Override
     public @NotNull HashMap<Integer, ItemStack> itens() {
         HashMap<Integer, ItemStack> itens = new HashMap<>();
-        itens.put(0, transform(Material.STONE_SWORD, "&aEspada", true, ""));
+        ItemStack pote = new ItemBuilder(Material.BOWL).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguVermelho = new ItemBuilder(Material.RED_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack coguMarrom = new ItemBuilder(Material.BROWN_MUSHROOM).setName("&aSopa").setQuantity(64).build();
+        ItemStack sopa = new ItemBuilder(Material.MUSHROOM_SOUP).setName("&aSopa").setQuantity(1).build();
+        ItemStack espada = new ItemBuilder(Material.STONE_SWORD).setUnbreakable(true).setName("&aEspada").build();
+        ItemStack bussola = new ItemBuilder(Material.COMPASS).setName("&aProcurar jogadores").addLore("&aClique com o direito!").build();
         for (int i = 1; i < 36; i++) {
             if (i == 13) {
-                itens.put(13, transform(Material.BOWL, 64));
+                itens.put(13, pote);
             } else if (i == 14) {
-                itens.put(14, transform(Material.RED_MUSHROOM, 64));
+                itens.put(14, coguVermelho);
             } else if (i == 15) {
-                itens.put(15, transform(Material.BROWN_MUSHROOM, 64));
+                itens.put(15, coguMarrom);
             } else {
-                itens.put(i, transform(Material.MUSHROOM_SOUP));
+                itens.put(i, sopa);
             }
         }
-        itens.put(8, transform(Material.COMPASS, "&aProcurar jogadores", false));
+        itens.put(0, espada);
+        itens.put(8, bussola);
         return itens;
     }
 
-    @Override
-    public int price() {
-        return 2000;
-    }
 
     @Override
     public @NotNull KitRarity rarity() {
@@ -95,18 +93,21 @@ public class Ninja implements Kit {
         return new Listener() {
             @EventHandler
             public void aoAgaixar(PlayerToggleSneakEvent e) {
+                Player p = e.getPlayer();
                 User us = UserManager.getPlayer(e.getPlayer());
                 if (us.getKit() != null && us.getKit() instanceof Ninja) {
-                    if (CooldownAPI.isInCooldown(e.getPlayer().getName(), "ninja")) {
-                        e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você &cdeve aguardar &6" + CooldownAPI.getTimeLeft(e.getPlayer().getName(), "ninja") + "s &cpara usar o kit novamente&7!"));
-                    } else {
-                        if (cacheTeleport.containsKey(us)) {
-                            if (cacheTeleport.get(us) != null) {
-                                if (cacheTeleport.get(us).getKit() != null) {
-                                    us.getPlayer().teleport(cacheTeleport.get(us).getPlayer().getLocation().clone().subtract(0, 0, 1));
-                                    e.getPlayer().sendMessage(FancyText.colored("&b&lNINJA &8➸ &7Você foi &ateletransportado para " + cacheTeleport.get(us).getUsername() + "&7!"));
-                                    CooldownAPI cd = new CooldownAPI(e.getPlayer().getName(), "ninja", 5);
-                                    cd.start();
+                    if (e.getPlayer().isSneaking()) {
+                        if (CooldownAPI.isInCooldown(e.getPlayer().getName(), "ninja")) {
+                            e.getPlayer().sendMessage(FancyText.colored(KitLanguage.get(KitLanguage::ninjaWaitCooldown).replace("%time%", String.valueOf(CooldownAPI.getTimeLeft(p.getName(), "ninja")))));
+                        } else {
+                            if (cacheTeleport.containsKey(us)) {
+                                if (cacheTeleport.get(us) != null) {
+                                    if (cacheTeleport.get(us).getKit() != null) {
+                                        us.getPlayer().teleport(cacheTeleport.get(us).getPlayer().getLocation().clone().subtract(0, 0, 1));
+                                        e.getPlayer().sendMessage(FancyText.colored(KitLanguage.get(KitLanguage::ninjaTeleport).replace("%player%", cacheTeleport.get(us).getUsername())));
+                                        CooldownAPI cd = new CooldownAPI(e.getPlayer().getName(), "ninja", 5);
+                                        cd.start();
+                                    }
                                 }
                             }
                         }
@@ -128,25 +129,4 @@ public class Ninja implements Kit {
         };
     }
 
-    private static ItemStack transform(Material item, int amount) {
-        ItemStack i = new ItemStack(item);
-        i.setAmount(amount);
-        return i;
-    }
-
-    private static ItemStack transform(Material item) {
-        return new ItemStack(item);
-    }
-
-    private static ItemStack transform(Material item, String name, boolean encantada, String... lore) {
-        ItemStack i = new ItemStack(item);
-        ItemMeta im = i.getItemMeta();
-        im.setLore(Arrays.asList(FancyText.colored(lore)));
-        im.setDisplayName(FancyText.colored(name));
-        if (encantada) {
-            i.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-        }
-        i.setItemMeta(im);
-        return i;
-    }
 }

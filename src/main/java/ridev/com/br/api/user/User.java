@@ -107,8 +107,8 @@ public class User {
         if (Bukkit.getPlayer(this.username) != null) {
             ScoreboardManager.reloadScoreboard(Bukkit.getPlayer(this.username));
         }
-        UserManager.map.replace(this.getUsername(), this);
         Ranks.checkRankPlayer(this);
+        UserManager.map.replace(this.getUsername(), this);
     }
 
     public void addKit(Kit kit) {

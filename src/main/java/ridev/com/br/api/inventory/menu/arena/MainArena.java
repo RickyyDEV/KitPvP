@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.inventory.menu.MainInventory;
+import ridev.com.br.utils.item.ItemBuilder;
 import ridev.com.br.utils.other.CacheSystem;
 import ridev.com.br.utils.text.FancyText;
 
@@ -17,7 +18,7 @@ import java.util.Arrays;
 
 public class MainArena extends SimpleInventory {
     public MainArena() {
-        super("main.arena.inv", FancyText.colored("&7Menu De Arenas"), 9 * 5);
+        super("main.arena.inv", FancyText.colored("&7Menu de arenas"), 9 * 5);
     }
 
     public void openInv(Player p) {
@@ -27,12 +28,13 @@ public class MainArena extends SimpleInventory {
     @Override
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
+        ItemStack setArena = new ItemBuilder(CacheSystem.getItem("green")).setName("&aSetar arenas").addLore("&7Clique aqui para").addLore("&7setar arenas!").build();
+        ItemStack remArena = new ItemBuilder(CacheSystem.getItem("red")).setName("&cRemover arenas").addLore("&7Clique aqui para").addLore("&7remover arenas!").build();
+        ItemStack ret = new ItemBuilder(CacheSystem.getItem("back")).setName("&cVoltar").addLore("&7Clique aqui para Voltar").build();
         InventoryItem setarArena = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("green"), "&aSetar Arenas", new String[]{"&7Clique aqui para", "&7setar Arenas!"})).defaultCallback(a -> new SetArenas().init().openInventory(p));
-        InventoryItem removerArena = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("red"), "&cRemover Arenas", new String[]{"&7Clique Aqui para", "&7remover Arenas"})).defaultCallback(a -> new RemoveArenas().init().openInventory(p));
-        InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
+                setArena).defaultCallback(a -> new SetArenas().init().openInventory(p));
+        InventoryItem removerArena = InventoryItem.of(remArena).defaultCallback(a -> new RemoveArenas().init().openInventory(p));
+        InventoryItem voltar = InventoryItem.of(ret).defaultCallback(a -> new MainInventory().init().openInventory(p));
         editor.setItem(21, setarArena);
         editor.setItem(23, removerArena);
         editor.setItem(40, voltar);

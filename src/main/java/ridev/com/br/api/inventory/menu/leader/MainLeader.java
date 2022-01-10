@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public class MainLeader extends SimpleInventory {
     public MainLeader() {
-        super("main.leader.inv", FancyText.colored("&7Menu De Leader Boards"), 9 * 5);
+        super("main.leader.inv", FancyText.colored("&7Leaderboards"), 9 * 5);
     }
 
     public void openInv(Player p) {
@@ -29,9 +29,9 @@ public class MainLeader extends SimpleInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem setar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("green"), "&aSetar Leaderbords", new String[]{"&7Clique aqui para", "&7setar Leaderboards!"})).defaultCallback(a -> new SetLeader().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("green"), "&aSetar leaderbords", new String[]{"&7Clique aqui para", "&7setar leaderboards!"})).defaultCallback(a -> new SetLeader().init().openInventory(p));
         InventoryItem remover = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("red"), "&cRemover LeaderBoards", new String[]{"&7Clique Aqui para", "&7remover LeaderBoards"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("red"), "&cRemover leaderBoards", new String[]{"&7Clique aqui para", "&7remover leaderBoards"})).defaultCallback(a -> {
             if (LeaderManager.getLeaders().isEmpty()) {
                 new RemoveLeaderSimply().init().openInventory(p);
             } else {
@@ -39,7 +39,7 @@ public class MainLeader extends SimpleInventory {
             }
         });
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainInventory().init().openInventory(p));
         editor.setItem(21, setar);
         editor.setItem(23, remover);
         editor.setItem(40, voltar);

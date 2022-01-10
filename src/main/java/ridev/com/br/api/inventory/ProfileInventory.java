@@ -43,7 +43,7 @@ public class ProfileInventory extends SimpleInventory {
                         newMenuItemItemStack(skull,
                                 "&7Informações sobre " + us.getUsername(),
                                 "&r",
-                                "&fUsername: &e" + us.getUsername(),
+                                "&fNome: &e" + us.getUsername(),
                                 "&fGrupo: " + us.getRole().getNameWithColor(),
                                 "&fCoins: &6" + us.getCoins(),
                                 "&r",

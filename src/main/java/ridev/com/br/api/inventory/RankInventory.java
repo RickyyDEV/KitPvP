@@ -21,7 +21,7 @@ public class RankInventory extends SimpleInventory {
     private User toSee;
 
     public RankInventory() {
-        super("rank.inv", FancyText.colored("&7Informações de Rank"), 9 * 5);
+        super("rank.inv", FancyText.colored("&7Informações de rank"), 9 * 5);
     }
 
     public void openInv(Player p, User toSee) {
@@ -43,11 +43,11 @@ public class RankInventory extends SimpleInventory {
         int xpNecessario = us.getRank().getNextRank() != null ? us.getRank().getNextRank().getXp() : 0;
         String progressBar = us.getRank().getNextRank() != null ? Extra.getProgressBar(us.getXp(), us.getRank().getNextRank().getXp(), FancyText.colored("&a"), FancyText.colored("&7"), "=") : "Caminho completo!";
         InventoryItem rank = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("machine_head"), "&6Informações De " + us.getUsername() + ": ",
+                newMenuItemItemStack(CacheSystem.getItem("machine_head"), "&6Informações de " + us.getUsername() + ": ",
                         "&r",
                         "&fXP: &e" + us.getXp(),
-                        "&fPróximo Rank: " + proxRank,
-                        "&f XP Necessário: " + xpNecessario,
+                        "&fPróximo rank: " + proxRank,
+                        "&f XP necessário: " + xpNecessario,
                         "&f Caminho: " + progressBar
                 )).defaultCallback(a -> a.setCancelled(true)
         );

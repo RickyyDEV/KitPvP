@@ -20,14 +20,14 @@ import java.util.Arrays;
 
 public class RemoverWarp1v1 extends SimpleInventory {
     public RemoverWarp1v1() {
-        super("warp.remover.1v1", FancyText.colored("&71v1 Remover"), 9 * 5);
+        super("warp.remover.1v1", FancyText.colored("&7Remover 1v1"), 9 * 5);
     }
 
     @Override
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem setSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&cRemover Spawn", "&7Clique aqui para", "&7Remover o Spawn do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&cRemover Spawn", "&7Clique aqui para", "&7Remover o spawn do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).removeSpawnInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setSpawn(null);
@@ -35,18 +35,18 @@ public class RemoverWarp1v1 extends SimpleInventory {
                 if (WarpLibrary.getWarps().get(WarpType.ONEVSONE).getFirstSpawn() == null && WarpLibrary.getWarps().get(WarpType.ONEVSONE).getSecondSpawn() == null)
                     WarpLibrary.getWarps().remove(WarpType.ONEVSONE);
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.removeSpawnInConfig();
                 warp.setSpawn(null);
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             }
         });
         InventoryItem setFirstSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&cRemover Player Spawn 1", "&7Clique aqui para", "&7Remover o Spawn 1 do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&cRemover player spawn 1", "&7Clique aqui para", "&7Remover o spawn 1 do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).removeFirstSpawnInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setFirstSpawn(null);
@@ -54,18 +54,18 @@ public class RemoverWarp1v1 extends SimpleInventory {
                 if (WarpLibrary.getWarps().get(WarpType.ONEVSONE).getSpawn() == null && WarpLibrary.getWarps().get(WarpType.ONEVSONE).getSecondSpawn() == null)
                     WarpLibrary.getWarps().remove(WarpType.ONEVSONE);
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.removeFirstSpawnInConfig();
                 warp.setFirstSpawn(null);
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             }
         });
         InventoryItem setSecondSpawn = InventoryItem.of(
-                newMenuItem(Material.BLAZE_ROD, "&cRemover Spawn 2", "&7Clique aqui para", "&7Remover o Spawn 2 do 1v1!")).defaultCallback(a -> {
+                newMenuItem(Material.BLAZE_ROD, "&cRemover spawn 2", "&7Clique aqui para", "&7remover o spawn 2 do 1v1!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.ONEVSONE) != null) {
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).removeSecondSpawnInConfig();
                 WarpLibrary.getWarps().get(WarpType.ONEVSONE).setSecondSpawn(null);
@@ -73,14 +73,14 @@ public class RemoverWarp1v1 extends SimpleInventory {
                 if (WarpLibrary.getWarps().get(WarpType.ONEVSONE).getFirstSpawn() == null && WarpLibrary.getWarps().get(WarpType.ONEVSONE).getSpawn() == null)
                     WarpLibrary.getWarps().remove(WarpType.ONEVSONE);
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.ONEVSONE);
                 warp.removeSecondSpawnInConfig();
                 warp.setSecondSpawn(null);
                 warp.save();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &61v1&7 Removido com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &61v1&7 removido com sucesso!"));
             }
         });
 
@@ -94,7 +94,7 @@ public class RemoverWarp1v1 extends SimpleInventory {
             editor.setItem(24, setSecondSpawn);
         }
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new WarpRemoverInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new WarpRemoverInv().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

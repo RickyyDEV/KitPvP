@@ -21,7 +21,13 @@ public class CombatLogRunnable {
     public void update() {
         for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             if (CombatLogAPI.playerIsInCombat(p)) {
-                String vidad = new DecimalFormat("0.0").format(CombatLogAPI.getAdversary(p).getHealth());
+                String vidad;
+                if (CombatLogAPI.getAdversary(p).getHealth() < 0.5) {
+                    vidad = "0.0";
+                } else {
+                    vidad = new DecimalFormat("0.0").format(CombatLogAPI.getAdversary(p).getHealth());
+                }
+
                 MineReflect.sendActionBar(p, FancyText.colored("&c✧  &fVocê entrou em combate com &e" + CombatLogAPI.getAdversary(p).getName() + "&a/ &c❤ &c" + vidad));
             } else {
                 MineReflect.sendActionBar(p, FancyText.colored("&d✧ &aVocê não está em combate!"));

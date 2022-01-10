@@ -1,6 +1,5 @@
 package ridev.com.br.api.cargos;
 
-import org.bukkit.Bukkit;
 import ridev.com.br.Main;
 import ridev.com.br.utils.other.ModuleLogger;
 
@@ -12,7 +11,7 @@ public class GroupStarter {
 
     public GroupStarter(Main plugin) {
         this.plugin = plugin;
-        Bukkit.getScheduler().runTask(plugin, this::loadAllGroups);
+        loadAllGroups();
     }
 
     public void loadAllGroups() {
@@ -30,7 +29,7 @@ public class GroupStarter {
                 gp.createGroup();
                 i++;
             }
-            LOGGER.log(Level.INFO, i + " Cargos carregados!");
+            LOGGER.log(Level.INFO, i + " cargos carregados!");
         }
     }
 }

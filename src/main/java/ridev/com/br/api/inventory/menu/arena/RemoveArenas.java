@@ -12,15 +12,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import ridev.com.br.api.arena.ArenaLibrary;
 import ridev.com.br.api.arena.ArenaType;
+import ridev.com.br.utils.item.ItemBuilder;
 import ridev.com.br.utils.other.CacheSystem;
-import ridev.com.br.utils.text.FancyText;
 import ridev.com.br.utils.other.Sound;
+import ridev.com.br.utils.text.FancyText;
 
 import java.util.Arrays;
 
 public class RemoveArenas extends SimpleInventory {
     public RemoveArenas() {
-        super("remover.arenas.inv", FancyText.colored("&7Arena Remover"), 9 * 6);
+        super("remover.arenas.inv", FancyText.colored("&7Removedor de arenas"), 9 * 6);
     }
 
 
@@ -29,14 +30,16 @@ public class RemoveArenas extends SimpleInventory {
         Player p = viewer.getPlayer();
 
         if (ArenaLibrary.arenasIsSetted().isEmpty()) {
+            ItemStack noArena = new ItemBuilder(Material.STAINED_GLASS_PANE).addDyeColor(DyeColor.RED).setName("&cSem Arenas").addLore("&7Nenhuma arena foi setada").addLore("&7Para adicionar alguma, acesse o menu de").addLore("&7adicionar arenas").build();
+
             InventoryItem semArena = InventoryItem.of(
-                    newMenuItemItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData()), "&cSem Arenas", new String[]{"&7Nenhuma Arena foi Setada", "&7Para Adicionar Alguma, acesse o menu de", "&7Adicionar Arenas"})).defaultCallback(a -> a.setCancelled(true));
+                    noArena).defaultCallback(a -> a.setCancelled(true));
             editor.setItem(22, semArena);
         } else {
             int slot = 0;
             for (ArenaType type : ArenaLibrary.arenasIsSetted()) {
                 InventoryItem setarArena = InventoryItem.of(
-                        newMenuItemItemStack(CacheSystem.getItem("arena_icon"), "&c" + type.getBeatifulName(), new String[]{"&7Clique Aqui para", "&7Remover esta arena!"})).defaultCallback(a -> {
+                        newMenuItemItemStack(CacheSystem.getItem("arena_icon"), "&c" + type.getBeatifulName(), new String[]{"&7Clique aqui para", "&7remover esta arena!"})).defaultCallback(a -> {
                     Sound.NOTE_PLING.play(p, 10, 10);
                     p.closeInventory();
                     ArenaLibrary.getArena(type).removeInConfig();

@@ -10,13 +10,16 @@ import java.util.List;
 public interface Kit {
 
 
+    @NonNull String name();
+
+    @NonNull String permission();
+
     @NonNull List<String> description();
 
     @NonNull ItemStack icone();
 
     int id();
 
-    @NonNull String name();
 
     @NonNull HashMap<Integer, ItemStack> itens();
 

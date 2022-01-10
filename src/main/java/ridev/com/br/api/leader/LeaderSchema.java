@@ -4,10 +4,10 @@ import lombok.var;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
+import ridev.com.br.Main;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.api.world.LocationAPI;
-import ridev.com.br.Main;
 import ridev.com.br.utils.hologram.CustomHologram;
 import ridev.com.br.utils.text.FancyText;
 
@@ -22,9 +22,9 @@ public class LeaderSchema {
     public LeaderSchema(Main plugin) {
         this.plugin = plugin;
 
-        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this::loadAllLeaders, 1, 20 * 10);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this::loadAllLeaders, 1, 20 * 30);
 
-        Main.LOGGER.log(Level.INFO, "LeaderBoards Carregadas com sucesso!");
+        Main.LOGGER.log(Level.INFO, "LeaderBoards carregadas com sucesso!");
     }
 
     public void loadAllLeaders() {

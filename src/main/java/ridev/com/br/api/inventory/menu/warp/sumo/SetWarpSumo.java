@@ -20,61 +20,61 @@ import java.util.Arrays;
 
 public class SetWarpSumo extends SimpleInventory {
     public SetWarpSumo() {
-        super("warp.set.sumo", FancyText.colored("&7Sumo Setter"), 9 * 5);
+        super("warp.set.sumo", FancyText.colored("&7Criar sumô"), 9 * 5);
     }
 
     @Override
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem setSpawn = InventoryItem.of(
-                newMenuItem(Material.GOLDEN_APPLE, "&aSetar Spawn", "&7Clique aqui para", "&7Setar o Spawn do sumô!")).defaultCallback(a -> {
+                newMenuItem(Material.GOLDEN_APPLE, "&aSetar spawn", "&7Clique aqui para", "&7setar o spawn do sumô!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.SUMO) != null) {
                 WarpLibrary.getWarps().get(WarpType.SUMO).setSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.SUMO).save();
                 WarpLibrary.getWarps().get(WarpType.SUMO).saveInConfig();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô&7 setado com sucesso!"));
             } else {
                 p.closeInventory();
                 Warp warp = new Warp(WarpType.SUMO);
                 warp.setSpawn(p.getLocation());
                 warp.save();
                 warp.saveInConfig();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô&7 setado com sucesso!"));
             }
         });
         InventoryItem setFirstSpawn = InventoryItem.of(
-                newMenuItem(Material.GOLDEN_APPLE, "&aSetar Player Spawn 1", "&7Clique aqui para", "&7Setar o Spawn 1 do sumô!")).defaultCallback(a -> {
+                newMenuItem(Material.GOLDEN_APPLE, "&aSetar player spawn 1", "&7Clique aqui para", "&7setar o spawn 1 do sumô!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.SUMO) != null) {
                 WarpLibrary.getWarps().get(WarpType.SUMO).setFirstSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.SUMO).save();
                 WarpLibrary.getWarps().get(WarpType.SUMO).saveInConfig();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô &7setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô &7setado com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.SUMO);
                 warp.setFirstSpawn(p.getLocation());
                 warp.save();
                 warp.saveInConfig();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô&7 setado com sucesso!"));
             }
         });
         InventoryItem setSecondSpawn = InventoryItem.of(
-                newMenuItem(Material.GOLDEN_APPLE, "&aSetar Spawn 2", "&7Clique aqui para", "&7Setar o Spawn 2 do sumô!")).defaultCallback(a -> {
+                newMenuItem(Material.GOLDEN_APPLE, "&aSetar spawn 2", "&7Clique aqui para", "&7setar o spawn 2 do sumô!")).defaultCallback(a -> {
             if (WarpLibrary.getWarps().get(WarpType.SUMO) != null) {
                 WarpLibrary.getWarps().get(WarpType.SUMO).setSecondSpawn(p.getLocation());
                 WarpLibrary.getWarps().get(WarpType.SUMO).save();
                 WarpLibrary.getWarps().get(WarpType.SUMO).saveInConfig();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô&7 setado com sucesso!"));
             } else {
                 Warp warp = new Warp(WarpType.SUMO);
                 warp.setSecondSpawn(p.getLocation());
                 warp.save();
                 warp.saveInConfig();
                 p.closeInventory();
-                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn Do &6Sumô&7 setado com sucesso!"));
+                p.sendMessage(FancyText.colored("&9&lWARPS &8➸ &7Spawn do &6Sumô&7 setado com sucesso!"));
             }
         });
         if (WarpLibrary.getWarps().get(WarpType.SUMO) == null || WarpLibrary.getWarps().get(WarpType.SUMO).getSpawn() == null) {
@@ -88,7 +88,7 @@ public class SetWarpSumo extends SimpleInventory {
         }
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new WarpSetInv().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 

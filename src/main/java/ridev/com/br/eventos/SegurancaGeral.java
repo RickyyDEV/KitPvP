@@ -13,6 +13,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
@@ -20,14 +22,54 @@ import org.bukkit.help.HelpTopic;
 import org.bukkit.material.Openable;
 import ridev.com.br.api.builder.BuildAPI;
 import ridev.com.br.api.combat.CombatLogAPI;
+import ridev.com.br.api.permission.Permission;
 import ridev.com.br.api.user.User;
 import ridev.com.br.api.user.UserManager;
 import ridev.com.br.api.warps.WarpLibrary;
 import ridev.com.br.api.warps.WarpType;
+import ridev.com.br.language.ConfigValue;
 import ridev.com.br.utils.other.PlayerAPI;
 import ridev.com.br.utils.text.FancyText;
 
 public class SegurancaGeral implements Listener {
+
+
+    @EventHandler
+    public void durability(PlayerItemDamageEvent e) {
+        if (e.getItem().hasItemMeta()) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void durability2(PlayerItemBreakEvent e) {
+        if (e.getBrokenItem().hasItemMeta()) {
+            e.getPlayer().setItemInHand(e.getBrokenItem());
+        }
+    }
+
+
+    @EventHandler
+    public void mexerInInv(InventoryMoveItemEvent e) {
+        Player p = (Player) e.getInitiator().getHolder();
+        User us = UserManager.getPlayer(p);
+
+        if (us.getWarp().equals(WarpType.LOBBY)) {
+            e.setCancelled(true);
+        }
+    }
+
+
+    @EventHandler
+    public void mexerInInv(InventoryClickEvent e) {
+        Player p = (Player) e.getView().getPlayer();
+        User us = UserManager.getPlayer(p);
+
+        if (us.getWarp().equals(WarpType.LOBBY)) {
+            e.setCancelled(true);
+        }
+    }
+
 
     @EventHandler
     public void aoQuebrarSemBuild(BlockBreakEvent e) {
@@ -94,6 +136,9 @@ public class SegurancaGeral implements Listener {
         if (e.getInventory().getType() == InventoryType.HOPPER) {
             e.setCancelled(true);
         }
+        if (e.getInventory().getType() == InventoryType.ANVIL) {
+            e.setCancelled(true);
+        }
     }
 
 
@@ -137,7 +182,7 @@ public class SegurancaGeral implements Listener {
             } else if (event.getMessage().equalsIgnoreCase("/me") || event.getMessage().equalsIgnoreCase("/pl") || event.getMessage().equalsIgnoreCase("/plugins") || event.getMessage().equalsIgnoreCase("/ver") || event.getMessage().toLowerCase().startsWith("/bukkit") || event.getMessage().toLowerCase().startsWith("/help") || event.getMessage().toLowerCase().startsWith("/version") || event.getMessage().toLowerCase().startsWith("/about") || event.getMessage().toLowerCase().startsWith("/?")) {
                 event.setCancelled(true);
                 p.sendMessage(FancyText.colored("&fPlugins (1): &aRiKitPvP V2"));
-            } else if (CombatLogAPI.playerIsInCombat(p) && p.hasPermission("rikitpvp.admin") && !p.isOp()) {
+            } else if ((CombatLogAPI.playerIsInCombat(p)) && (!Permission.getInstance().hasPermission(p, ConfigValue.get(ConfigValue::kpPermission)) && !p.isOp())) {
                 event.setCancelled(true);
                 p.sendMessage(FancyText.colored("&eCOMBAT LOG &8➸ &cVocê não pode usar comando em combate!"));
             }

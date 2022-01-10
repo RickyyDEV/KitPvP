@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class SetLeader extends SimpleInventory {
     public SetLeader() {
-        super("set.leader.inv", FancyText.colored("&7Leader Board Setter"), 9 * 6);
+        super("set.leader.inv", FancyText.colored("&7Criador de leaderboards"), 9 * 6);
     }
 
 
@@ -26,15 +26,15 @@ public class SetLeader extends SimpleInventory {
 
         Player p = viewer.getPlayer();
         InventoryItem setarLeaderKill = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("kill_leader"), "&aKills LeaderBoard", new String[]{"&7Clique Aqui para", "&7Adicionar uma LeaderBoard", "&7De Kills!"})).defaultCallback(a -> {
+                newMenuItemItemStack(CacheSystem.getItem("kill_leader"), "&aKills keaderBoard", new String[]{"&7Clique aqui para", "&7adicionar uma leaderBoard", "&7de kills!"})).defaultCallback(a -> {
             p.closeInventory();
-            p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7Agora me diga o nome da LeaderBoard!"));
+            p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7Agora me diga o nome da leaderBoard!"));
             LeaderEvent.players.remove(p);
             LeaderEvent.players.put(p, LeaderType.KILLS);
         });
         InventoryItem setarLeaderXp = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("xp_leader"), "&aXP LeaderBoard", new String[]{"&7Clique Aqui para", "&7Adicionar uma LeaderBoard", "&7De XP!"})).defaultCallback(a -> {
-            p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7Agora me diga o nome da LeaderBoard!"));
+                newMenuItemItemStack(CacheSystem.getItem("xp_leader"), "&aXP LeaderBoard", new String[]{"&7Clique aqui para", "&7Adicionar uma leaderBoard", "&7de XP!"})).defaultCallback(a -> {
+            p.sendMessage(FancyText.colored("&6&lLEADER &8➸ &7Agora me diga o nome da leaderBoard!"));
             p.closeInventory();
             LeaderEvent.players.remove(p);
             LeaderEvent.players.put(p, LeaderType.XP);
@@ -42,7 +42,7 @@ public class SetLeader extends SimpleInventory {
 
 
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para Voltar"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", new String[]{"&7Clique aqui para voltar"})).defaultCallback(a -> new MainLeader().init().openInventory(p));
 
         editor.setItem(21, setarLeaderKill);
         editor.setItem(23, setarLeaderXp);

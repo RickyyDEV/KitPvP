@@ -16,10 +16,10 @@ public class SopaEvent implements Listener {
     public void onSopa(PlayerInteractEvent e) {
         final Player p = e.getPlayer();
         if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && p.getItemInHand().getType().equals(Material.MUSHROOM_SOUP)) {
-            if (p.getHealth() != 20.0) {
-                p.getWorld().playEffect(p.getEyeLocation(), Effect.HEART, 1);
-                p.setHealth(Math.min(p.getHealth() + 7.0, p.getMaxHealth()));
+            if (p.getHealth() < 20.0) {
                 p.getItemInHand().setType(Material.BOWL);
+                p.setHealth(Math.min(p.getHealth() + 7.0, p.getMaxHealth()));
+                p.getWorld().playEffect(p.getEyeLocation(), Effect.HEART, 1);
             }
         }
     }

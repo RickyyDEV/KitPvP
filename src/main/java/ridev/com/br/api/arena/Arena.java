@@ -14,6 +14,7 @@ import ridev.com.br.api.world.LocationAPI;
 import ridev.com.br.eventos.Protecao;
 import ridev.com.br.language.LangValue;
 import ridev.com.br.utils.apis.MineReflect;
+import ridev.com.br.utils.errors.types.ArenaException;
 import ridev.com.br.utils.files.Files;
 import ridev.com.br.utils.other.Sound;
 import ridev.com.br.utils.text.FancyText;
@@ -45,6 +46,9 @@ public class Arena {
 
     @SneakyThrows
     public void saveInConfig() {
+        if (this.type == null) throw new ArenaException("O numero da arena não pode ser vazio", "Ex000.1AMAI", 49);
+        if (this.location == null)
+            throw new ArenaException("A localização da arena não pode ser vazio", "Ex000.2AMAI", 49);
         Main.getLoc().set("arenas." + this.type.getName(), LocationAPI.serlialize(this.location));
         Files.saveLocConfig();
     }
@@ -66,7 +70,7 @@ public class Arena {
         Sound.NOTE_PLING.play(us.getPlayer(), 10, 10);
         String title = LangValue.get(LangValue::arenaTitle).replace("%kit%", kit.name()).replace("%player%", us.getUsername());
         String subtitle = LangValue.get(LangValue::arenaSubtitle).replace("%kit%", kit.name()).replace("%player%", us.getUsername());
-        MineReflect.sendTitle(us.getPlayer(), FancyText.colored("&eViper"), FancyText.colored("&7Você Entrou na arena!"), 10, 10, 10);
+        MineReflect.sendTitle(us.getPlayer(), FancyText.colored(title), FancyText.colored(subtitle), 10, 10, 10);
         us.setKit(kit);
 
         Player p = us.getPlayer();

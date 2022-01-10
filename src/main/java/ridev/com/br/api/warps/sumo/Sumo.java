@@ -250,13 +250,15 @@ public class Sumo implements Listener {
     public void aoEntrarEmAgua(PlayerMoveEvent e) {
         Player sofreu = e.getPlayer();
         User loser = UserManager.getPlayer(sofreu);
-        if (loser.getWarp().equals(WarpType.SUMO)) {
-            if (inDuel.containsKey(loser) || inDuel.containsValue(loser)) {
-                User winner = inDuel.get(loser);
+        if (loser != null) {
+            if (loser.getWarp().equals(WarpType.SUMO)) {
+                if (inDuel.containsKey(loser) || inDuel.containsValue(loser)) {
+                    User winner = inDuel.get(loser);
 
-                Block block = sofreu.getLocation().getBlock();
-                if (block.getType().equals(Material.WATER) || block.getType().equals(Material.STATIONARY_WATER)) {
-                    Bukkit.getPluginManager().callEvent(new OnPlayerWinSumo(winner, loser));
+                    Block block = sofreu.getLocation().getBlock();
+                    if (block.getType().equals(Material.WATER) || block.getType().equals(Material.STATIONARY_WATER)) {
+                        Bukkit.getPluginManager().callEvent(new OnPlayerWinSumo(winner, loser));
+                    }
                 }
             }
         }

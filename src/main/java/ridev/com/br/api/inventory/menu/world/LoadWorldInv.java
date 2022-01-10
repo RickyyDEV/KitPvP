@@ -22,7 +22,7 @@ import java.util.List;
 
 public class LoadWorldInv extends PagedInventory {
     public LoadWorldInv() {
-        super("load.world.inv", FancyText.colored("&7World Loader"), 9 * 6);
+        super("load.world.inv", FancyText.colored("&7Carregar mundos"), 9 * 6);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LoadWorldInv extends PagedInventory {
     protected void configureInventory(@NotNull Viewer viewer, @NotNull InventoryEditor editor) {
         Player p = viewer.getPlayer();
         InventoryItem voltar = InventoryItem.of(
-                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para Voltar")).defaultCallback(a -> new MainWorld().init().openInventory(p));
+                newMenuItemItemStack(CacheSystem.getItem("back"), "&cVoltar", "&7Clique aqui para voltar")).defaultCallback(a -> new MainWorld().init().openInventory(p));
         editor.setItem(40, voltar);
     }
 
@@ -68,8 +68,14 @@ public class LoadWorldInv extends PagedInventory {
             for (String s : WorldAPI.getUnloadedWorlds()) {
                 itens.add(() -> InventoryItem.of(
                         newMenuItem(Material.LEAVES, "&a" + s, "&7Clique aqui para carregar o mundo&6 " + s)).defaultCallback(a -> {
-                    WorldAPI.loadWorld(s);
-                    p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Mundo &6" + s + "&7 Carregado com sucesso!"));
+                    p.closeInventory();
+                    try {
+                        WorldAPI.loadWorld(s);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        p.sendMessage(FancyText.colored("&d&lWORLD &8➸ &7Mundo &6" + s + "&7 carregado com sucesso!"));
+                    }
                 }));
             }
 
