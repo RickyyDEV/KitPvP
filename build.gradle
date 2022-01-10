@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.github.HenryFabio.configuration-injector:bukkit:main-SNAPSHOT'
     implementation 'com.github.HenryFabio:inventory-api:main-SNAPSHOT'
     implementation 'com.github.HenryFabio:sql-provider:main-SNAPSHOT'
+    compileOnly 'net.luckperms:api:5.3'
     implementation 'com.github.filoghost.HolographicDisplays:holographicdisplays-api:2.4.5'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
