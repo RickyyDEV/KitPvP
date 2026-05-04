@@ -7,7 +7,7 @@ Este projeto foi criado apenas para fins de **estudo e demonstração**.
 
 ## 📌 Sobre o projeto
 
-O **RiKitPvP** é um plugin simples que simula um sistema de KitPvP, incluindo funcionalidades básicas como kits e combate entre jogadores.
+O **KitPvP** é um plugin simples que simula um sistema de KitPvP, incluindo funcionalidades básicas como kits e combate entre jogadores, animações e muito mais.
 
 > ⚠️ **Atenção:** Este projeto não está finalizado.
 
