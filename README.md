@@ -42,12 +42,6 @@ O objetivo deste projeto é:
 
 ---
 
-## 📂 Status
-
-🚧 Em desenvolvimento (incompleto / não funcional)
-
----
-
 ## 📄 Licença
 
 Uso livre para estudos.
